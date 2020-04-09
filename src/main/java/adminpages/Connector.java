@@ -54,7 +54,7 @@ public class Connector {
 				returnStatement = "Candidate was removed.";
 			}
 		} catch (Exception e) {
-			returnStatement = "Error in the process.";
+			returnStatement = "Error in the process. Candidate not removed.";
 		}
 
 		disconnect();
