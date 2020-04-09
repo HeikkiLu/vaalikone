@@ -15,8 +15,8 @@ public class Connector {
 	private Connection conn;
 
 	public Connector() {
-		this.dbURL = "jdbc:mysql://localhost:3306/SampleDB";
-		this.username = "heikki";
+		this.dbURL = "jdbc:mysql://localhost:3306/vaalikone";
+		this.username = "tommi";
 		this.password = "kukkuu";
 	}
 
