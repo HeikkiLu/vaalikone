@@ -2,7 +2,13 @@ package adminpages;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import persist.Ehdokkaat;
+import persist.Vastaukset;
 
 /**
  * Servlet implementation class AdminControlPanel
@@ -31,7 +38,9 @@ public class AdminControlPanel extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		Ehdokkaat e;
+		Connector conn = new Connector();
+		List ehdokkaat = conn.GetTableData();
+		
 		PrintWriter out = response.getWriter();
 		
 		// Luo taulukon rakenteen
@@ -39,52 +48,59 @@ public class AdminControlPanel extends HttpServlet {
 		out.println("<html>");
 		// Head
 		out.println("<head>");
-		out.println("<title>Admin Control Panel</title>");
-		out.println("<style>");
-		out.println(".btnedit {");
-		out.println("background-color: #a5d179;");
-		out.println("}");
-		out.println(".btndelete {");
-		out.println("background-color: #e6bcbc;");
-		out.println("}");
-		out.println("th { text-align: left}´; }");
-		out.println("</style>");
+			out.println("<title>Admin Control Panel</title>");
+			// CSS
+			out.println("<style>");
+			
+				out.println(".btnedit {");
+				out.println("background-color: #a5d179;");
+				out.println("}");
+				
+				out.println(".btndelete {");
+				out.println("background-color: #e6bcbc;");
+				out.println("}");
+				
+				out.println("th { text-align: left}´; }");
+				
+			out.println("</style>");
 		out.println("</head>");
 		// Body
 		out.println("<body>");
-		out.println("<center>");
-		out.println("<table border='1' cellpadding='3' cellspacing='0'>");
-		out.println("</tr>");
-		out.println("<th>ID</th>");
-		out.println("<th>Sukunimi</th>");
-		out.println("<th>Etunimi</th>");
-		out.println("<th>Puolue</th>");
-		out.println("<th>Kotipaikkakunta</th>");
-		out.println("<th>Ikä</th>");
-		out.println("<th>Miksi eduskuntaan</th>");
-		out.println("<th>Mitä edistät</th>");
-		out.println("<th>Ammatti</th>");
-		out.println("</tr>");
+			out.println("<center>");
+				out.println("<table border='1' cellpadding='3' cellspacing='0'>");
+					out.println("</tr>");
+						out.println("<th>ID</th>");
+						out.println("<th>Sukunimi</th>");
+						out.println("<th>Etunimi</th>");
+						out.println("<th>Puolue</th>");
+						out.println("<th>Kotipaikkakunta</th>");
+						out.println("<th>Ikä</th>");
+						out.println("<th>Miksi eduskuntaan</th>");
+						out.println("<th>Mitä edistät</th>");
+						out.println("<th>Ammatti</th>");
+					out.println("</tr>");
 
 		
 		// Ehdokkaiden tiedot
-		for (int i = 1; i < 20; i++) {
-			e = new Ehdokkaat(i);
+		for (int i = 0; i < ehdokkaat.size(); i++) {
+			
+			// Joka loopilla haetaan yksittäinen sisennetty ArrayList ehdokkaat-listasta joka sisältää ehdokkaan tiedot
+			ArrayList ehdokas = (ArrayList) ehdokkaat.get(i);
+			
 			out.println("<tr>"
-					+ "<td>" + i + "</td>"
-					+ "<td>" + e.getSukunimi() + "</td>"
-					+ "<td>" + e.getEtunimi() + "</td>"
-					+ "<td>" + e.getPuolue() + "</td>"
-					+ "<td>" + e.getKotipaikkakunta() + "</td>"
-					+ "<td>" + e.getIka() + "</td>"
-					+ "<td>" + e.getMiksiEduskuntaan() + "</td>"
-					+ "<td>" + e.getMitaAsioitaHaluatEdistaa() + "</td>"
-					+ "<td>" + e.getAmmatti() + "</td>"
+					+ "<td>" + ehdokas.get(0) + "</td>" // haetaan ehdokas arraysta indeksin mukaan tieto
+					+ "<td>" + ehdokas.get(1) + "</td>"
+					+ "<td>" + ehdokas.get(2) + "</td>"
+					+ "<td>" + ehdokas.get(3) + "</td>"
+					+ "<td>" + ehdokas.get(4) + "</td>"
+					+ "<td>" + ehdokas.get(5) + "</td>"
+					+ "<td>" + ehdokas.get(6) + "</td>"
+					+ "<td>" + ehdokas.get(7) + "</td>"
+					+ "<td>" + ehdokas.get(8) + "</td>"
 					+ "<td><button type=\"button\" class=\"btnedit\">Edit</button></td>"
 					+ "<td><button type=\"button\" class=\"btndelete\">Delete</button></td>"
 					+ "</tr>"
 					);
-
 		}
 		
 		// Ehdokkaan lisäys alimpana
