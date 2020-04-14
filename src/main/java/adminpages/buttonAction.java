@@ -20,7 +20,7 @@ public class buttonAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// Tämä määrittää minkä rivin edit-nappulaa painettiin
-		Connector.buttonAction = "btnE0";
+		Connector.buttonAction = request.getParameter("btn");
 		
 		// Lähettää vaan takas AdminControlPanel servlettiin
 		response.sendRedirect("/AdminControlPanel");
