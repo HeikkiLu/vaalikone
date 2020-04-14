@@ -55,7 +55,7 @@ public class AdminControlPanel extends HttpServlet {
 			// ensimmäiset 4 kirjainta tallennetaan event-stringiin
 			event = val.substring(0,4);
 			// neljännestä indeksistä eteenpäin olevat arvot eli numerot tallennetaan tähän
-			unparsedNum = val.substring(4);
+			unparsedNum = val.substring(5);
 			// ja numerot parsetaan int muotoon
 			indexNum = Integer.parseInt(unparsedNum);
 		}
@@ -106,18 +106,19 @@ public class AdminControlPanel extends HttpServlet {
 			
 			// Jos indexNum on sama kuin for-loopin int i niin tulostellaan muokattava rivi
 			if (indexNum == i) {
+
 				out.println("<tr>"
 						+ "<td id=\"id" + i + "\">" + ehdokas.get(0) + "</td>" // haetaan ehdokas arraysta indeksin mukaan tieto
-						+ "<td id=\"sukunimi" + i + "\"><input type=\"text\" value=\"" 			+ ehdokas.get(1) + "\"></td>"
-						+ "<td id=\"etunimi" + i + "\"><input type=\"text\" value=\"" 			+ ehdokas.get(2) + "\"></td>"
-						+ "<td id=\"puolue" + i + "\"><input type=\"text\" value=\"" 			+ ehdokas.get(3) + "\"></td>"
-						+ "<td id=\"kotipaikkakunta" + i + "\"><input type=\"text\" value=\"" 	+ ehdokas.get(4) + "\"></td>"
-						+ "<td id=\"ika" + i + "\"><input type=\"text\" value=\"" 				+ ehdokas.get(5) + "\"></td>"
-						+ "<td id=\"miksieduskuntaan" + i + "\"><input type=\"text\" value=\"" 	+ ehdokas.get(6) + "\"></td>"
-						+ "<td id=\"mitaedistaa" + i + "\"><input type=\"text\" value=\"" 		+ ehdokas.get(7) + "\"></td>"
-						+ "<td id=\"ammatti" + i + "\"><input type=\"text\" value=\"" 			+ ehdokas.get(8) + "\"></td>"
-						+ "<td><form action=\"/buttonAction\"><input type=\"submit\" name=\"btnP" + i + "\" + value=\"Apply\"></form></td>"
-						+ "<td><form action=\"/buttonAction\"><input type=\"submit\" name=\"btnC" + i + "\" + value=\"Discard\"></form></td>"
+						+ "<td id=\"sukunimi" + i + "\"><textarea rows=\"10\" cols=\"20\">" 		+ ehdokas.get(1) + "</textarea></td>"
+						+ "<td id=\"etunimi" + i + "\"><textarea rows=\"10\" cols=\"20\">"			+ ehdokas.get(2) + "</textarea></td>"
+						+ "<td id=\"puolue" + i + "\"><textarea rows=\"10\" cols=\"20\">"			+ ehdokas.get(3) + "</textarea></td>"
+						+ "<td id=\"kotipaikkakunta" + i + "\"><textarea rows=\"10\" cols=\"20\">"	+ ehdokas.get(4) + "</textarea></td>"
+						+ "<td id=\"ika" + i + "\"><textarea rows=\"10\" cols=\"20\">"				+ ehdokas.get(5) + "</textarea></td>"
+						+ "<td id=\"miksieduskuntaan" + i + "\"><textarea rows=\"10\" cols=\"30\">" + ehdokas.get(6) + "</textarea></td>"
+						+ "<td id=\"mitaedistaa" + i + "\"><textarea rows=\"10\" cols=\"30\">"		+ ehdokas.get(7) + "</textarea></td>"
+						+ "<td id=\"ammatti" + i + "\"><textarea rows=\"10\" cols=\"20\">"			+ ehdokas.get(8) + "</textarea></td>"
+						+ "<td><form action=\"/buttonAction\"><input type=\"submit\" name=\"btn" + i + "\" + value=\"Appl " + i + "\"></form></td>"
+						+ "<td><form action=\"/buttonAction\"><input type=\"submit\" name=\"btn" + i + "\" + value=\"Disc " + i + "\"></form></td>"
 						+ "</tr>"
 						);
 			} 
@@ -133,8 +134,8 @@ public class AdminControlPanel extends HttpServlet {
 						+ "<td id=\"miksieduskuntaan" + i + "\">" 	+ ehdokas.get(6) + "</td>"
 						+ "<td id=\"mitaedistaa" + i + "\">" 		+ ehdokas.get(7) + "</td>"
 						+ "<td id=\"ammatti" + i + "\">" 			+ ehdokas.get(8) + "</td>"
-						+ "<td><form action=\"/buttonAction\"><input type=\"submit\" name=\"btnE" + i + "\" + value=\"Edit\"></form></td>"
-						+ "<td><form action=\"/buttonAction\"><input type=\"submit\" name=\"btnD" + i + "\" + value=\"Delete\"></form></td>"
+						+ "<td><form action=\"/buttonAction\"><input type=\"submit\" name=\"btn\" value=\"Edit " + i + "\"></form></td>"
+						+ "<td><form action=\"/buttonAction\"><input type=\"submit\" name=\"btn\" value=\"Dele " + i + "\"></form></td>"
 						+ "</tr>"
 						);
 			}
@@ -171,6 +172,11 @@ public class AdminControlPanel extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	protected void btnAction(String action) {
+		Connector.buttonAction = action;
+		
 	}
 
 }
