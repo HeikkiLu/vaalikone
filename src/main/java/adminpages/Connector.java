@@ -16,6 +16,8 @@ public class Connector {
 	private String password;
 	private Connection conn;
 	public static String buttonAction;
+	public static String event;
+	public static int idNum;
 
 	public Connector() {
 		this.dbURL = "jdbc:mysql://localhost:3306/vaalikone";

@@ -21,6 +21,26 @@ public class buttonAction extends HttpServlet {
 		
 		// Tämä määrittää minkä rivin edit-nappulaa painettiin
 		Connector.buttonAction = request.getParameter("btn");
+		char event = request.getParameter("btn").charAt(0);
+		
+		if (event == 'E') {
+		}
+		
+		if (event == 'D') {
+			// lisää tähän kutsu deleteTable-metodiin
+		}
+		
+		if (event == 'Y') {
+			// lisää tähän kutsu editTable-metodiin
+		}
+		
+		if (event == 'N') {
+			// resetoi arvot että editointi perutaan
+		}
+		
+		if (event == 'S') {
+			// lisää tähän kutsu addCandidate-metodiin
+		}
 		
 		// Lähettää vaan takas AdminControlPanel servlettiin
 		response.sendRedirect("/AdminControlPanel");
