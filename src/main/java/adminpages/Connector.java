@@ -42,7 +42,7 @@ public class Connector {
 		}
 	}
 
-	public String DeleteTableData(int id) throws SQLException {
+	public String DeleteTableData() throws SQLException {
 		// TODO Auto-generated method stub
 		String sql = "DELETE FROM users WHERE user_id = ?";
 		String returnStatement = null;
@@ -52,7 +52,7 @@ public class Connector {
 		try {
 			PreparedStatement statement = conn.prepareStatement(sql);
 
-			statement.setInt(1, id);
+			statement.setInt(1, idNum);
 
 			int rowsDeleted = statement.executeUpdate();
 			if (rowsDeleted > 0) {

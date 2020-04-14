@@ -1,6 +1,8 @@
 package adminpages;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,8 @@ public class buttonAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Connector action = new Connector();
+		
 		// Tämä määrittää minkä rivin edit-nappulaa painettiin
 		Connector.buttonAction = request.getParameter("btn");
 		char event = request.getParameter("btn").charAt(0);
@@ -27,7 +31,12 @@ public class buttonAction extends HttpServlet {
 		}
 		
 		if (event == 'D') {
-			// lisää tähän kutsu deleteTable-metodiin
+			try {
+				action.DeleteTableData();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		if (event == 'Y') {
