@@ -90,6 +90,7 @@ public class buttonAction extends HttpServlet {
 				ika = -1;
 			}
 			
+			System.out.println(sukunimi + ", " + etunimi + ", " + ika);
 			//kutsuu addtabledata metodia
 			try {
 				conn.AddTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
