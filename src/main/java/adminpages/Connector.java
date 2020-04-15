@@ -52,7 +52,7 @@ public class Connector {
 		this.lastID = lastID;
 	}
 
-	public String DeleteTableData(int id) throws SQLException {
+	public String DeleteTableData() throws SQLException {
 
 		// TODO Auto-generated method stub
 		String sql = "DELETE FROM ehdokkaat WHERE EHDOKAS_ID = ?";

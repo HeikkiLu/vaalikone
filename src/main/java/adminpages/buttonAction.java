@@ -46,7 +46,7 @@ public class buttonAction extends HttpServlet {
 		}
 		
 
-		if (conn.event == 'D') {
+		if (conn.event == 'C') {
 			try {
 				System.out.println(conn.DeleteTableData());
 			} catch (SQLException e) {
