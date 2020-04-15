@@ -169,7 +169,7 @@ public class Connector {
 	/*
 	 * jotain yritystä addtabledatan kanssa
 	 */
-	public String AddTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, String ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
+	public String AddTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
 		String sql = "INSERT INTO ehdokkaat (sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksieduskuntaan, mitaedistaa, ammatti) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		String returnStatement = null;
 		
@@ -182,7 +182,7 @@ public class Connector {
 			statement.setString(2, etunimi);
 			statement.setString(3, puolue);
 			statement.setString(4, kotipaikkakunta);
-			statement.setString(5, ika);
+			statement.setInt(5, ika);
 			statement.setString(6, miksieduskuntaan);
 			statement.setString(7, mitaedistaa);
 			statement.setString(8, ammatti);

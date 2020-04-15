@@ -74,6 +74,31 @@ public class buttonAction extends HttpServlet {
 		if (conn.event == 'S') {
 			// Ville lisää tähän kutsu addCandidate-metodiin ja hae tiedot form kentistä käyttämällä request.getParameter
 			// kenttien nimet on nyt "addsukunimi" "addetunimi" jne.
+			
+			sukunimi = request.getParameter("addsukunimi");
+			etunimi = request.getParameter("addetunimi");
+			puolue = request.getParameter("addpuolue");
+			kotipaikkakunta = request.getParameter("addkotipaikkakunta");
+			// ik� hieman alempana try-catchiss�
+			miksi_eduskuntaan = request.getParameter("addmiksieduskuntaan");
+			mita_asioita_haluat_edistaa = request.getParameter("addmitaedistaa");
+			ammatti = request.getParameter("addammatti");
+			
+			try {
+				ika = Integer.parseInt(request.getParameter("addika"));
+			} catch (Exception e) {
+				ika = -1;
+			}
+			
+			//kutsuu addtabledata metodia
+			try {
+				conn.AddTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("virhe btnaction.java -> addtable osiossa");
+			}
+			
 		}
 		
 		// Lähettää vaan takas AdminControlPanel servlettiin
