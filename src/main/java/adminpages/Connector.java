@@ -170,7 +170,7 @@ public class Connector {
 	 * jotain yrityst‰ addtabledatan kanssa
 	 */
 	public String AddTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
-		String sql = "INSERT INTO ehdokkaat (SUKUNIMI, ETUNIMI, PUOLUE, KOTIPAIKKAKUNTA, IKA, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, AMMATTI) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO ehdokkaat (SUKUNIMI, ETUNIMI, PUOLUE, KOTIPAIKKAKUNTA, IKA, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, AMMATTI, EHDOKAS_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, (SELECT max(EHDOKAS_ID)+1 FROM ehdokkaat))";
 		String returnStatement = null;		
 		//System.out.println("addtabledatassa " + sukunimi + ", " + etunimi + ", " + ika);
 		connect();
@@ -186,12 +186,14 @@ public class Connector {
 			statement.setString(6, miksieduskuntaan);
 			statement.setString(7, mitaedistaa);
 			statement.setString(8, ammatti);
-
-			int rowsInserted = statement.executeUpdate();
+			
+			statement.executeUpdate();
+			statement.close();
+			/*int rowsInserted = statement.executeUpdate();
 			if (rowsInserted > 0) {
 				returnStatement = "Uuden ehdokkaan lis‰ys onnistui.";
 				System.out.println(returnStatement);
-			}
+			}*/
 
 		} catch (Exception e) {
 			returnStatement = "ehdokkaan lis‰‰misess‰ ongelma.";
