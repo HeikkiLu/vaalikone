@@ -167,7 +167,7 @@ public class Connector {
 	}
 	
 	/*
-	 * jotain yritystä addtabledatan kanssa
+	 * jotain yritystï¿½ addtabledatan kanssa
 	 */
 	public String AddTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, String ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
 		String sql = "INSERT INTO ehdokkaat (sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksieduskuntaan, mitaedistaa, ammatti) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -189,11 +189,11 @@ public class Connector {
 
 			int rowsInserted = statement.executeUpdate();
 			if (rowsInserted > 0) {
-				returnStatement = "Uuden ehdokkaan lisäys onnistui.";
+				returnStatement = "Uuden ehdokkaan lisï¿½ys onnistui.";
 			}
 
 		} catch (Exception e) {
-			returnStatement = "ehdokkaan lisäämisessä ongelma.";
+			returnStatement = "ehdokkaan lisï¿½ï¿½misessï¿½ ongelma.";
 		}
 		
 		disconnect();
