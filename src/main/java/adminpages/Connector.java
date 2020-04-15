@@ -44,6 +44,14 @@ public class Connector {
 		}
 	}
 
+	public int getLastID() {
+		return lastID;
+	}
+
+	public void setLastID(int lastID) {
+		this.lastID = lastID;
+	}
+
 	public String DeleteTableData(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		String sql = "DELETE FROM users WHERE user_id = ?";
@@ -170,35 +178,33 @@ public class Connector {
 	}
 	
 	/*
-	 * jotain yrityst‰ addtabledatan kanssa
+	 * buttonAction l‰hett‰‰ parametrit, t‰m‰ syˆtt‰‰ niiden avulla uuden ehdokkaan
 	 */
-	public String AddTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
+	public String AddTableData(int nextID, String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
 		String sql = "INSERT INTO ehdokkaat (EHDOKAS_ID, SUKUNIMI, ETUNIMI, PUOLUE, KOTIPAIKKAKUNTA, IKA, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, AMMATTI) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		int nextID = lastID + 1;
 		String returnStatement = null;		
-		//System.out.println("addtabledatassa " + sukunimi + ", " + etunimi + ", " + ika);
+		//Testausta varten ollut printti
+		//System.out.println("addtabledatassa " + nextID + ", " + sukunimi + ", " + etunimi + ", " + ika);
 		connect();		
 		
 		try {
 
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setInt(0, nextID);
-			statement.setString(1, sukunimi);
-			statement.setString(2, etunimi);
-			statement.setString(3, puolue);
-			statement.setString(4, kotipaikkakunta);
-			statement.setInt(5, ika);
-			statement.setString(6, miksieduskuntaan);
-			statement.setString(7, mitaedistaa);
-			statement.setString(8, ammatti);
+			statement.setInt(1, nextID);
+			statement.setString(2, sukunimi);
+			statement.setString(3, etunimi);
+			statement.setString(4, puolue);
+			statement.setString(5, kotipaikkakunta);
+			statement.setInt(6, ika);
+			statement.setString(7, miksieduskuntaan);
+			statement.setString(8, mitaedistaa);
+			statement.setString(9, ammatti);			
 			
-			statement.executeUpdate();
-			statement.close();
-			/*int rowsInserted = statement.executeUpdate();
+			int rowsInserted = statement.executeUpdate();
 			if (rowsInserted > 0) {
 				returnStatement = "Uuden ehdokkaan lis‰ys onnistui.";
 				System.out.println(returnStatement);
-			}*/
+			}
 
 		} catch (Exception e) {
 			returnStatement = "ehdokkaan lis‰‰misess‰ ongelma.";

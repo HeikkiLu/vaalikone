@@ -32,6 +32,7 @@ public class buttonAction extends HttpServlet {
 		String miksi_eduskuntaan;
 		String mita_asioita_haluat_edistaa;
 		String ammatti;
+		int nextID;
 		
 		// Tämä määrittää minkä rivin edit-nappulaa painettiin
 		conn.buttonAction = request.getParameter("btn");
@@ -72,9 +73,11 @@ public class buttonAction extends HttpServlet {
 		}
 		
 		if (conn.event == 'S') {
-			// Ville lisää tähän kutsu addCandidate-metodiin ja hae tiedot form kentistä käyttämällä request.getParameter
-			// kenttien nimet on nyt "addsukunimi" "addetunimi" jne.
 			
+			//testi gettabledatan kanssa, successful t�m�n avulla saa id:n oikean arvon
+			conn.GetTableData();
+			
+			nextID = conn.getLastID() +1;
 			sukunimi = request.getParameter("addsukunimi");
 			etunimi = request.getParameter("addetunimi");
 			puolue = request.getParameter("addpuolue");
@@ -90,10 +93,12 @@ public class buttonAction extends HttpServlet {
 				ika = -1;
 			}
 			
-			//System.out.println(sukunimi + ", " + etunimi + ", " + ika);
+			//Testausta varten ollut printti			
+			//System.out.println(nextID + ", " + sukunimi + ", " + etunimi + ", " + ika);
+			
 			//kutsuu addtabledata metodia
 			try {
-				conn.AddTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
+				conn.AddTableData(nextID, sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

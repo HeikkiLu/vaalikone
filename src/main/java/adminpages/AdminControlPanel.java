@@ -65,7 +65,6 @@ public class AdminControlPanel extends HttpServlet {
 		// Head
 		out.println("<head>");
 			out.println("<title>Admin Control Panel</title>");
-			//out.println("<meta charset=\ "UTF-8\ ">");
 			// CSS
 			out.println("<style>");
 			
