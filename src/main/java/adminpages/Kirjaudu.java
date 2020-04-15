@@ -3,12 +3,12 @@ package adminpages;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(
     name = "Kirjaudu",
@@ -23,21 +23,26 @@ public class Kirjaudu extends HttpServlet {
 @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
+	
 	response.setContentType("text/plain");
     response.setCharacterEncoding("UTF-8");
 
     String un = request.getParameter("username");
     String upw = request.getParameter("password");
-    String pw = "admin";
     String uun = "admin";
+    String pw = "admin";
     String passmd5 = crypt(pw);
     String upassmd5 = crypt(upw);
     response.setContentType("text/html;charset=UTF-8");
     try {
 
     	if(passmd5.contentEquals(upassmd5) && un.contentEquals(uun)) {
-    		response.getWriter().println("Tervetuloa: " + uun);
-    		//TODO: ohjaa admincontrolpaneeliin
+    		
+    		HttpSession session=request.getSession();
+    		session.setAttribute("name", uun);
+    		response.sendRedirect("/AdminControlPanel");
+    		
+    		
     	} else {
     		response.getWriter().println("V‰‰r‰ salasana tai k‰ytt‰j‰nimi");
     	}

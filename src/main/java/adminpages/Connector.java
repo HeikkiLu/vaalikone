@@ -22,7 +22,7 @@ public class Connector {
 
 	public Connector() {
 		this.dbURL = "jdbc:mysql://localhost:3306/vaalikone";
-		this.username = "tommi";
+		this.username = "nepa";
 		this.password = "kukkuu";
 	}
 
