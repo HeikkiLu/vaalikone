@@ -24,10 +24,14 @@ and open the template in the editor.
 			<input id="submitnappi" type="submit" value="Aloita" name="btnAloita" />
 		</form>
 
-		<form action="/AdminControlPanel" method="GET">
-			<input id="submitnappi2" type="submit" value="ehdokkaidenmuokkaus" name="btnEdit" />
-		</form>
+		<div class="kirjaudu">
+		<form action="/kirjaudu" method="GET">
+		Username: <input type="text" size="20" name="username"><br />
+		Password: <input type="password" size="20" name="password"><br />
+			<input id="submitnappi3" type="submit" value="Kirjaudu" name="btnLogin" />
 
+		</form>	
+		</div>
 	</div>
 </body>
 </html>
