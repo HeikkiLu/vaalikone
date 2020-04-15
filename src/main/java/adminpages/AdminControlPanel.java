@@ -65,11 +65,40 @@ public class AdminControlPanel extends HttpServlet {
 		// Head
 		out.println("<head>");
 			out.println("<title>Admin Control Panel</title>");
+			out.println("<meta charset=\"UTF-8\">");
 			// CSS
 			out.println("<style>");
 			
-				out.println(".btnedit {");
-				out.println("background-color: #a5d179;");
+				out.println(".edit {");
+				out.println("background-color: #8cff2e;");
+				out.println("padding: 5px;");
+				out.println("}");
+				
+				out.println(".editButton {");
+				out.println("background-color: #8cff2e;");
+				out.println("padding: 5px;");
+				out.println("display: block;");
+				out.println("margin-left: auto;");
+				out.println("margin-right: auto;");
+				out.println("margin-top: auto;");
+				out.println("margin-bottom: 3px;");
+				out.println("width: 100%;");
+				out.println("}");
+				
+				out.println(".deleteButton {");
+				out.println("background-color: #ff3c2e;");
+				out.println("color: white;");
+				out.println("padding: 5px;");
+				out.println("display: block;");
+				out.println("margin-left: auto;");
+				out.println("margin-right: auto;");
+				out.println("margin-top: 3px;");
+				out.println("margin-bottom: auto;");
+				out.println("width: 100%;");
+				out.println("}");
+				
+				out.println(".editButtonCell {");
+				out.println("width: 75px;");
 				out.println("}");
 				
 				out.println("td {");
@@ -112,22 +141,42 @@ public class AdminControlPanel extends HttpServlet {
 			if (indexNum == i && Connector.event == 'E') {
 				out.println("<tr>"
 						+ "<form action=\"/buttonAction\" method=\"GET\">"
-						+ "<td>" + ehdokas.get(0) + "</td>" // haetaan ehdokas arraysta indeksin mukaan tieto
-						+ "<td><textarea rows=\"10\" cols=\"21\" name=\"editsukunimi\">" 		+ ehdokas.get(1) + "</textarea></td>"
-						+ "<td><textarea rows=\"10\" cols=\"21\" name=\"editetunimi\">" 		+ ehdokas.get(2) + "</textarea></td>"
-						+ "<td><textarea rows=\"10\" cols=\"21\" name=\"editpuolue\">" 			+ ehdokas.get(3) + "</textarea></td>"
-						+ "<td><textarea rows=\"10\" cols=\"21\" name=\"editkotipaikkakunta\">" + ehdokas.get(4) + "</textarea></td>"
-						+ "<td><textarea rows=\"10\" cols=\"21\" name=\"editika\">" 			+ ehdokas.get(5) + "</textarea></td>"
-						+ "<td><textarea rows=\"10\" cols=\"21\" name=\"editmiksieduskuntaan\">" + ehdokas.get(6) + "</textarea></td>"
-						+ "<td><textarea rows=\"10\" cols=\"24\" name=\"editmitaedistaa\">" 	+ ehdokas.get(7) + "</textarea></td>"
-						+ "<td><textarea rows=\"10\" cols=\"21\" name=\"editammatti\">" 		+ ehdokas.get(8) + "</textarea></td>"
-						+ "<td><input type=\"submit\" name=\"btn\" value=\"Yes " + i + "\"></td>"
-						+ "<td><input type=\"submit\" name=\"btn\" value=\"No " + i + "\"></td>"
+						+ "<td class=\"edit\">" + ehdokas.get(0) + "</td>" // haetaan ehdokas arraysta indeksin mukaan tieto
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editsukunimi\">" 		+ ehdokas.get(1) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editetunimi\">" 		+ ehdokas.get(2) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editpuolue\">" 			+ ehdokas.get(3) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editkotipaikkakunta\">" + ehdokas.get(4) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editika\">" 			+ ehdokas.get(5) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editmiksieduskuntaan\">" + ehdokas.get(6) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"24\" name=\"editmitaedistaa\">" 	+ ehdokas.get(7) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editammatti\">" 		+ ehdokas.get(8) + "</textarea></td>"
+						+ "<td>Apply changes?</td>"
+						+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Yes " + i + "\">"
+						+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"No " + i + "\"></td>"
 						+ "</form>"
 						+ "</tr>"
 						);
 			}
 			// Jos taas indexNum ei ole sama niin tulostellaan pelkät tiedot normaalisti
+//			else {
+//				out.println("<tr>"
+//						+ "<form action=\"/buttonAction\">"
+//						+ "<td>" + ehdokas.get(0) + "</td>" // haetaan ehdokas arraysta indeksin mukaan tieto
+//						+ "<td>" + ehdokas.get(1) + "</td>"
+//						+ "<td>" + ehdokas.get(2) + "</td>"
+//						+ "<td>" + ehdokas.get(3) + "</td>"
+//						+ "<td>" + ehdokas.get(4) + "</td>"
+//						+ "<td>" + ehdokas.get(5) + "</td>"
+//						+ "<td>" + ehdokas.get(6) + "</td>"
+//						+ "<td>" + ehdokas.get(7) + "</td>"
+//						+ "<td>" + ehdokas.get(8) + "</td>"
+//						+ "<td><input type=\"submit\" name=\"btn\" value=\"Edit " + i + "\"></td>"
+//						+ "<td><input type=\"submit\" name=\"btn\" value=\"Delete " + i + "\"></td>"
+//						+ "</form>"
+//						+ "</tr>"
+//						);
+//			}
+			
 			else {
 				out.println("<tr>"
 						+ "<form action=\"/buttonAction\">"
@@ -140,11 +189,18 @@ public class AdminControlPanel extends HttpServlet {
 						+ "<td>" + ehdokas.get(6) + "</td>"
 						+ "<td>" + ehdokas.get(7) + "</td>"
 						+ "<td>" + ehdokas.get(8) + "</td>"
-						+ "<td><input type=\"submit\" name=\"btn\" value=\"Edit " + i + "\"></td>"
+						);
+				
+				if (indexNum == i && Connector.event == 'D') {
+					out.println("<td>Delete candidate?</td>"
+							+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Confirm " + i + "\">"
+							+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"Undo " + i + "\"></td>");
+				} else {
+					out.println("<td><input type=\"submit\" name=\"btn\" value=\"Edit " + i + "\"></td>"
 						+ "<td><input type=\"submit\" name=\"btn\" value=\"Delete " + i + "\"></td>"
 						+ "</form>"
-						+ "</tr>"
-						);
+						+ "</tr>");
+				}
 			}
 		}
 		
@@ -160,7 +216,7 @@ public class AdminControlPanel extends HttpServlet {
 				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addmiksieduskuntaan\" placeholder=\"miksi haluat eduskuntaan?\"></textarea></td>"
 				+ "<td><textarea rows=\"10\" cols=\"24\" name=\"addmitaedistaa\" placeholder=\"mitä asioita haluat edistää?\"></textarea></td>"
 				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addammatti\" placeholder=\"ammatti\"></textarea></td>"
-				+ "<td><input type=\"submit\" name=\"btn\" value=\"Submit new candidate\"></td>"
+				+ "<td><input type=\"submit\" name=\"btn\" value=\"Submit\"></td>"
 				+ "</form>"
 				+ "</tr>");
 		

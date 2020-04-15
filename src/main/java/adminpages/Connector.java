@@ -15,6 +15,7 @@ public class Connector {
 	private String username;
 	private String password;
 	private Connection conn;
+	private int lastID;
 	public static String buttonAction;
 	public static char event;
 	public static int idNum;
@@ -43,7 +44,16 @@ public class Connector {
 		}
 	}
 
-	public String DeleteTableData() throws SQLException {
+	public int getLastID() {
+		return lastID;
+	}
+
+	public void setLastID(int lastID) {
+		this.lastID = lastID;
+	}
+
+	public String DeleteTableData(int id) throws SQLException {
+
 		// TODO Auto-generated method stub
 		String sql = "DELETE FROM ehdokkaat WHERE EHDOKAS_ID = ?";
 		String returnStatement = null;
@@ -148,6 +158,8 @@ public class Connector {
 				
 				// LisÃ¤tÃ¤Ã¤n juuri luotu ehdokas-ArrayList ehdokkaat ArrayListiin
 				ehdokkaat.add(ehdokas);
+				
+				lastID = result.getInt(1);
 			}
 
 		} catch (Exception e) {
@@ -167,33 +179,37 @@ public class Connector {
 	}
 	
 	/*
-	 * jotain yritystä addtabledatan kanssa
+	 * buttonAction lï¿½hettï¿½ï¿½ parametrit, tï¿½mï¿½ syï¿½ttï¿½ï¿½ niiden avulla uuden ehdokkaan
 	 */
-	public String AddTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, String ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
-		String sql = "INSERT INTO ehdokkaat (sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksieduskuntaan, mitaedistaa, ammatti) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-		String returnStatement = null;
-		
-		connect();
+	public String AddTableData(int nextID, String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
+		String sql = "INSERT INTO ehdokkaat (EHDOKAS_ID, SUKUNIMI, ETUNIMI, PUOLUE, KOTIPAIKKAKUNTA, IKA, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, AMMATTI) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String returnStatement = null;		
+		//Testausta varten ollut printti
+		//System.out.println("addtabledatassa " + nextID + ", " + sukunimi + ", " + etunimi + ", " + ika);
+		connect();		
 		
 		try {
 
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setString(1, sukunimi);
-			statement.setString(2, etunimi);
-			statement.setString(3, puolue);
-			statement.setString(4, kotipaikkakunta);
-			statement.setString(5, ika);
-			statement.setString(6, miksieduskuntaan);
-			statement.setString(7, mitaedistaa);
-			statement.setString(8, ammatti);
-
+			statement.setInt(1, nextID);
+			statement.setString(2, sukunimi);
+			statement.setString(3, etunimi);
+			statement.setString(4, puolue);
+			statement.setString(5, kotipaikkakunta);
+			statement.setInt(6, ika);
+			statement.setString(7, miksieduskuntaan);
+			statement.setString(8, mitaedistaa);
+			statement.setString(9, ammatti);			
+			
 			int rowsInserted = statement.executeUpdate();
 			if (rowsInserted > 0) {
-				returnStatement = "Uuden ehdokkaan lisäys onnistui.";
+				returnStatement = "Uuden ehdokkaan lisï¿½ys onnistui.";
+				System.out.println(returnStatement);
 			}
 
 		} catch (Exception e) {
-			returnStatement = "ehdokkaan lisäämisessä ongelma.";
+			returnStatement = "ehdokkaan lisï¿½ï¿½misessï¿½ ongelma.";
+			System.out.println(returnStatement);
 		}
 		
 		disconnect();
