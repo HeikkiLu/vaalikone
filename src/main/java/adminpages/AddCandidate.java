@@ -28,14 +28,14 @@ public class AddCandidate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		/*
 		Connector addConn = new Connector();
 		
 		String sukunimi = request.getParameter("sukunimi");
 		String etunimi = request.getParameter("etunimi");
 		String puolue = request.getParameter("puolue");
 		String kotipk = request.getParameter("kotipaikkakunta");
-		String ika = request.getParameter("ika");
+		int ika = request.getParameter("ika");
 		String miksi = request.getParameter("miksieduskuntaan");
 		String edistaa = request.getParameter("mitaedistaa");
 		String ammatti = request.getParameter("ammatti");
@@ -46,7 +46,7 @@ public class AddCandidate extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("virhe addcandidate.javassa");
-		}
+		}*/
 	}
 
 	/**
