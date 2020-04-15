@@ -15,6 +15,7 @@ public class Connector {
 	private String username;
 	private String password;
 	private Connection conn;
+	private int lastID;
 	public static String buttonAction;
 	public static char event;
 	public static int idNum;
@@ -148,6 +149,8 @@ public class Connector {
 				
 				// Lisätään juuri luotu ehdokas-ArrayList ehdokkaat ArrayListiin
 				ehdokkaat.add(ehdokas);
+				
+				lastID = result.getInt(1);
 			}
 
 		} catch (Exception e) {
@@ -170,14 +173,16 @@ public class Connector {
 	 * jotain yrityst� addtabledatan kanssa
 	 */
 	public String AddTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
-		String sql = "INSERT INTO ehdokkaat (SUKUNIMI, ETUNIMI, PUOLUE, KOTIPAIKKAKUNTA, IKA, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, AMMATTI, EHDOKAS_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, (SELECT max(EHDOKAS_ID)+1 FROM ehdokkaat))";
+		String sql = "INSERT INTO ehdokkaat (EHDOKAS_ID, SUKUNIMI, ETUNIMI, PUOLUE, KOTIPAIKKAKUNTA, IKA, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, AMMATTI) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		int nextID = lastID + 1;
 		String returnStatement = null;		
 		//System.out.println("addtabledatassa " + sukunimi + ", " + etunimi + ", " + ika);
-		connect();
+		connect();		
 		
 		try {
 
 			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setInt(0, nextID);
 			statement.setString(1, sukunimi);
 			statement.setString(2, etunimi);
 			statement.setString(3, puolue);
