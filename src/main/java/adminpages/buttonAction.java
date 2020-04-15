@@ -71,6 +71,14 @@ public class buttonAction extends HttpServlet {
 			// resetoi arvot että editointi perutaan
 		}
 		
+		if (conn.event == 'C') {
+			// tähän heikin delete komento
+		}
+		
+		if (conn.event == 'U') {
+			// resetoi arvot että editointi perutaan
+		}
+		
 		if (conn.event == 'S') {
 			// Ville lisää tähän kutsu addCandidate-metodiin ja hae tiedot form kentistä käyttämällä request.getParameter
 			// kenttien nimet on nyt "addsukunimi" "addetunimi" jne.
