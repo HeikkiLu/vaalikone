@@ -45,7 +45,7 @@ public class Connector {
 
 	public String DeleteTableData() throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "DELETE FROM users WHERE user_id = ?";
+		String sql = "DELETE FROM ehdokkaat WHERE EHDOKAS_ID = ?";
 		String returnStatement = null;
 
 		connect();
@@ -60,7 +60,7 @@ public class Connector {
 				returnStatement = "Candidate was removed.";
 			}
 		} catch (Exception e) {
-			returnStatement = "Error in the process. Candidate not removed.";
+			returnStatement = "Error in the process. Candidate not removed.\n" + e;
 		}
 
 		disconnect();

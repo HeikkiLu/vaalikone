@@ -21,9 +21,7 @@ public class buttonAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-<<<<<<< HEAD
-		Connector action = new Connector();
-=======
+
 		Connector conn = new Connector();
 		
 		// Ehdokkaan tiedot päivitykseen tai lisäykseen
@@ -35,7 +33,7 @@ public class buttonAction extends HttpServlet {
 		String miksi_eduskuntaan;
 		String mita_asioita_haluat_edistaa;
 		String ammatti;
->>>>>>> 66de33483215807662db5a3e3efb1960b4784c8c
+
 		
 		// Tämä määrittää minkä rivin edit-nappulaa painettiin
 		conn.buttonAction = request.getParameter("btn");
@@ -45,18 +43,14 @@ public class buttonAction extends HttpServlet {
 			// Editointi ikkunat aukeavat
 		}
 		
-<<<<<<< HEAD
-		if (event == 'D') {
+
+		if (conn.event == 'D') {
 			try {
-				action.DeleteTableData();
+				System.out.println(conn.DeleteTableData());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-=======
-		if (conn.event == 'D') {
-			// lisää tähän kutsu deleteTable-metodiin
->>>>>>> 66de33483215807662db5a3e3efb1960b4784c8c
 		}
 		
 		if (conn.event == 'Y') {
