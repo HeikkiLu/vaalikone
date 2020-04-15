@@ -16,8 +16,9 @@ public class Connector {
 	private String password;
 	private Connection conn;
 	public static String buttonAction;
-	public static String event;
+	public static char event;
 	public static int idNum;
+	public static String whatHappened;
 
 	public Connector() {
 		this.dbURL = "jdbc:mysql://localhost:3306/vaalikone";
@@ -66,8 +67,56 @@ public class Connector {
 		return returnStatement;
 	}
 	
+	public String UpdateTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, 
+			int ika, String miksi_eduskuntaan, String mita_asioita_haluat_edistaa, String ammatti) {
+		
+		String returnStatement = null;
+		// Yhteys tietokantaan
+		try {
+			connect();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String sql = "UPDATE ehdokkaat SET SUKUNIMI=?, ETUNIMI=?, PUOLUE=?, KOTIPAIKKAKUNTA=?, IKA=?, MIKSI_EDUSKUNTAAN=?, MITA_ASIOITA_HALUAT_EDISTAA=?, AMMATTI=? WHERE EHDOKAS_ID=?";
+		try {
+			PreparedStatement statement = conn.prepareStatement(sql);
+
+			statement.setString(1, sukunimi);
+			statement.setString(2, etunimi);
+			statement.setString(3, puolue);
+			statement.setString(4, kotipaikkakunta);
+			statement.setInt(5, ika);
+			statement.setString(6, miksi_eduskuntaan);
+			statement.setString(7, mita_asioita_haluat_edistaa);
+			statement.setString(8, ammatti);
+			statement.setInt(9, idNum);
+
+			int rowsUpdated = statement.executeUpdate();
+			
+			if (rowsUpdated > 0) {
+				returnStatement = "An existing user was updated successfully!";
+			}
+
+		} catch (Exception e) {
+			returnStatement = "Error in the process. Candidate not updated.";
+		}
+		
+		// Katkaistaan yhteys tietokantaan
+		try {
+			disconnect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return returnStatement;
+	}
+	
 	public List GetTableData() {
 		
+		// Yhteys tietokantaan
 		try {
 			connect();
 		} catch (SQLException e1) {
@@ -100,15 +149,21 @@ public class Connector {
 				// Lisätään juuri luotu ehdokas-ArrayList ehdokkaat ArrayListiin
 				ehdokkaat.add(ehdokas);
 			}
-			
-			// Palautetaan ArrayList joka sisältää kaikkien ehdokkaiden tiedot omissa ArrayListeissä
-			return ehdokkaat;
 
 		} catch (Exception e) {
 			ehdokkaat.add("Fucked");
-			return ehdokkaat;
 		}
-
+		
+		// Katkaistaan yhteys tietokantaan
+		try {
+			disconnect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// Palautetaan ArrayList joka sisältää kaikkien ehdokkaiden tiedot omissa ArrayListeissä
+		return ehdokkaat;
 	}
 
 }
