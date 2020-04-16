@@ -35,16 +35,20 @@ public class buttonAction extends HttpServlet {
 		String ammatti;
 
 		int nextID;
-
 		
 		// Tämä määrittää minkä rivin edit-nappulaa painettiin
 		conn.buttonAction = request.getParameter("btn");
 		conn.event = request.getParameter("btn").charAt(0);
 		
+		try {
+			conn.currentID = Integer.parseInt(request.getParameter("currentID"));
+		} catch (Exception e) {
+			conn.currentID = -1;
+		}
+		
 		if (conn.event == 'E') {
 			// Editointi ikkunat aukeavat
 		}
-		
 
 		if (conn.event == 'C') {
 			try {
@@ -72,17 +76,12 @@ public class buttonAction extends HttpServlet {
 				ika = -1;
 			}
 			
-			
-			// Toivottavasti ilmoittaa onnistuiko vai ei
-			conn.whatHappened = conn.UpdateTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
+			// Kutsutaan tietokannan päivitys saaduilla tiedoilla
+			conn.UpdateTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
 		}
 		
 		if (conn.event == 'N') {
 			// resetoi arvot että editointi perutaan
-		}
-		
-		if (conn.event == 'C') {
-			// tähän heikin delete komento
 		}
 		
 		if (conn.event == 'U') {
@@ -91,7 +90,7 @@ public class buttonAction extends HttpServlet {
 		
 		if (conn.event == 'S') {
 			
-			//testi gettabledatan kanssa, successful t�m�n avulla saa id:n oikean arvon
+			//testi gettabledatan kanssa, successful t�m�n avulla saa id:n oikean arvon
 			conn.GetTableData();
 			
 			nextID = conn.getLastID() +1;
@@ -99,7 +98,7 @@ public class buttonAction extends HttpServlet {
 			etunimi = request.getParameter("addetunimi");
 			puolue = request.getParameter("addpuolue");
 			kotipaikkakunta = request.getParameter("addkotipaikkakunta");
-			// ik� hieman alempana try-catchiss�
+			// ik� hieman alempana try-catchiss�
 			miksi_eduskuntaan = request.getParameter("addmiksieduskuntaan");
 			mita_asioita_haluat_edistaa = request.getParameter("addmitaedistaa");
 			ammatti = request.getParameter("addammatti");

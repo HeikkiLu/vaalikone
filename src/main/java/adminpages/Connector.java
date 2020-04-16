@@ -18,8 +18,7 @@ public class Connector {
 	private int lastID;
 	public static String buttonAction;
 	public static char event;
-	public static int idNum;
-	public static String whatHappened;
+	public static int currentID = -1;
 
 	public Connector() {
 		this.dbURL = "jdbc:mysql://localhost:3306/vaalikone";
@@ -63,7 +62,7 @@ public class Connector {
 		try {
 			PreparedStatement statement = conn.prepareStatement(sql);
 
-			statement.setInt(1, idNum);
+			statement.setInt(1, currentID);
 
 			int rowsDeleted = statement.executeUpdate();
 			if (rowsDeleted > 0) {
@@ -101,7 +100,7 @@ public class Connector {
 			statement.setString(6, miksi_eduskuntaan);
 			statement.setString(7, mita_asioita_haluat_edistaa);
 			statement.setString(8, ammatti);
-			statement.setInt(9, idNum);
+			statement.setInt(9, currentID);
 
 			int rowsUpdated = statement.executeUpdate();
 			
