@@ -16,14 +16,21 @@ public class Connector {
 	private String password;
 	private Connection conn;
 	private int lastID;
-	public static String buttonAction;
 	public static char event;
 	public static int currentID = -1;
 
 	public Connector() {
 		this.dbURL = "jdbc:mysql://localhost:3306/vaalikone";
-		this.username = "nepa";
+		this.username = "tommi";
 		this.password = "kukkuu";
+	}
+	
+	public int getLastID() {
+		return lastID;
+	}
+
+	public void setLastID(int lastID) {
+		this.lastID = lastID;
 	}
 
 	protected void connect() throws SQLException {
@@ -43,17 +50,8 @@ public class Connector {
 		}
 	}
 
-	public int getLastID() {
-		return lastID;
-	}
-
-	public void setLastID(int lastID) {
-		this.lastID = lastID;
-	}
-
 	public String DeleteTableData() throws SQLException {
 
-		// TODO Auto-generated method stub
 		String sql = "DELETE FROM ehdokkaat WHERE EHDOKAS_ID = ?";
 		String returnStatement = null;
 
@@ -76,10 +74,11 @@ public class Connector {
 		return returnStatement;
 	}
 	
-	public String UpdateTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, 
-			int ika, String miksi_eduskuntaan, String mita_asioita_haluat_edistaa, String ammatti) {
+	public String UpdateTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksi_eduskuntaan, String mita_asioita_haluat_edistaa, String ammatti) {
 		
+		String sql = "UPDATE ehdokkaat SET SUKUNIMI=?, ETUNIMI=?, PUOLUE=?, KOTIPAIKKAKUNTA=?, IKA=?, MIKSI_EDUSKUNTAAN=?, MITA_ASIOITA_HALUAT_EDISTAA=?, AMMATTI=? WHERE EHDOKAS_ID=?";
 		String returnStatement = null;
+		
 		// Yhteys tietokantaan
 		try {
 			connect();
@@ -88,7 +87,6 @@ public class Connector {
 			e1.printStackTrace();
 		}
 		
-		String sql = "UPDATE ehdokkaat SET SUKUNIMI=?, ETUNIMI=?, PUOLUE=?, KOTIPAIKKAKUNTA=?, IKA=?, MIKSI_EDUSKUNTAAN=?, MITA_ASIOITA_HALUAT_EDISTAA=?, AMMATTI=? WHERE EHDOKAS_ID=?";
 		try {
 			PreparedStatement statement = conn.prepareStatement(sql);
 
@@ -181,10 +179,9 @@ public class Connector {
 	 * buttonAction l�hett�� parametrit, t�m� sy�tt�� niiden avulla uuden ehdokkaan
 	 */
 	public String AddTableData(int nextID, String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
+		
 		String sql = "INSERT INTO ehdokkaat (EHDOKAS_ID, SUKUNIMI, ETUNIMI, PUOLUE, KOTIPAIKKAKUNTA, IKA, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, AMMATTI) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		String returnStatement = null;		
-		//Testausta varten ollut printti
-		//System.out.println("addtabledatassa " + nextID + ", " + sukunimi + ", " + etunimi + ", " + ika);
 		connect();		
 		
 		try {

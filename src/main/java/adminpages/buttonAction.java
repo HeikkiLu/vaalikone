@@ -2,7 +2,6 @@ package adminpages;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +20,6 @@ public class buttonAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
 		Connector conn = new Connector();
 		
 		// Ehdokkaan tiedot päivitykseen tai lisäykseen
@@ -36,8 +34,7 @@ public class buttonAction extends HttpServlet {
 
 		int nextID;
 		
-		// Tämä määrittää minkä rivin edit-nappulaa painettiin
-		conn.buttonAction = request.getParameter("btn");
+		// Tämä määrittää mitä nappulaa painettiin
 		conn.event = request.getParameter("btn").charAt(0);
 		
 		try {
@@ -85,7 +82,7 @@ public class buttonAction extends HttpServlet {
 		}
 		
 		if (conn.event == 'U') {
-			// resetoi arvot että editointi perutaan
+			// resetoi arvot että deletointi perutaan
 		}
 		
 		if (conn.event == 'S') {
@@ -116,7 +113,6 @@ public class buttonAction extends HttpServlet {
 			try {
 				conn.AddTableData(nextID, sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("virhe btnaction.java -> addtable osiossa");
 			}
