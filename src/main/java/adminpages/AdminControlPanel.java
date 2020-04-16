@@ -44,21 +44,6 @@ public class AdminControlPanel extends HttpServlet {
 		List ehdokkaat = conn.GetTableData();
 		PrintWriter out = response.getWriter();
 		
-		// Ehkä hieman paska toteutustapa mutta kun en muutakaan keksinyt
-		// Eli action hakee Connectorista string-arvon
-		String action = Connector.buttonAction;
-		int indexNum = -1;
-		
-		if (action != null) {
-			try {
-				// Painetun napin arvo jaetaan kahteen osaan ja jälkimmäinen muutetaan int muotoon
-				String[] list = action.split(" ");
-				indexNum = Integer.parseInt(list[1]);
-			} catch (Exception e) {
-				indexNum = -1;
-			}
-		}
-		
 		// Luo taulukon rakenteen
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
@@ -132,16 +117,11 @@ public class AdminControlPanel extends HttpServlet {
 			// Joka loopilla haetaan yksittäinen sisennetty ArrayList ehdokkaat-listasta joka sisältää ehdokkaan tiedot
 			ArrayList ehdokas = (ArrayList) ehdokkaat.get(i);
 			
-			// Tätä voi yrittää käyttää tietokantaa muokatessa
-			if (indexNum == i) {
-				Connector.idNum = Integer.parseInt((String) ehdokas.get(0));
-			}
-			
-			// Jos indexNum on sama kuin for-loopin int i niin tulostellaan muokattava rivi
-			if (indexNum == i && Connector.event == 'E') {
+			// Jos currentID on sama kuin ehdokas-arrayn ID niin tulostellaan muokattava rivi
+			if (conn.currentID == Integer.parseInt((String) ehdokas.get(0)) && conn.event == 'E') {
 				out.println("<tr>"
 						+ "<form action=\"/buttonAction\" method=\"GET\">"
-						+ "<td class=\"edit\">" + ehdokas.get(0) + "</td>" // haetaan ehdokas arraysta indeksin mukaan tieto
+						+ "<td class=\"edit\">" + ehdokas.get(0) + "<input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>" // haetaan ehdokas arraysta indeksin mukaan tieto
 						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editsukunimi\">" 		+ ehdokas.get(1) + "</textarea></td>"
 						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editetunimi\">" 		+ ehdokas.get(2) + "</textarea></td>"
 						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editpuolue\">" 			+ ehdokas.get(3) + "</textarea></td>"
@@ -151,36 +131,16 @@ public class AdminControlPanel extends HttpServlet {
 						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"24\" name=\"editmitaedistaa\">" 	+ ehdokas.get(7) + "</textarea></td>"
 						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editammatti\">" 		+ ehdokas.get(8) + "</textarea></td>"
 						+ "<td>Apply changes?</td>"
-						+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Yes " + i + "\">"
-						+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"No " + i + "\"></td>"
+						+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Yes\">"
+						+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"No\"></td>"
 						+ "</form>"
 						+ "</tr>"
 						);
-			}
-			// Jos taas indexNum ei ole sama niin tulostellaan pelkät tiedot normaalisti
-//			else {
-//				out.println("<tr>"
-//						+ "<form action=\"/buttonAction\">"
-//						+ "<td>" + ehdokas.get(0) + "</td>" // haetaan ehdokas arraysta indeksin mukaan tieto
-//						+ "<td>" + ehdokas.get(1) + "</td>"
-//						+ "<td>" + ehdokas.get(2) + "</td>"
-//						+ "<td>" + ehdokas.get(3) + "</td>"
-//						+ "<td>" + ehdokas.get(4) + "</td>"
-//						+ "<td>" + ehdokas.get(5) + "</td>"
-//						+ "<td>" + ehdokas.get(6) + "</td>"
-//						+ "<td>" + ehdokas.get(7) + "</td>"
-//						+ "<td>" + ehdokas.get(8) + "</td>"
-//						+ "<td><input type=\"submit\" name=\"btn\" value=\"Edit " + i + "\"></td>"
-//						+ "<td><input type=\"submit\" name=\"btn\" value=\"Delete " + i + "\"></td>"
-//						+ "</form>"
-//						+ "</tr>"
-//						);
-//			}
-			
+			}	
 			else {
 				out.println("<tr>"
 						+ "<form action=\"/buttonAction\">"
-						+ "<td>" + ehdokas.get(0) + "</td>" // haetaan ehdokas arraysta indeksin mukaan tieto
+						+ "<td>" + ehdokas.get(0) + "<input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>" // haetaan ehdokas arraysta indeksin mukaan tieto
 						+ "<td>" + ehdokas.get(1) + "</td>"
 						+ "<td>" + ehdokas.get(2) + "</td>"
 						+ "<td>" + ehdokas.get(3) + "</td>"
@@ -191,13 +151,13 @@ public class AdminControlPanel extends HttpServlet {
 						+ "<td>" + ehdokas.get(8) + "</td>"
 						);
 				
-				if (indexNum == i && Connector.event == 'D') {
+				if (conn.currentID == Integer.parseInt((String) ehdokas.get(0)) && conn.event == 'D') {
 					out.println("<td>Delete candidate?</td>"
-							+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Confirm " + i + "\">"
-							+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"Undo " + i + "\"></td>");
+							+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Confirm\">"
+							+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"Undo\"></td>");
 				} else {
-					out.println("<td><input type=\"submit\" name=\"btn\" value=\"Edit " + i + "\"></td>"
-						+ "<td><input type=\"submit\" name=\"btn\" value=\"Delete " + i + "\"></td>"
+					out.println("<td><input type=\"submit\" name=\"btn\" value=\"Edit\"></td>"
+						+ "<td><input type=\"submit\" name=\"btn\" value=\"Delete\"></td>"
 						+ "</form>"
 						+ "</tr>");
 				}
@@ -217,6 +177,7 @@ public class AdminControlPanel extends HttpServlet {
 				+ "<td><textarea rows=\"10\" cols=\"24\" name=\"addmitaedistaa\" placeholder=\"mitä asioita haluat edistää?\"></textarea></td>"
 				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addammatti\" placeholder=\"ammatti\"></textarea></td>"
 				+ "<td><input type=\"submit\" name=\"btn\" value=\"Submit\"></td>"
+				+ "<td>Current ID: " + conn.currentID + "</td>"
 				+ "</form>"
 				+ "</tr>");
 		
