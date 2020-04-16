@@ -4,20 +4,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import persist.Ehdokkaat;
-import persist.Vastaukset;
 
 /**
  * Servlet implementation class AdminControlPanel
@@ -43,17 +35,14 @@ public class AdminControlPanel extends HttpServlet {
 		
 		HttpSession session=request.getSession(false);
 		
-		  if(session!=null){
-		         
-			  response.getWriter().print("Tervetuloa!"); 
-		
+		  if(session!=null){  
+			  //response.getWriter().print("Tervetuloa!"); 
 		  }  
 		  else {
-			  response.getWriter().print("Kirjaudu ensin sisään!"); 
+			  response.getWriter().print("Kirjaudu ensin sisï¿½ï¿½n!"); 
 			  response.getWriter().close();
 		  }
 
-	
 		Connector conn = new Connector();
 		List ehdokkaat = conn.GetTableData();
 		PrintWriter out = response.getWriter();
@@ -124,7 +113,6 @@ public class AdminControlPanel extends HttpServlet {
 						out.println("<th>Ammatti</th>");
 					out.println("</tr>");
 
-		
 		// Ehdokkaiden tiedot
 		for (int i = 0; i < ehdokkaat.size(); i++) {
 			
@@ -200,11 +188,6 @@ public class AdminControlPanel extends HttpServlet {
 		out.println("</center>");
 		out.println("</body>");
 		out.println("</html>");
-		
-		
-		// Varmistetaan ettei arvot jÃ¤Ã¤ voimaan
-		//Connector.event = null;
-		Connector.buttonAction = null;
 	}
 
 	/**
