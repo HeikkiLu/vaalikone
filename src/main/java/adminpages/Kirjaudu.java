@@ -26,9 +26,10 @@ public class Kirjaudu extends HttpServlet {
 	
 	response.setContentType("text/plain");
     response.setCharacterEncoding("UTF-8");
-
+    
+    	
     String un = request.getParameter("username");
-    String upw = request.getParameter("password");
+    String upw = request.getParameter("password");   
     String uun = "admin";
     String pw = "admin";
     String passmd5 = crypt(pw);
@@ -41,11 +42,11 @@ public class Kirjaudu extends HttpServlet {
     		HttpSession session=request.getSession();
     		session.setAttribute("name", uun);
     		response.sendRedirect("/AdminControlPanel");
-    		
-    		
-    	} else {
+    	 		
+    	} else  {
     		response.getWriter().println("V‰‰r‰ salasana tai k‰ytt‰j‰nimi");
     	}
+    	
     } catch(Exception e) {
     
     }

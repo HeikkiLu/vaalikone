@@ -45,7 +45,7 @@ public class AdminControlPanel extends HttpServlet {
 		
 		  if(session!=null){
 		         
-			  response.getWriter().print("Tervetuloa!"); 
+			  //näytä verkkosivu
 		
 		  }  
 		  else {
@@ -192,6 +192,9 @@ public class AdminControlPanel extends HttpServlet {
 				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addammatti\" placeholder=\"ammatti\"></textarea></td>"
 				+ "<td><input type=\"submit\" name=\"btn\" value=\"Submit\"></td>"
 				+ "<td>Current ID: " + conn.currentID + "</td>"
+				+ "</form>"
+				+ "<form action=\"/kirjauduUlos\" method=\"GET\">"
+				+ "<td><input id=\"submitnappi4\" type=\"submit\" value=\"Kirjaudu Ulos\" name=\"btnLogout\" /></td>"
 				+ "</form>"
 				+ "</tr>");
 		
