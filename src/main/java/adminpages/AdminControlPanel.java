@@ -100,6 +100,11 @@ public class AdminControlPanel extends HttpServlet {
 		out.println("</head>");
 		// Body
 		out.println("<body>");
+		out.println("<tr>"
+				+ "<form action=\"/kirjauduUlos\" method=\"GET\">"
+				+ "<td><input id=\"submitnappi4\" type=\"submit\" value=\"Kirjaudu Ulos\" name=\"btnLogout\" /></td>"
+				+ "</form>"
+				+"</tr>");
 			out.println("<center>");
 				out.println("<table border='1' cellpadding='3' cellspacing='0'>");
 					out.println("</tr>");
@@ -113,6 +118,22 @@ public class AdminControlPanel extends HttpServlet {
 						out.println("<th>Mitä edistät</th>");
 						out.println("<th>Ammatti</th>");
 					out.println("</tr>");
+		// Ehdokkaan lisäys
+		out.println("<tr>"
+				+ "<form action=\"/buttonAction\" method=\"GET\">"
+				+ "<td>ID</td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addsukunimi\" placeholder=\"sukunimi\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addetunimi\" placeholder=\"etunimi\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addpuolue\" placeholder=\"puolue\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addkotipaikkakunta\" placeholder=\"kotipaikkakunta\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addika\" placeholder=\"ikä\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addmiksieduskuntaan\" placeholder=\"miksi haluat eduskuntaan?\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"24\" name=\"addmitaedistaa\" placeholder=\"mitä asioita haluat edistää?\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addammatti\" placeholder=\"ammatti\"></textarea></td>"
+				+ "<td><input type=\"submit\" name=\"btn\" value=\"Submit\"></td>"
+				+ "<td>Current ID: " + conn.currentID + "</td>"
+				+ "</form>"
+				+ "</tr>");
 
 		// Ehdokkaiden tiedot
 		for (int i = 0; i < ehdokkaat.size(); i++) {
@@ -134,9 +155,6 @@ public class AdminControlPanel extends HttpServlet {
 						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"24\" name=\"editmitaedistaa\">" 	+ ehdokas.get(7) + "</textarea></td>"
 						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editammatti\">" 		+ ehdokas.get(8) + "</textarea></td>"
 						+ "<td>Apply changes?</td>"
-						+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Yes\">"
-						+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"No\"></td>"
-						+ "</form>"
 						+ "</tr>"
 						);
 			}	
@@ -167,25 +185,6 @@ public class AdminControlPanel extends HttpServlet {
 			}
 		}
 		
-		// Ehdokkaan lisäys alimpana
-		out.println("<tr>"
-				+ "<form action=\"/buttonAction\" method=\"GET\">"
-				+ "<td>ID</td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addsukunimi\" placeholder=\"sukunimi\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addetunimi\" placeholder=\"etunimi\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addpuolue\" placeholder=\"puolue\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addkotipaikkakunta\" placeholder=\"kotipaikkakunta\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addika\" placeholder=\"ikä\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addmiksieduskuntaan\" placeholder=\"miksi haluat eduskuntaan?\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"24\" name=\"addmitaedistaa\" placeholder=\"mitä asioita haluat edistää?\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addammatti\" placeholder=\"ammatti\"></textarea></td>"
-				+ "<td><input type=\"submit\" name=\"btn\" value=\"Submit\"></td>"
-				+ "<td>Current ID: " + conn.currentID + "</td>"
-				+ "</form>"
-				+ "<form action=\"/kirjauduUlos\" method=\"GET\">"
-				+ "<td><input id=\"submitnappi4\" type=\"submit\" value=\"Kirjaudu Ulos\" name=\"btnLogout\" /></td>"
-				+ "</form>"
-				+ "</tr>");
 		
 		// Päättää html koodin
 		out.println("</table>");
