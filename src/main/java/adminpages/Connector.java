@@ -74,9 +74,9 @@ public class Connector {
 		return returnStatement;
 	}
 	
-	public String UpdateTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksi_eduskuntaan, String mita_asioita_haluat_edistaa, String ammatti) {
+	public String UpdateTableData(String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksi_eduskuntaan, String mita_asioita_haluat_edistaa, String ammatti, int ehdokasnumero) {
 		
-		String sql = "UPDATE ehdokkaat SET SUKUNIMI=?, ETUNIMI=?, PUOLUE=?, KOTIPAIKKAKUNTA=?, IKA=?, MIKSI_EDUSKUNTAAN=?, MITA_ASIOITA_HALUAT_EDISTAA=?, AMMATTI=? WHERE EHDOKAS_ID=?";
+		String sql = "UPDATE ehdokkaat SET SUKUNIMI=?, ETUNIMI=?, PUOLUE=?, KOTIPAIKKAKUNTA=?, IKA=?, MIKSI_EDUSKUNTAAN=?, MITA_ASIOITA_HALUAT_EDISTAA=?, AMMATTI=?, EHDOKASNUMERO=? WHERE EHDOKAS_ID=?";
 		String returnStatement = null;
 		
 		// Yhteys tietokantaan
@@ -98,7 +98,8 @@ public class Connector {
 			statement.setString(6, miksi_eduskuntaan);
 			statement.setString(7, mita_asioita_haluat_edistaa);
 			statement.setString(8, ammatti);
-			statement.setInt(9, currentID);
+			statement.setInt(9, ehdokasnumero);
+			statement.setInt(10, currentID);
 
 			int rowsUpdated = statement.executeUpdate();
 			
@@ -152,6 +153,7 @@ public class Connector {
 				ehdokas.add(result.getString(7)); // Miksi eduskuntaan
 				ehdokas.add(result.getString(8)); // Mitä haluat edistää
 				ehdokas.add(result.getString(9)); // Ammatti
+				ehdokas.add(result.getString(10)); // Ehdokasnumero
 				
 				// Lisätään juuri luotu ehdokas-ArrayList ehdokkaat ArrayListiin
 				ehdokkaat.add(ehdokas);
@@ -178,9 +180,9 @@ public class Connector {
 	/*
 	 * buttonAction l�hett�� parametrit, t�m� sy�tt�� niiden avulla uuden ehdokkaan
 	 */
-	public String AddTableData(int nextID, String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksieduskuntaan, String mitaedistaa, String ammatti) throws SQLException {
+	public String AddTableData(int nextID, String sukunimi, String etunimi, String puolue, String kotipaikkakunta, int ika, String miksieduskuntaan, String mitaedistaa, String ammatti, int ehdokasnumero) throws SQLException {
 		
-		String sql = "INSERT INTO ehdokkaat (EHDOKAS_ID, SUKUNIMI, ETUNIMI, PUOLUE, KOTIPAIKKAKUNTA, IKA, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, AMMATTI) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO ehdokkaat (EHDOKAS_ID, SUKUNIMI, ETUNIMI, PUOLUE, KOTIPAIKKAKUNTA, IKA, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, AMMATTI, EHDOKASNUMERO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		String returnStatement = null;		
 		connect();		
 		
@@ -195,7 +197,8 @@ public class Connector {
 			statement.setInt(6, ika);
 			statement.setString(7, miksieduskuntaan);
 			statement.setString(8, mitaedistaa);
-			statement.setString(9, ammatti);			
+			statement.setString(9, ammatti);	
+			statement.setInt(10, ehdokasnumero);
 			
 			int rowsInserted = statement.executeUpdate();
 			if (rowsInserted > 0) {
