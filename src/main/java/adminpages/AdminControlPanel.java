@@ -108,7 +108,7 @@ public class AdminControlPanel extends HttpServlet {
 			out.println("<center>");
 				out.println("<table border='1' cellpadding='3' cellspacing='0'>");
 					out.println("</tr>");
-						out.println("<th>ID</th>");
+						out.println("<th>Ehdokasnumero</th>");
 						out.println("<th>Sukunimi</th>");
 						out.println("<th>Etunimi</th>");
 						out.println("<th>Puolue</th>");
@@ -121,17 +121,16 @@ public class AdminControlPanel extends HttpServlet {
 		// Ehdokkaan lisäys
 		out.println("<tr>"
 				+ "<form action=\"/buttonAction\" method=\"GET\">"
-				+ "<td>ID</td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addsukunimi\" placeholder=\"sukunimi\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addetunimi\" placeholder=\"etunimi\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addpuolue\" placeholder=\"puolue\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addkotipaikkakunta\" placeholder=\"kotipaikkakunta\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addika\" placeholder=\"ikä\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addmiksieduskuntaan\" placeholder=\"miksi haluat eduskuntaan?\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"24\" name=\"addmitaedistaa\" placeholder=\"mitä asioita haluat edistää?\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"addammatti\" placeholder=\"ammatti\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"10\" name=\"ehdokasnumero\" placeholder=\"ehdokas numero\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"sukunimi\" placeholder=\"sukunimi\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"etunimi\" placeholder=\"etunimi\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"puolue\" placeholder=\"puolue\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"kotipaikkakunta\" placeholder=\"kotipaikkakunta\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"ika\" placeholder=\"ikä\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"miksieduskuntaan\" placeholder=\"miksi haluat eduskuntaan?\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"24\" name=\"mitaedistaa\" placeholder=\"mitä asioita haluat edistää?\"></textarea></td>"
+				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"ammatti\" placeholder=\"ammatti\"></textarea></td>"
 				+ "<td><input type=\"submit\" name=\"btn\" value=\"Submit\"></td>"
-				+ "<td>Current ID: " + conn.currentID + "</td>"
 				+ "</form>"
 				+ "</tr>");
 
@@ -145,23 +144,25 @@ public class AdminControlPanel extends HttpServlet {
 			if (conn.currentID == Integer.parseInt((String) ehdokas.get(0)) && conn.event == 'E') {
 				out.println("<tr>"
 						+ "<form action=\"/buttonAction\" method=\"GET\">"
-						+ "<td class=\"edit\">" + ehdokas.get(0) + "<input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>" // haetaan ehdokas arraysta indeksin mukaan tieto
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editsukunimi\">" 		+ ehdokas.get(1) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editetunimi\">" 		+ ehdokas.get(2) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editpuolue\">" 			+ ehdokas.get(3) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editkotipaikkakunta\">" + ehdokas.get(4) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editika\">" 			+ ehdokas.get(5) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editmiksieduskuntaan\">" + ehdokas.get(6) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"24\" name=\"editmitaedistaa\">" 	+ ehdokas.get(7) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"editammatti\">" 		+ ehdokas.get(8) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"10\" name=\"ehdokasnumero\">" + ehdokas.get(9) + "</textarea><input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"sukunimi\">" 		+ ehdokas.get(1) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"etunimi\">" 		+ ehdokas.get(2) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"puolue\">" 			+ ehdokas.get(3) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"kotipaikkakunta\">" + ehdokas.get(4) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"ika\">" 			+ ehdokas.get(5) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"miksieduskuntaan\">" + ehdokas.get(6) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"24\" name=\"mitaedistaa\">" 	+ ehdokas.get(7) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"ammatti\">" 		+ ehdokas.get(8) + "</textarea></td>"
 						+ "<td>Apply changes?</td>"
+						+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Yes\">"
+						+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"No\"></td>"
 						+ "</tr>"
 						);
 			}	
 			else {
 				out.println("<tr>"
 						+ "<form action=\"/buttonAction\">"
-						+ "<td>" + ehdokas.get(0) + "<input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>" // haetaan ehdokas arraysta indeksin mukaan tieto
+						+ "<td>" + ehdokas.get(9) + "<input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>" // haetaan ehdokas arraysta indeksin mukaan tieto
 						+ "<td>" + ehdokas.get(1) + "</td>"
 						+ "<td>" + ehdokas.get(2) + "</td>"
 						+ "<td>" + ehdokas.get(3) + "</td>"
