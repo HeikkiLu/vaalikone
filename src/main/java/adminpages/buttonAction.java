@@ -23,19 +23,33 @@ public class buttonAction extends HttpServlet {
 		Connector conn = new Connector();
 		
 		// Ehdokkaan tiedot päivitykseen tai lisäykseen
-		String sukunimi;
-		String etunimi;
-		String puolue;
-		String kotipaikkakunta;
+		String sukunimi = request.getParameter("sukunimi");
+		String etunimi = request.getParameter("etunimi");
+		String puolue = request.getParameter("puolue");
+		String kotipaikkakunta = request.getParameter("kotipaikkakunta");
+		String miksi_eduskuntaan = request.getParameter("miksieduskuntaan");
+		String mita_asioita_haluat_edistaa = request.getParameter("mitaedistaa");
+		String ammatti = request.getParameter("ammatti");
 		int ika;
-		String miksi_eduskuntaan;
-		String mita_asioita_haluat_edistaa;
-		String ammatti;
-
+		int ehdokasnumero;
+		
+		try {
+			ehdokasnumero = Integer.parseInt(request.getParameter("ehdokasnumero"));
+		} catch (Exception e) {
+			ehdokasnumero = -1;
+		}
+		
+		try {
+			ika = Integer.parseInt(request.getParameter("ika"));
+		} catch (Exception e) {
+			ika = -1;
+		}
+		
 		int nextID;
 		
 		// Tämä määrittää mitä nappulaa painettiin
 		conn.event = request.getParameter("btn").charAt(0);
+		conn.ehdokas = ehdokasnumero;
 		
 		try {
 			conn.currentID = Integer.parseInt(request.getParameter("currentID"));
@@ -57,24 +71,8 @@ public class buttonAction extends HttpServlet {
 		}
 		
 		if (conn.event == 'Y') {
-			
-			// Ehdokkaan tietojen päivittäminen
-			sukunimi = request.getParameter("editsukunimi");
-			etunimi = request.getParameter("editetunimi");
-			puolue = request.getParameter("editpuolue");
-			kotipaikkakunta = request.getParameter("editkotipaikkakunta");
-			miksi_eduskuntaan = request.getParameter("editmiksieduskuntaan");
-			mita_asioita_haluat_edistaa = request.getParameter("editmitaedistaa");
-			ammatti = request.getParameter("editammatti");
-			
-			try {
-				ika = Integer.parseInt(request.getParameter("editika"));
-			} catch (Exception e) {
-				ika = -1;
-			}
-			
 			// Kutsutaan tietokannan päivitys saaduilla tiedoilla
-			conn.UpdateTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
+			conn.UpdateTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
 		}
 		
 		if (conn.event == 'N') {
@@ -91,32 +89,19 @@ public class buttonAction extends HttpServlet {
 			conn.GetTableData();
 			
 			nextID = conn.getLastID() +1;
-			sukunimi = request.getParameter("addsukunimi");
-			etunimi = request.getParameter("addetunimi");
-			puolue = request.getParameter("addpuolue");
-			kotipaikkakunta = request.getParameter("addkotipaikkakunta");
-			// ik� hieman alempana try-catchiss�
-			miksi_eduskuntaan = request.getParameter("addmiksieduskuntaan");
-			mita_asioita_haluat_edistaa = request.getParameter("addmitaedistaa");
-			ammatti = request.getParameter("addammatti");
-			
-			try {
-				ika = Integer.parseInt(request.getParameter("addika"));
-			} catch (Exception e) {
-				ika = -1;
-			}
-			
-			//Testausta varten ollut printti			
-			//System.out.println(nextID + ", " + sukunimi + ", " + etunimi + ", " + ika);
 			
 			//kutsuu addtabledata metodia
 			try {
-				conn.AddTableData(nextID, sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
+				conn.AddTableData(nextID, sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("virhe btnaction.java -> addtable osiossa");
 			}
 			
+		}
+		
+		if (conn.event == 'Z') {
+		//clear
 		}
 		
 		// Lähettää vaan takas AdminControlPanel servlettiin
