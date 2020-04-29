@@ -37,6 +37,8 @@ public class AdminControlPanel extends HttpServlet {
 		
 		HttpSession session=request.getSession(false);
 		
+		
+		
 
 		  if(session!=null){  
 			  //response.getWriter().print("Tervetuloa!"); 
