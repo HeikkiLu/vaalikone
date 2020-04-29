@@ -2,32 +2,31 @@
 <%@page import="adminpages.buttonAction"%>
 <%@page import="java.util.List"%>
 <%@page import="adminpages.Connector"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="ISO-8859-1">
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="adminstyle.css">
     </head>
     <body>
         <div class="wrapper">
-            <nav>
-                <h2>Lisää uusi ehdokas</h2>
-            </nav>
-            
+
             <% Connector conn = new Connector(); %>
             <% List ehdokas = conn.haeEhdokkaanTiedot(conn.ehdokas); %>
             
             <div class="menu-adduser">
                 <form action="/buttonAction" method="get">
-                	
+                
+		            <h2>Vaalikoneen hallinta</h2>
+
                 	<!-- NUMERO -->
                     <label for="ehdokasnumero" class="Titles">Ehdokasnumero</label>
                     <% if (conn.event == 'H') { %>
                     	<input class="txt" type="text" name="ehdokasnumero" value="<% out.println(ehdokas.get(9)); %>">
                     <% } else { %>
-                    	<input class="txt" type="text" name="ehdokasnumero">
+                    	<input class="txt" type="text" name="ehdokasnumero" required>
                     <% } %>
 
 					<!-- SUKUNIMI -->
@@ -68,8 +67,8 @@
                             <label for="Akaa">Akaa</label>
                             <option value="Akaa">Akaa</option>
 
-                            <label for="alajarvi">Alajärvi</label>
-                            <option value="alajarvi">Alajärvi</option>
+                            <label for="alajarvi">AlajÃ¤rvi</label>
+                            <option value="alajarvi">AlajÃ¤rvi</option>
 
                             <label for="alavus">Alavus</label>
                             <option value="alavus">Alavus</option>
@@ -78,12 +77,12 @@
                             <option value="aapeli">Aapeli</option>
                         </optgroup>
 
-                        <optgroup label="Etelä-Karjala">
+                        <optgroup label="EtelÃ¤-Karjala">
                             <label for="Akaa">Akaa</label>
                             <option value="Akaa">Akaa</option>
 
-                            <label for="alajarvi">Alajärvi</label>
-                            <option value="alajarvi">Alajärvi</option>
+                            <label for="alajarvi">AlajÃ¤rvi</label>
+                            <option value="alajarvi">AlajÃ¤rvi</option>
 
                             <label for="alavus">Alavus</label>
                             <option value="alavus">Alavus</option>
@@ -92,12 +91,12 @@
                             <option value="aapeli">Aapeli</option>
                         </optgroup>
 
-                        <optgroup label="Etelä-Pohjanmaa">
+                        <optgroup label="EtelÃ¤-Pohjanmaa">
                             <label for="Akaa">Akaa</label>
                             <option value="Akaa">Akaa</option>
 
-                            <label for="alajarvi">Alajärvi</label>
-                            <option value="alajarvi">Alajärvi</option>
+                            <label for="alajarvi">AlajÃ¤rvi</label>
+                            <option value="alajarvi">AlajÃ¤rvi</option>
 
                             <label for="alavus">Alavus</label>
                             <option value="alavus">Alavus</option>
@@ -106,12 +105,12 @@
                             <option value="aapeli">Aapeli</option>
                         </optgroup>
 
-                        <optgroup label="Etelä-Savo">
+                        <optgroup label="EtelÃ¤-Savo">
                             <label for="Akaa">Akaa</label>
                             <option value="Akaa">Akaa</option>
 
-                            <label for="alajarvi">Alajärvi</label>
-                            <option value="alajarvi">Alajärvi</option>
+                            <label for="alajarvi">AlajÃ¤rvi</label>
+                            <option value="alajarvi">AlajÃ¤rvi</option>
 
                             <label for="alavus">Alavus</label>
                             <option value="alavus">Alavus</option>
@@ -124,8 +123,8 @@
                             <label for="Akaa">Akaa</label>
                             <option value="Akaa">Akaa</option>
 
-                            <label for="alajarvi">Alajärvi</label>
-                            <option value="alajarvi">Alajärvi</option>
+                            <label for="alajarvi">AlajÃ¤rvi</label>
+                            <option value="alajarvi">AlajÃ¤rvi</option>
 
                             <label for="alavus">Alavus</label>
                             <option value="alavus">Alavus</option>
@@ -138,8 +137,8 @@
                             <label for="Akaa">Akaa</label>
                             <option value="Akaa">Akaa</option>
 
-                            <label for="alajarvi">Alajärvi</label>
-                            <option value="alajarvi">Alajärvi</option>
+                            <label for="alajarvi">AlajÃ¤rvi</label>
+                            <option value="alajarvi">AlajÃ¤rvi</option>
 
                             <label for="alavus">Alavus</label>
                             <option value="alavus">Alavus</option>
@@ -152,8 +151,8 @@
                             <label for="Akaa">Akaa</label>
                             <option value="Akaa">Akaa</option>
 
-                            <label for="alajarvi">Alajärvi</label>
-                            <option value="alajarvi">Alajärvi</option>
+                            <label for="alajarvi">AlajÃ¤rvi</label>
+                            <option value="alajarvi">AlajÃ¤rvi</option>
 
                             <label for="alavus">Alavus</label>
                             <option value="alavus">Alavus</option>
@@ -166,8 +165,8 @@
                             <label for="Akaa">Akaa</label>
                             <option value="Akaa">Akaa</option>
 
-                            <label for="alajarvi">Alajärvi</label>
-                            <option value="alajarvi">Alajärvi</option>
+                            <label for="alajarvi">AlajÃ¤rvi</label>
+                            <option value="alajarvi">AlajÃ¤rvi</option>
 
                             <label for="alavus">Alavus</label>
                             <option value="alavus">Alavus</option>
@@ -179,8 +178,8 @@
                     </select>
 					<% } %>
 					
-					<!-- IKÄ -->
-                    <label for="ika" class="Titles">Ikä</label>
+					<!-- IKÃ„ -->
+                    <label for="ika" class="Titles">IkÃ¤</label>
                     <% if (conn.event == 'H') { %>
                     	<input class="txt" type="text" name="ika" value="<% out.println(ehdokas.get(5)); %>">
                     <% } else { %>
@@ -195,8 +194,8 @@
                     <textarea rows="5" id="miksi" class="txt" type="text" name="miksieduskuntaan"></textarea>
                     <% } %>
                     
-					<!-- MITÄ -->
-                    <label for="mita" class="Titles">Mitä asioita haluat edistää?</label>
+					<!-- MITÃ„ -->
+                    <label for="mita" class="Titles">MitÃ¤ asioita haluat edistÃ¤Ã¤?</label>
                     <% if (conn.event == 'H') { %>
                     <textarea rows="5" id="miksi" class="txt" type="text" name="mitaedistaa"> <% out.println(ehdokas.get(7)); %> </textarea>
                     <% } else { %>
@@ -211,11 +210,26 @@
                     	<input class="txt" type="text" name="ammatti">
                     <% } %>
 					
-					<!-- SUBMIT -->
+					<!-- SUBMIT 
                     <input class="submit-button" type="submit" name="btn" value="Submit">
                     <input class="submit-button" type="submit" name="btn" value="Hae">
                     <input class="submit-button" type="submit" name="btn" value="ZZZ">
+                    -->
+                    
+                    <button class="submit-button" name="btn" value="Submit" type="submit">LisÃ¤Ã¤</button>
+                    <button class="submit-button" name="btn" value="Hae" type="submit">Hae</button>
+                    <button class="submit-button" name="btn" value="Yes" type="submit">PÃ¤ivitÃ¤</button>
+                    <button class="submit-button" name="btn" value="Confirm" type="submit">Poista</button>
+                    <button class="submit-button clear-button" name="btn" value="ZZZ" type="submit">TyhjennÃ¤</button>
+                    
+                    
                 </form> 
+            </div>
+            <div class="protip">
+            	<p>LisÃ¤Ã¤ uusi ehdokas tÃ¤yttÃ¤mÃ¤llÃ¤ kenttiin ehdokkaan tiedot, ja painamalla "LisÃ¤Ã¤"-painiketta.</p>
+            	<p>Hae ehdokasta syÃ¶ttÃ¤mÃ¤llÃ¤ Ehdokasnumero-kenttÃ¤Ã¤n ehdokkaan numero, ja painamalla "Hae"-painiketta.</p>
+            	<p>PÃ¤ivitÃ¤ ehdokkaan tiedot ensin hakemalla ehdokasta (ohjeet yllÃ¤), muuttamalla tietoja, ja painamalla "PÃ¤ivitÃ¤"-painiketta</p>
+            	<p>Poista ehdokas hakemalla ehdokasta (ohjeet yllÃ¤), ja painamalla "Poista"-painiketta.</p>
             </div>
         </div>
     </body>

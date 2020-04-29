@@ -1,55 +1,27 @@
 @charset "ISO-8859-1";
 
-.edit {
-	background-color: #8cff2e;
-	padding: 5px;
-}
-
-.editButton {
-	background-color: #8cff2e;
-	padding: 5px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: auto;
-	margin-bottom: 3px;
-	width: 100%;
-}
-
-.deleteButton {
-	background-color: #ff3c2e;
-	color: white;
-	padding: 5px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 3px;
-	margin-bottom: auto;
-	width: 100%;
-}
-
-.editButtonCell {
-	width: 75px;
-}
-
-td {
-	background-color: #f5f5f5;
-}
-
-th {
-	text-align: left;
-}
+/* UUTTA TAVARAA */
 
 .wrapper {
-	width: 30%;
+	display: flex;
+	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 form {
 	display: grid;
-	grid-template-columns: 150px 1fr;
+	grid-template-columns: 150px 250px;
 	grid-gap: 16px;
+}
+
+h2 {
+	grid-column: 2/2;
+	text-align: center;
+	color: black;
+	font-size: 20px;
+	padding: 5px;
+	text-decoration:none;
 }
 
 label {
@@ -58,28 +30,33 @@ label {
 }
 
 input {
-	grid-column: 2/3;
+	grid-column: 2/2;
+}
+
+button {
+	grid-column: 2/2;
+}
+
+.protip {
+	background-color:infobackground;
+	width: 200px;
+	margin-left: 50px;
+	margin-top: 100px;
+	margin-bottom: auto;
+	padding: 15px;
 }
 
 .submit-button {
 	background-color: darkgray;
-	width: 200px;
-	margin-left: auto;
-	margin-right: auto;
+	width: 60px;
+	height: 30px;
 	border-radius: 10px;
 	padding: 5px;
+	font-size: 10px;
 }
 
 .submit-button:hover {
 	background-color: grey;
-}
-
-nav, h2 {
-	text-align: center;
-	color: black;
-	font-size: 20px;
-	padding: 5px;
-	text-decoration:none;
 }
 
 /* Kotipaikkakunta drop-down */
