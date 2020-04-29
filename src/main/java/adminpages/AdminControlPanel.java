@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,155 +45,121 @@ public class AdminControlPanel extends HttpServlet {
 			  response.getWriter().print("Kirjaudu ensin sis��n!"); 
 			  response.getWriter().close();
 		  }
-
-		Connector conn = new Connector();
-		List ehdokkaat = conn.GetTableData();
-		PrintWriter out = response.getWriter();
-		
-		// Luo taulukon rakenteen
-		out.println("<!DOCTYPE html>");
-		out.println("<html>");
-		// Head
-		out.println("<head>");
-			out.println("<title>Admin Control Panel</title>");
-			out.println("<meta charset=\"UTF-8\">");
-			// CSS
-			out.println("<style>");
-			
-				out.println(".edit {");
-				out.println("background-color: #8cff2e;");
-				out.println("padding: 5px;");
-				out.println("}");
-				
-				out.println(".editButton {");
-				out.println("background-color: #8cff2e;");
-				out.println("padding: 5px;");
-				out.println("display: block;");
-				out.println("margin-left: auto;");
-				out.println("margin-right: auto;");
-				out.println("margin-top: auto;");
-				out.println("margin-bottom: 3px;");
-				out.println("width: 100%;");
-				out.println("}");
-				
-				out.println(".deleteButton {");
-				out.println("background-color: #ff3c2e;");
-				out.println("color: white;");
-				out.println("padding: 5px;");
-				out.println("display: block;");
-				out.println("margin-left: auto;");
-				out.println("margin-right: auto;");
-				out.println("margin-top: 3px;");
-				out.println("margin-bottom: auto;");
-				out.println("width: 100%;");
-				out.println("}");
-				
-				out.println(".editButtonCell {");
-				out.println("width: 75px;");
-				out.println("}");
-				
-				out.println("td {");
-				out.println("background-color: #f5f5f5;");
-				out.println("}");
-				
-				out.println("th { text-align: left}´; }");
-				
-			out.println("</style>");
-		out.println("</head>");
-		// Body
-		out.println("<body>");
-		out.println("<tr>"
-				+ "<form action=\"/kirjauduUlos\" method=\"GET\">"
-				+ "<td><input id=\"submitnappi4\" type=\"submit\" value=\"Kirjaudu Ulos\" name=\"btnLogout\" /></td>"
-				+ "</form>"
-				+"</tr>");
-			out.println("<center>");
-				out.println("<table border='1' cellpadding='3' cellspacing='0'>");
-					out.println("</tr>");
-						out.println("<th>Ehdokasnumero</th>");
-						out.println("<th>Sukunimi</th>");
-						out.println("<th>Etunimi</th>");
-						out.println("<th>Puolue</th>");
-						out.println("<th>Kotipaikkakunta</th>");
-						out.println("<th>Ikä</th>");
-						out.println("<th>Miksi eduskuntaan</th>");
-						out.println("<th>Mitä edistät</th>");
-						out.println("<th>Ammatti</th>");
-					out.println("</tr>");
+		// Ohjaa JSP tiedostoon
+		RequestDispatcher view = request.getRequestDispatcher("newPage.jsp");
+        view.forward(request, response);
+        
+        /**
+         * Tästä alaspäin kaikki on turhaa koska näkymää hallitseee JSP-tiedosto
+         */
+        
+//		Connector conn = new Connector();
+//		List ehdokkaat = conn.GetTableData();
+//		PrintWriter out = response.getWriter();
+//
+//        
+//		out.println("<!DOCTYPE html>");
+//		out.println("<html>");
+//		// Head
+//		out.println("<head>");
+//			out.println("<title>Admin Control Panel</title>");
+//			out.println("<meta charset=\"UTF-8\">");
+//			out.println("<link href=\"adminstyle.css\" rel=\"stylesheet\" type=\"text/css\"");
+//		out.println("</head>");
+//		// Body
+//		out.println("<body>");
+//		out.println("<tr>"
+//				+ "<form action=\"/kirjauduUlos\" method=\"GET\">"
+//				+ "<td><input id=\"submitnappi4\" type=\"submit\" value=\"Kirjaudu Ulos\" name=\"btnLogout\" /></td>"
+//				+ "</form>"
+//				+"</tr>");
+//			out.println("<center>");
+//				out.println("<table border='1' cellpadding='3' cellspacing='0'>");
+//					out.println("</tr>");
+//						out.println("<th>Ehdokasnumero</th>");
+//						out.println("<th>Sukunimi</th>");
+//						out.println("<th>Etunimi</th>");
+//						out.println("<th>Puolue</th>");
+//						out.println("<th>Kotipaikkakunta</th>");
+//						out.println("<th>Ikä</th>");
+//						out.println("<th>Miksi eduskuntaan</th>");
+//						out.println("<th>Mitä edistät</th>");
+//						out.println("<th>Ammatti</th>");
+//					out.println("</tr>");
 		// Ehdokkaan lisäys
-		out.println("<tr>"
-				+ "<form action=\"/buttonAction\" method=\"GET\">"
-				+ "<td><textarea rows=\"10\" cols=\"10\" name=\"ehdokasnumero\" placeholder=\"ehdokas numero\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"sukunimi\" placeholder=\"sukunimi\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"etunimi\" placeholder=\"etunimi\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"puolue\" placeholder=\"puolue\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"kotipaikkakunta\" placeholder=\"kotipaikkakunta\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"ika\" placeholder=\"ikä\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"miksieduskuntaan\" placeholder=\"miksi haluat eduskuntaan?\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"24\" name=\"mitaedistaa\" placeholder=\"mitä asioita haluat edistää?\"></textarea></td>"
-				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"ammatti\" placeholder=\"ammatti\"></textarea></td>"
-				+ "<td><input type=\"submit\" name=\"btn\" value=\"Submit\"></td>"
-				+ "</form>"
-				+ "</tr>");
-
-		// Ehdokkaiden tiedot
-		for (int i = 0; i < ehdokkaat.size(); i++) {
-			
-			// Joka loopilla haetaan yksittäinen sisennetty ArrayList ehdokkaat-listasta joka sisältää ehdokkaan tiedot
-			ArrayList ehdokas = (ArrayList) ehdokkaat.get(i);
-			
-			// Jos currentID on sama kuin ehdokas-arrayn ID niin tulostellaan muokattava rivi
-			if (conn.currentID == Integer.parseInt((String) ehdokas.get(0)) && conn.event == 'E') {
-				out.println("<tr>"
-						+ "<form action=\"/buttonAction\" method=\"GET\">"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"10\" name=\"ehdokasnumero\">" + ehdokas.get(9) + "</textarea><input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"sukunimi\">" 		+ ehdokas.get(1) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"etunimi\">" 		+ ehdokas.get(2) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"puolue\">" 			+ ehdokas.get(3) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"kotipaikkakunta\">" + ehdokas.get(4) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"ika\">" 			+ ehdokas.get(5) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"miksieduskuntaan\">" + ehdokas.get(6) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"24\" name=\"mitaedistaa\">" 	+ ehdokas.get(7) + "</textarea></td>"
-						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"ammatti\">" 		+ ehdokas.get(8) + "</textarea></td>"
-						+ "<td>Apply changes?</td>"
-						+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Yes\">"
-						+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"No\"></td>"
-						+ "</tr>"
-						);
-			}	
-			else {
-				out.println("<tr>"
-						+ "<form action=\"/buttonAction\">"
-						+ "<td>" + ehdokas.get(9) + "<input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>" // haetaan ehdokas arraysta indeksin mukaan tieto
-						+ "<td>" + ehdokas.get(1) + "</td>"
-						+ "<td>" + ehdokas.get(2) + "</td>"
-						+ "<td>" + ehdokas.get(3) + "</td>"
-						+ "<td>" + ehdokas.get(4) + "</td>"
-						+ "<td>" + ehdokas.get(5) + "</td>"
-						+ "<td>" + ehdokas.get(6) + "</td>"
-						+ "<td>" + ehdokas.get(7) + "</td>"
-						+ "<td>" + ehdokas.get(8) + "</td>"
-						);
-				
-				if (conn.currentID == Integer.parseInt((String) ehdokas.get(0)) && conn.event == 'D') {
-					out.println("<td>Delete candidate?</td>"
-							+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Confirm\">"
-							+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"Undo\"></td>");
-				} else {
-					out.println("<td><input type=\"submit\" name=\"btn\" value=\"Edit\"></td>"
-						+ "<td><input type=\"submit\" name=\"btn\" value=\"Delete\"></td>"
-						+ "</form>"
-						+ "</tr>");
-				}
-			}
-		}
-		
-		
-		// Päättää html koodin
-		out.println("</table>");
-		out.println("</center>");
-		out.println("</body>");
-		out.println("</html>");
+//		out.println("<tr>"
+//				+ "<form action=\"/buttonAction\" method=\"GET\">"
+//				+ "<td><textarea rows=\"10\" cols=\"10\" name=\"ehdokasnumero\" placeholder=\"ehdokas numero\"></textarea></td>"
+//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"sukunimi\" placeholder=\"sukunimi\"></textarea></td>"
+//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"etunimi\" placeholder=\"etunimi\"></textarea></td>"
+//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"puolue\" placeholder=\"puolue\"></textarea></td>"
+//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"kotipaikkakunta\" placeholder=\"kotipaikkakunta\"></textarea></td>"
+//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"ika\" placeholder=\"ikä\"></textarea></td>"
+//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"miksieduskuntaan\" placeholder=\"miksi haluat eduskuntaan?\"></textarea></td>"
+//				+ "<td><textarea rows=\"10\" cols=\"24\" name=\"mitaedistaa\" placeholder=\"mitä asioita haluat edistää?\"></textarea></td>"
+//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"ammatti\" placeholder=\"ammatti\"></textarea></td>"
+//				+ "<td><input type=\"submit\" name=\"btn\" value=\"Submit\"></td>"
+//				+ "</form>"
+//				+ "</tr>");
+//
+//		// Ehdokkaiden tiedot
+//		for (int i = 0; i < ehdokkaat.size(); i++) {
+//			
+//			// Joka loopilla haetaan yksittäinen sisennetty ArrayList ehdokkaat-listasta joka sisältää ehdokkaan tiedot
+//			ArrayList ehdokas = (ArrayList) ehdokkaat.get(i);
+//			
+//			// Jos currentID on sama kuin ehdokas-arrayn ID niin tulostellaan muokattava rivi
+//			if (conn.currentID == Integer.parseInt((String) ehdokas.get(0)) && conn.event == 'E') {
+//				out.println("<tr>"
+//						+ "<form action=\"/buttonAction\" method=\"GET\">"
+//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"10\" name=\"ehdokasnumero\">" + ehdokas.get(9) + "</textarea><input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>"
+//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"sukunimi\">" 		+ ehdokas.get(1) + "</textarea></td>"
+//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"etunimi\">" 		+ ehdokas.get(2) + "</textarea></td>"
+//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"puolue\">" 			+ ehdokas.get(3) + "</textarea></td>"
+//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"kotipaikkakunta\">" + ehdokas.get(4) + "</textarea></td>"
+//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"ika\">" 			+ ehdokas.get(5) + "</textarea></td>"
+//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"miksieduskuntaan\">" + ehdokas.get(6) + "</textarea></td>"
+//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"24\" name=\"mitaedistaa\">" 	+ ehdokas.get(7) + "</textarea></td>"
+//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"ammatti\">" 		+ ehdokas.get(8) + "</textarea></td>"
+//						+ "<td>Apply changes?</td>"
+//						+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Yes\">"
+//						+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"No\"></td>"
+//						+ "</tr>"
+//						);
+//			}	
+//			else {
+//				out.println("<tr>"
+//						+ "<form action=\"/buttonAction\">"
+//						+ "<td>" + ehdokas.get(9) + "<input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>" // haetaan ehdokas arraysta indeksin mukaan tieto
+//						+ "<td>" + ehdokas.get(1) + "</td>"
+//						+ "<td>" + ehdokas.get(2) + "</td>"
+//						+ "<td>" + ehdokas.get(3) + "</td>"
+//						+ "<td>" + ehdokas.get(4) + "</td>"
+//						+ "<td>" + ehdokas.get(5) + "</td>"
+//						+ "<td>" + ehdokas.get(6) + "</td>"
+//						+ "<td>" + ehdokas.get(7) + "</td>"
+//						+ "<td>" + ehdokas.get(8) + "</td>"
+//						);
+//				
+//				if (conn.currentID == Integer.parseInt((String) ehdokas.get(0)) && conn.event == 'D') {
+//					out.println("<td>Delete candidate?</td>"
+//							+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Confirm\">"
+//							+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"Undo\"></td>");
+//				} else {
+//					out.println("<td><input type=\"submit\" name=\"btn\" value=\"Edit\"></td>"
+//						+ "<td><input type=\"submit\" name=\"btn\" value=\"Delete\"></td>"
+//						+ "</form>"
+//						+ "</tr>");
+//				}
+//			}
+//		}
+//		
+//		
+//		// Päättää html koodin
+//		out.println("</table>");
+//		out.println("</center>");
+//		out.println("</body>");
+//		out.println("</html>");
 	}
 
 	/**

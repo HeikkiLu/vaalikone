@@ -49,6 +49,7 @@ public class buttonAction extends HttpServlet {
 		
 		// Tämä määrittää mitä nappulaa painettiin
 		conn.event = request.getParameter("btn").charAt(0);
+		conn.ehdokas = ehdokasnumero;
 		
 		try {
 			conn.currentID = Integer.parseInt(request.getParameter("currentID"));
@@ -97,6 +98,10 @@ public class buttonAction extends HttpServlet {
 				System.out.println("virhe btnaction.java -> addtable osiossa");
 			}
 			
+		}
+		
+		if (conn.event == 'Z') {
+		//clear
 		}
 		
 		// Lähettää vaan takas AdminControlPanel servlettiin
