@@ -17,6 +17,7 @@ public class Connector {
 	private Connection conn;
 	private int lastID;
 	public static char event;
+	public static int ehdokas = 1;
 	public static int currentID = -1;
 
 	public Connector() {
@@ -215,5 +216,75 @@ public class Connector {
 		return returnStatement;
 
 	}
+	
+	public String printEdit() {
+		List ehdokkaat = GetTableData();
+		String result = "";
+		
+		for (int i = 0; i < ehdokkaat.size(); i++) {
+			ArrayList ehdokas = (ArrayList) ehdokkaat.get(i);
 
+			if (currentID == Integer.parseInt((String) ehdokas.get(0)) && event == 'E') {
+				result += "<tr>"
+						+ "<form action=\"/buttonAction\" method=\"GET\">"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"10\" name=\"ehdokasnumero\">" + ehdokas.get(9) + "</textarea><input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"sukunimi\">" 		+ ehdokas.get(1) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"etunimi\">" 		+ ehdokas.get(2) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"puolue\">" 			+ ehdokas.get(3) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"kotipaikkakunta\">" + ehdokas.get(4) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"ika\">" 			+ ehdokas.get(5) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"miksieduskuntaan\">" + ehdokas.get(6) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"24\" name=\"mitaedistaa\">" 	+ ehdokas.get(7) + "</textarea></td>"
+						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"ammatti\">" 		+ ehdokas.get(8) + "</textarea></td>"
+						+ "<td>Apply changes?</td>"
+						+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Yes\">"
+						+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"No\"></td>"
+						+ "</tr>";
+			}	
+			else {
+				result += "<tr>"
+						+ "<form action=\"/buttonAction\">"
+						+ "<td>" + ehdokas.get(9) + "<input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>" // haetaan ehdokas arraysta indeksin mukaan tieto
+						+ "<td>" + ehdokas.get(1) + "</td>"
+						+ "<td>" + ehdokas.get(2) + "</td>"
+						+ "<td>" + ehdokas.get(3) + "</td>"
+						+ "<td>" + ehdokas.get(4) + "</td>"
+						+ "<td>" + ehdokas.get(5) + "</td>"
+						+ "<td>" + ehdokas.get(6) + "</td>"
+						+ "<td>" + ehdokas.get(7) + "</td>"
+						+ "<td>" + ehdokas.get(8) + "</td>";
+			}
+			result += printButtons(i, Integer.parseInt((String) ehdokas.get(0)));
+		}
+		System.out.print("printEdit called");
+		return result;
+	}
+	
+	public String printButtons(int index, int id) {
+		String result = "";	
+		if (index == id && event == 'D') {
+				result += "<td>Delete candidate?</td>"
+						+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Confirm\">"
+						+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"Undo\"></td>";
+		} else {
+			result += "<td><input type=\"submit\" name=\"btn\" value=\"Edit\"></td>"
+				+ "<td><input type=\"submit\" name=\"btn\" value=\"Delete\"></td>"
+				+ "</form>"
+				+ "</tr>";
+		}
+		System.out.print("printButtons called");
+		return result;
+	}
+	
+	public List haeEhdokkaanTiedot(int ehdokasNumero) {
+		List ehdokkaat = GetTableData();
+		List ehdokas = null;
+		for (int i = 0; i < ehdokkaat.size(); i++) {
+			ehdokas = (List) ehdokkaat.get(i);
+			if (Integer.parseInt((String) ehdokas.get(9)) == ehdokasNumero) {
+				return ehdokas;
+			}
+		}
+		return ehdokas;
+	}
 }
