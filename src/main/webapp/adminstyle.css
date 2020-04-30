@@ -2,61 +2,68 @@
 
 /* UUTTA TAVARAA */
 
+html {
+	background-color: #F3F3F3;
+}
+
 .wrapper {
 	display: flex;
-	width: 1000px;
+	justify-content: center;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-form {
-	display: grid;
-	grid-template-columns: 150px 250px;
-	grid-gap: 16px;
-}
-
-h2 {
-	grid-column: 2/2;
-	text-align: center;
-	color: black;
-	font-size: 20px;
-	padding: 5px;
-	text-decoration:none;
-}
-
-label {
-	grid-column: 1/2;
-	text-align: right;
-}
-
-input {
-	grid-column: 2/2;
-}
-
-button {
-	grid-column: 2/2;
-}
-
-.protip {
-	background-color:infobackground;
-	width: 200px;
-	margin-left: 50px;
-	margin-top: 100px;
+.container-photo {
+	vertical-align: top;
 	margin-bottom: auto;
+	margin-left: 15px;
+	margin-right: 15px;
+	height: 70%;
+	width: 15%;
 	padding: 15px;
 }
 
-.submit-button {
-	background-color: darkgray;
-	width: 60px;
-	height: 30px;
-	border-radius: 10px;
-	padding: 5px;
-	font-size: 10px;
+.button-logout {
+	width: 100px;
 }
 
-.submit-button:hover {
-	background-color: grey;
+/* FORM */
+
+.container-form {
+	width: 30%;
+	
+}
+
+form {
+	display: grid;
+	grid-gap: 16px;
+	font-family: "Times New Roman", Times, serif;
+}
+
+.header-form {
+	grid-column: 1/5;
+}
+
+h2 {
+	text-align: center;
+	color: black;
+	font-size: 20px;
+}
+
+/* Selitteet*/
+.textbox-label {
+	grid-column: 1/1;
+	text-align: right;
+	margin-left: auto;
+}
+
+/* Tekstikentät */
+.textbox-input {
+	background-color: white;
+	grid-column: 2/5;
+	border-radius: 7px;
+	border-style: ridge;
 }
 
 /* Kotipaikkakunta drop-down */
@@ -70,4 +77,49 @@ select {
 
 option {
 	color: #000;
+}
+
+/* Napit */
+.container-buttons {
+	grid-column: 1/5;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 5px;
+}
+
+.button {
+	width: 75px;
+	margin-left: 5px;
+}
+
+/* PROPTIP */
+
+.container-protip {
+	background-color:infobackground;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 15px;
+	margin-right: 15px;
+	height: 70%;
+	width: 15%;
+	padding: 15px;
+}
+
+/* DEBUGGING */
+
+.button,
+.container-buttons
+.container-form,
+.container-photo,
+.container-protip,
+form,
+h2,
+.header-form,
+.textbox-label,
+.textbox-input,
+.wrapper {
+	/*
+	border: 1px dashed red;
+	*/
 }
