@@ -1,85 +1,69 @@
 @charset "ISO-8859-1";
 
-.edit {
-	background-color: #8cff2e;
-	padding: 5px;
-}
+/* UUTTA TAVARAA */
 
-.editButton {
-	background-color: #8cff2e;
-	padding: 5px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: auto;
-	margin-bottom: 3px;
-	width: 100%;
-}
-
-.deleteButton {
-	background-color: #ff3c2e;
-	color: white;
-	padding: 5px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 3px;
-	margin-bottom: auto;
-	width: 100%;
-}
-
-.editButtonCell {
-	width: 75px;
-}
-
-td {
-	background-color: #f5f5f5;
-}
-
-th {
-	text-align: left;
+html {
+	background-color: #F3F3F3;
 }
 
 .wrapper {
-	width: 30%;
+	display: flex;
+	justify-content: center;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.container-photo {
+	vertical-align: top;
+	margin-bottom: auto;
+	margin-left: 15px;
+	margin-right: 15px;
+	height: 70%;
+	width: 15%;
+	padding: 15px;
+}
+
+.button-logout {
+	width: 100px;
+}
+
+/* FORM */
+
+.container-form {
+	width: 30%;
+	
 }
 
 form {
 	display: grid;
-	grid-template-columns: 150px 1fr;
 	grid-gap: 16px;
+	font-family: "Times New Roman", Times, serif;
 }
 
-label {
-	grid-column: 1/2;
-	text-align: right;
+.header-form {
+	grid-column: 1/5;
 }
 
-input {
-	grid-column: 2/3;
-}
-
-.submit-button {
-	background-color: darkgray;
-	width: 200px;
-	margin-left: auto;
-	margin-right: auto;
-	border-radius: 10px;
-	padding: 5px;
-}
-
-.submit-button:hover {
-	background-color: grey;
-}
-
-nav, h2 {
+h2 {
 	text-align: center;
 	color: black;
 	font-size: 20px;
-	padding: 5px;
-	text-decoration:none;
+}
+
+/* Selitteet*/
+.textbox-label {
+	grid-column: 1/1;
+	text-align: right;
+	margin-left: auto;
+}
+
+/* Tekstikentät */
+.textbox-input {
+	background-color: white;
+	grid-column: 2/5;
+	border-radius: 7px;
+	border-style: ridge;
 }
 
 /* Kotipaikkakunta drop-down */
@@ -93,4 +77,49 @@ select {
 
 option {
 	color: #000;
+}
+
+/* Napit */
+.container-buttons {
+	grid-column: 1/5;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 5px;
+}
+
+.button {
+	width: 75px;
+	margin-left: 5px;
+}
+
+/* PROPTIP */
+
+.container-protip {
+	background-color:infobackground;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 15px;
+	margin-right: 15px;
+	height: 70%;
+	width: 15%;
+	padding: 15px;
+}
+
+/* DEBUGGING */
+
+.button,
+.container-buttons
+.container-form,
+.container-photo,
+.container-protip,
+form,
+h2,
+.header-form,
+.textbox-label,
+.textbox-input,
+.wrapper {
+	/*
+	border: 1px dashed red;
+	*/
 }

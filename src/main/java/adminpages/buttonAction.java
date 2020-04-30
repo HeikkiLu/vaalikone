@@ -51,11 +51,16 @@ public class buttonAction extends HttpServlet {
 		conn.event = request.getParameter("btn").charAt(0);
 		conn.ehdokas = ehdokasnumero;
 		
-		try {
-			conn.currentID = Integer.parseInt(request.getParameter("currentID"));
-		} catch (Exception e) {
-			conn.currentID = -1;
-		}
+		
+		/**
+		 * Turha, ei tallaista kenttaa enaa ole uudessa formissa vaan arvo paivitetaan Connector.haeEhdokkaanTiedot metodissa
+		 */
+//		try {
+//			conn.currentID = Integer.parseInt(request.getParameter("currentID"));
+//		} catch (Exception e) {
+//			conn.currentID = -1;
+//		}
+		
 		
 		if (conn.event == 'E') {
 			// Editointi ikkunat aukeavat
@@ -101,7 +106,8 @@ public class buttonAction extends HttpServlet {
 		}
 		
 		if (conn.event == 'Z') {
-		//clear
+			conn.ehdokas = -1;
+			conn.event = 'A';
 		}
 		
 		// Lähettää vaan takas AdminControlPanel servlettiin
