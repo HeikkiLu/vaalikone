@@ -19,42 +19,38 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/AdminControlPanel")
 public class AdminControlPanel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminControlPanel() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-    
-    
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session=request.getSession(false);
-		
-		
-		
+	public AdminControlPanel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-		  if(session!=null){  
-			  //response.getWriter().print("Tervetuloa!"); 
-		  }  
-		  else {
-			  response.getWriter().print("Kirjaudu ensin sis��n!"); 
-			  response.getWriter().close();
-		  }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession(false);
+
+		if (session != null) {
+			// response.getWriter().print("Tervetuloa!");
+		} else {
+			response.getWriter().print("Kirjaudu ensin sis��n!");
+			response.getWriter().close();
+		}
 		// Ohjaa JSP tiedostoon
 		RequestDispatcher view = request.getRequestDispatcher("newPage.jsp");
-        view.forward(request, response);
-        
-        /**
-         * Tästä alaspäin kaikki on turhaa koska näkymää hallitseee JSP-tiedosto
-         */
-        
+		view.forward(request, response);
+
+		/**
+		 * Tästä alaspäin kaikki on turhaa koska näkymää hallitseee JSP-tiedosto
+		 */
+
 //		Connector conn = new Connector();
 //		List ehdokkaat = conn.GetTableData();
 //		PrintWriter out = response.getWriter();
@@ -165,9 +161,11 @@ public class AdminControlPanel extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
