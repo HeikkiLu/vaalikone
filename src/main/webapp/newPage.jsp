@@ -2,6 +2,7 @@
 <%@page import="adminpages.buttonAction"%>
 <%@page import="java.util.List"%>
 <%@page import="adminpages.Connector"%>
+<%@page import="persist.Ehdokkaat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,11 +13,15 @@
     </head>
     <body>
         <div class="wrapper">
-        
-        
-
+        	
+        	<!-- Haetaan ehdokas-olio jolloin voidaan käyttää gettereitä tiedon hakuun 
+        		Tällä hetkellä haku tapahtuu ID:n perusteella, eli syötä Ehdokasnumero kenttään EHDOKAS_ID jotta homma toimii
+        		Täytyy tehdä rakentaja Ehdokkaat-luokkaan jotta voidaan hakea ehdokasnumerolla
+        	-->
             <% Connector conn = new Connector(); %>
-            <% List ehdokas = conn.haeEhdokkaanTiedot(conn.ehdokas); %>
+            <% //List ehdokas = conn.haeEhdokkaanTiedot(conn.ehdokas); %>
+            <% Ehdokkaat ehdokasJPA = conn.findEhdokas(conn.ehdokas); %>
+            
             
             <div class="container-photo">
             	<!-- Tähän ehdokkaan kuva jos ehtii -->
@@ -37,7 +42,10 @@
                 	<!-- NUMERO -->
                     <label for="ehdokasnumero" class="textbox-label">Ehdokasnumero</label>
                     <% if (conn.event == 'H') { %>
-                    	<input class="textbox-input" type="text" name="ehdokasnumero" value="<% out.println(ehdokas.get(9)); %>">
+                    	<input class="textbox-input" type="text" name="ehdokasnumero" value="<% 
+                    	// out.println(ehdokas.get(9)); // RESULTSET
+                    	if (ehdokasJPA != null) { out.println(ehdokasJPA.getEhdokasId()); } // JPA
+                    	%>">
                     <% } else { %>
                     	<input class="textbox-input" type="text" name="ehdokasnumero" required>
                     <% } %>
@@ -45,7 +53,10 @@
 					<!-- SUKUNIMI -->
                     <label for="sukunimi" class="textbox-label">Sukunimi</label>
                     <% if (conn.event == 'H') { %>
-                    	<input class="textbox-input" type="text" name="sukunimi" value="<% out.println(ehdokas.get(1)); %>">
+                    	<input class="textbox-input" type="text" name="sukunimi" value=" <% 
+                    	//out.println(ehdokas.get(1)); // RESULTSET
+                    	if (ehdokasJPA != null) { out.println(ehdokasJPA.getSukunimi()); } // JPA
+                    	%>">
                     <% } else { %>
                     	<input class="textbox-input" type="text" name="ehdokasnumero">
                     <% } %>
@@ -53,7 +64,10 @@
 					<!-- ETUNIMI -->
                     <label for="etunimi" class="textbox-label">Etunimi</label>
                     <% if (conn.event == 'H') { %>
-                    	<input class="textbox-input" type="text" name="etunimi" value="<% out.println(ehdokas.get(2)); %>">
+                    	<input class="textbox-input" type="text" name="etunimi" value="<% 
+                    	//out.println(ehdokas.get(2)); // RESULTSET 
+                    	if (ehdokasJPA != null) { out.println(ehdokasJPA.getEtunimi()); } // JPA
+                    	%>">
                     <% } else { %>
                     	<input class="textbox-input" type="text" name="etunimi">
                     <% } %>
@@ -61,7 +75,10 @@
 					<!-- PUOLUE -->
                     <label for="puolue" class="textbox-label">Puolue</label>
                     <% if (conn.event == 'H') { %>
-                    	<input class="textbox-input" type="text" name="puolue" value="<% out.println(ehdokas.get(3)); %>">
+                    	<input class="textbox-input" type="text" name="puolue" value="<% 
+                    	//out.println(ehdokas.get(3)); // RESULTSET
+                    	if (ehdokasJPA != null) { out.println(ehdokasJPA.getPuolue()); } // JPA
+                    	%>">
                     <% } else { %>
                     	<input class="textbox-input" type="text" name="puolue">
                     <% } %>
@@ -69,7 +86,10 @@
 					<!-- PAIKKAKUNTA -->
                     <label for="koti" class="textbox-label">Kotipaikkakunta</label>
                     <% if (conn.event == 'H') { %>
-                    	<input class="textbox-input" type="text" name="kotipaikkakunta" value="<% out.println(ehdokas.get(4)); %>">
+                    	<input class="textbox-input" type="text" name="kotipaikkakunta" value="<% 
+                    	//out.println(ehdokas.get(4)); // RESULTSET 
+                    	if (ehdokasJPA != null) { out.println(ehdokasJPA.getKotipaikkakunta()); } // JPA
+                    	%>">
                     <% } else { %>
                     <select class="textbox-input" name="kotipaikkakunta" >
 
@@ -194,7 +214,10 @@
 					<!-- IKÄ -->
                     <label for="ika" class="textbox-label">Ikä</label>
                     <% if (conn.event == 'H') { %>
-                    	<input class="textbox-input" type="text" name="ika" value="<% out.println(ehdokas.get(5)); %>">
+                    	<input class="textbox-input" type="text" name="ika" value="<% 
+                    	//out.println(ehdokas.get(5)); // RESULTSET 
+                    	if (ehdokasJPA != null) { out.println(ehdokasJPA.getIka()); } // JPA
+                    	%>">
                     <% } else { %>
                     	<input class="textbox-input" type="text" name="ika">
                     <% } %>
@@ -202,7 +225,10 @@
 					<!-- MIKSI -->
                     <label for="miksi" class="textbox-label">Miksi haluat eduskuntaan?</label>
                     <% if (conn.event == 'H') { %>
-                    <textarea rows="5" id="miksi" class="textbox-input" type="text" name="miksieduskuntaan"> <% out.println(ehdokas.get(6)); %> </textarea>
+	                    <textarea rows="5" id="miksi" class="textbox-input" type="text" name="miksieduskuntaan"> <% 
+	                    //out.println(ehdokas.get(6)); //  RESULTSET
+	                    if (ehdokasJPA != null) { out.println(ehdokasJPA.getMiksiEduskuntaan()); } // JPA
+	                    %> </textarea>
                     <% } else { %>
                     <textarea rows="5" id="miksi" class="textbox-input" type="text" name="miksieduskuntaan"></textarea>
                     <% } %>
@@ -210,7 +236,10 @@
 					<!-- MITÄ -->
                     <label for="mita" class="textbox-label">Mitä asioita haluat edistää?</label>
                     <% if (conn.event == 'H') { %>
-                    <textarea rows="5" id="miksi" class="textbox-input" type="text" name="mitaedistaa"> <% out.println(ehdokas.get(7)); %> </textarea>
+	                    <textarea rows="5" id="miksi" class="textbox-input" type="text" name="mitaedistaa"> <% 
+	                    //out.println(ehdokas.get(7)); // RESULTSET
+	                    if (ehdokasJPA != null) { out.println(ehdokasJPA.getMitaAsioitaHaluatEdistaa()); } // JPA
+	                    %> </textarea>
                     <% } else { %>
                     <textarea rows="5" id="miksi" class="textbox-input" type="text" name="mitaedistaa"></textarea>
                     <% } %>
@@ -218,7 +247,10 @@
 					<!-- AMMATTI -->
                     <label for="ammatti" class="textbox-label">Ammatti</label>
                     <% if (conn.event == 'H') { %>
-                    	<input class="textbox-input" type="text" name="ammatti" value="<% out.println(ehdokas.get(8)); %>">
+                    	<input class="textbox-input" type="text" name="ammatti" value="<% 
+                    	//out.println(ehdokas.get(8)); // RESULTSET
+                    	if (ehdokasJPA != null) { out.println(ehdokasJPA.getAmmatti()); } // JPA
+                    	%>">
                     <% } else { %>
                     	<input class="textbox-input" type="text" name="ammatti">
                     <% } %>
