@@ -9,6 +9,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import persist.Ehdokkaat;
+
 public class Connector {
 
 	private String dbURL;
@@ -17,7 +23,7 @@ public class Connector {
 	private Connection conn;
 	private int lastID;
 	public static char event;
-	public static int ehdokas = 1;
+	public static int ehdokas = 2;
 	public static int currentID = -1;
 
 	public Connector() {
@@ -301,6 +307,25 @@ public class Connector {
 				return ehdokas;
 			}
 		}
+		return ehdokas;
+	}
+	
+	/*
+	 * JPA tapa hakea tiedot ja palauttaa olio
+	 */
+	public Ehdokkaat findEhdokas(int id) {
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+		
+		try {
+			emf = Persistence.createEntityManagerFactory("vaalikones");
+		} catch (Exception e) {}
+		
+		try {
+			em = emf.createEntityManager();
+		} catch (Exception e) {}
+		
+		Ehdokkaat ehdokas = em.find(Ehdokkaat.class, id);
 		return ehdokas;
 	}
 }

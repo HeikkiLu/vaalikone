@@ -66,6 +66,10 @@ h2 {
 	border-style: ridge;
 }
 
+textarea {
+   resize: none;
+}
+
 /* Kotipaikkakunta drop-down */
 optgroup {
 	color: darkorange;
@@ -121,5 +125,11 @@ h2,
 .wrapper {
 	/*
 	border: 1px dashed red;
+	*/
+}
+
+.wrapper > * {
+	/*
+	border: 2px dashed green;
 	*/
 }
