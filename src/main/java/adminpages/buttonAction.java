@@ -2,6 +2,8 @@ package adminpages;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -78,6 +80,7 @@ public class buttonAction extends HttpServlet {
 		if (conn.event == 'Y') {
 			// Kutsutaan tietokannan päivitys saaduilla tiedoilla
 			conn.UpdateTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
+			Connector.confirmEdit = true;
 		}
 		
 		if (conn.event == 'N') {
@@ -98,6 +101,7 @@ public class buttonAction extends HttpServlet {
 			//kutsuu addtabledata metodia
 			try {
 				conn.AddTableData(nextID, sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
+				Connector.confirmAdd = true;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("virhe btnaction.java -> addtable osiossa");
@@ -109,6 +113,14 @@ public class buttonAction extends HttpServlet {
 			conn.ehdokas = -1;
 			conn.event = 'A';
 		}
+		
+		/*
+		if (conn.event == 'H') {
+			RequestDispatcher view = request.getRequestDispatcher("ModifyPage.jsp");
+			view.forward(request, response);
+		}
+		*/
+		
 		
 		// Lähettää vaan takas AdminControlPanel servlettiin
 		response.sendRedirect("/AdminControlPanel");
