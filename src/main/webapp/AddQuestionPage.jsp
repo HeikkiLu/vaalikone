@@ -49,16 +49,10 @@
 						<button class="button" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 				</form>
-
-				<ul class="kysymykset">
-					<li class="kysymykset-list">Kysymys 1 tähän</li>
-					<li class="kysymykset-list">Kysymys 2 tähän</li>
-					<li class="kysymykset-list">Kysymys 3 tähän</li>
-					<li class="kysymykset-list">Kysymys 4 tähän</li>
-					<li class="kysymykset-list">Kysymys 5 tähän</li>
-					<li class="kysymykset-list">Kysymys 6 tähän</li>
-					<li class="kysymykset-list">jne...</li>
-				</ul>
+				<button class="button" name="btn" type="button" onclick="getQuestions()">Hae kysymykset</button>
+				<p id="kysymykset">
+                    
+                </p>
 			</div>
 		</div>
 	</body>

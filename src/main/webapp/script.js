@@ -12,3 +12,30 @@ function clearFields() {
     document.getElementById("ammatti").value = "";
 }
 
+// Kysymysten haku restistä
+const responseField = document.querySelector('#kysymykset');
+const apiurl = "http://localhost:8080/rest/kysymyksetservice/getall";
+
+const getQuestions = () => {
+
+    const xhr = new XMLHttpRequest();
+    console.log(xhr);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+
+            kysymykset = JSON.parse(this.responseText); // <-- Uncaught SyntaxError: Unexpected token u in JSON at position 0 ?
+            
+            let txt = "";
+
+            
+            for (index in kysymykset) {
+                txt += kysymykset[index].kysymysId + "&nbsp";
+                txt += kysymykset[index].kysymys + "<br>";
+            }
+            
+            responseField.innerHTML = txt;
+        }
+    };
+    xhr.open('GET', apiurl, true);
+    xhr.send();
+}
