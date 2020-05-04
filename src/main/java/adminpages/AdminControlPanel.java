@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.EhdokkaatDao;
+
 /**
  * Servlet implementation class AdminControlPanel
  */
@@ -48,13 +50,13 @@ public class AdminControlPanel extends HttpServlet {
 		//RequestDispatcher view = request.getRequestDispatcher("MainPage.jsp");
 		//view.forward(request, response);
 		
-		if (Connector.event == 'H') {
+		if (EhdokkaatDao.event == 'H') {
 			response.sendRedirect(request.getContextPath() + "/ModifyPage.jsp");
-		} else if (Connector.event == 'S') {
+		} else if (EhdokkaatDao.event == 'S') {
 			response.sendRedirect(request.getContextPath() + "/AddPage.jsp");
-		} else if (Connector.event == 'Y') {
+		} else if (EhdokkaatDao.event == 'Y') {
 			response.sendRedirect(request.getContextPath() + "/ModifyPage.jsp");
-		} else if (Connector.event == 'Q') {
+		} else if (EhdokkaatDao.event == 'Q') {
 			response.sendRedirect(request.getContextPath() + "/AddQuestionPage.jsp");
 		} else {
 			response.sendRedirect(request.getContextPath() + "/MainPage.jsp");
