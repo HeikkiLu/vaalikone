@@ -43,121 +43,22 @@ public class AdminControlPanel extends HttpServlet {
 			response.getWriter().print("Kirjaudu ensin sis��n!");
 			response.getWriter().close();
 		}
+		
 		// Ohjaa JSP tiedostoon
-		RequestDispatcher view = request.getRequestDispatcher("newPage.jsp");
-		view.forward(request, response);
-
-		/**
-		 * Tästä alaspäin kaikki on turhaa koska näkymää hallitseee JSP-tiedosto
-		 */
-
-//		Connector conn = new Connector();
-//		List ehdokkaat = conn.GetTableData();
-//		PrintWriter out = response.getWriter();
-//
-//        
-//		out.println("<!DOCTYPE html>");
-//		out.println("<html>");
-//		// Head
-//		out.println("<head>");
-//			out.println("<title>Admin Control Panel</title>");
-//			out.println("<meta charset=\"UTF-8\">");
-//			out.println("<link href=\"adminstyle.css\" rel=\"stylesheet\" type=\"text/css\"");
-//		out.println("</head>");
-//		// Body
-//		out.println("<body>");
-//		out.println("<tr>"
-//				+ "<form action=\"/kirjauduUlos\" method=\"GET\">"
-//				+ "<td><input id=\"submitnappi4\" type=\"submit\" value=\"Kirjaudu Ulos\" name=\"btnLogout\" /></td>"
-//				+ "</form>"
-//				+"</tr>");
-//			out.println("<center>");
-//				out.println("<table border='1' cellpadding='3' cellspacing='0'>");
-//					out.println("</tr>");
-//						out.println("<th>Ehdokasnumero</th>");
-//						out.println("<th>Sukunimi</th>");
-//						out.println("<th>Etunimi</th>");
-//						out.println("<th>Puolue</th>");
-//						out.println("<th>Kotipaikkakunta</th>");
-//						out.println("<th>Ikä</th>");
-//						out.println("<th>Miksi eduskuntaan</th>");
-//						out.println("<th>Mitä edistät</th>");
-//						out.println("<th>Ammatti</th>");
-//					out.println("</tr>");
-		// Ehdokkaan lisäys
-//		out.println("<tr>"
-//				+ "<form action=\"/buttonAction\" method=\"GET\">"
-//				+ "<td><textarea rows=\"10\" cols=\"10\" name=\"ehdokasnumero\" placeholder=\"ehdokas numero\"></textarea></td>"
-//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"sukunimi\" placeholder=\"sukunimi\"></textarea></td>"
-//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"etunimi\" placeholder=\"etunimi\"></textarea></td>"
-//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"puolue\" placeholder=\"puolue\"></textarea></td>"
-//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"kotipaikkakunta\" placeholder=\"kotipaikkakunta\"></textarea></td>"
-//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"ika\" placeholder=\"ikä\"></textarea></td>"
-//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"miksieduskuntaan\" placeholder=\"miksi haluat eduskuntaan?\"></textarea></td>"
-//				+ "<td><textarea rows=\"10\" cols=\"24\" name=\"mitaedistaa\" placeholder=\"mitä asioita haluat edistää?\"></textarea></td>"
-//				+ "<td><textarea rows=\"10\" cols=\"21\" name=\"ammatti\" placeholder=\"ammatti\"></textarea></td>"
-//				+ "<td><input type=\"submit\" name=\"btn\" value=\"Submit\"></td>"
-//				+ "</form>"
-//				+ "</tr>");
-//
-//		// Ehdokkaiden tiedot
-//		for (int i = 0; i < ehdokkaat.size(); i++) {
-//			
-//			// Joka loopilla haetaan yksittäinen sisennetty ArrayList ehdokkaat-listasta joka sisältää ehdokkaan tiedot
-//			ArrayList ehdokas = (ArrayList) ehdokkaat.get(i);
-//			
-//			// Jos currentID on sama kuin ehdokas-arrayn ID niin tulostellaan muokattava rivi
-//			if (conn.currentID == Integer.parseInt((String) ehdokas.get(0)) && conn.event == 'E') {
-//				out.println("<tr>"
-//						+ "<form action=\"/buttonAction\" method=\"GET\">"
-//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"10\" name=\"ehdokasnumero\">" + ehdokas.get(9) + "</textarea><input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>"
-//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"sukunimi\">" 		+ ehdokas.get(1) + "</textarea></td>"
-//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"etunimi\">" 		+ ehdokas.get(2) + "</textarea></td>"
-//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"puolue\">" 			+ ehdokas.get(3) + "</textarea></td>"
-//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"kotipaikkakunta\">" + ehdokas.get(4) + "</textarea></td>"
-//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"ika\">" 			+ ehdokas.get(5) + "</textarea></td>"
-//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"miksieduskuntaan\">" + ehdokas.get(6) + "</textarea></td>"
-//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"24\" name=\"mitaedistaa\">" 	+ ehdokas.get(7) + "</textarea></td>"
-//						+ "<td class=\"edit\"><textarea rows=\"10\" cols=\"21\" name=\"ammatti\">" 		+ ehdokas.get(8) + "</textarea></td>"
-//						+ "<td>Apply changes?</td>"
-//						+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Yes\">"
-//						+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"No\"></td>"
-//						+ "</tr>"
-//						);
-//			}	
-//			else {
-//				out.println("<tr>"
-//						+ "<form action=\"/buttonAction\">"
-//						+ "<td>" + ehdokas.get(9) + "<input type=\"hidden\" name=\"currentID\" value=\"" + ehdokas.get(0) + "\"></td>" // haetaan ehdokas arraysta indeksin mukaan tieto
-//						+ "<td>" + ehdokas.get(1) + "</td>"
-//						+ "<td>" + ehdokas.get(2) + "</td>"
-//						+ "<td>" + ehdokas.get(3) + "</td>"
-//						+ "<td>" + ehdokas.get(4) + "</td>"
-//						+ "<td>" + ehdokas.get(5) + "</td>"
-//						+ "<td>" + ehdokas.get(6) + "</td>"
-//						+ "<td>" + ehdokas.get(7) + "</td>"
-//						+ "<td>" + ehdokas.get(8) + "</td>"
-//						);
-//				
-//				if (conn.currentID == Integer.parseInt((String) ehdokas.get(0)) && conn.event == 'D') {
-//					out.println("<td>Delete candidate?</td>"
-//							+ "<td class=\"editButtonCell\"><input type=\"submit\" class=\"editButton\" name=\"btn\" value=\"Confirm\">"
-//							+ "<input type=\"submit\" class=\"deleteButton\" name=\"btn\" value=\"Undo\"></td>");
-//				} else {
-//					out.println("<td><input type=\"submit\" name=\"btn\" value=\"Edit\"></td>"
-//						+ "<td><input type=\"submit\" name=\"btn\" value=\"Delete\"></td>"
-//						+ "</form>"
-//						+ "</tr>");
-//				}
-//			}
-//		}
-//		
-//		
-//		// Päättää html koodin
-//		out.println("</table>");
-//		out.println("</center>");
-//		out.println("</body>");
-//		out.println("</html>");
+		//RequestDispatcher view = request.getRequestDispatcher("MainPage.jsp");
+		//view.forward(request, response);
+		
+		if (Connector.event == 'H') {
+			response.sendRedirect(request.getContextPath() + "/ModifyPage.jsp");
+		} else if (Connector.event == 'S') {
+			response.sendRedirect(request.getContextPath() + "/AddPage.jsp");
+		} else if (Connector.event == 'Y') {
+			response.sendRedirect(request.getContextPath() + "/ModifyPage.jsp");
+		} else if (Connector.event == 'Q') {
+			response.sendRedirect(request.getContextPath() + "/AddQuestionPage.jsp");
+		} else {
+			response.sendRedirect(request.getContextPath() + "/MainPage.jsp");
+		}
 	}
 
 	/**

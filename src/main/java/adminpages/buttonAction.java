@@ -2,6 +2,8 @@ package adminpages;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +34,7 @@ public class buttonAction extends HttpServlet {
 		String ammatti = request.getParameter("ammatti");
 		int ika;
 		int ehdokasnumero;
+		int nextID;
 		
 		try {
 			ehdokasnumero = Integer.parseInt(request.getParameter("ehdokasnumero"));
@@ -45,26 +48,9 @@ public class buttonAction extends HttpServlet {
 			ika = -1;
 		}
 		
-		int nextID;
-		
 		// Tämä määrittää mitä nappulaa painettiin
 		conn.event = request.getParameter("btn").charAt(0);
 		conn.ehdokas = ehdokasnumero;
-		
-		
-		/**
-		 * Turha, ei tallaista kenttaa enaa ole uudessa formissa vaan arvo paivitetaan Connector.haeEhdokkaanTiedot metodissa
-		 */
-//		try {
-//			conn.currentID = Integer.parseInt(request.getParameter("currentID"));
-//		} catch (Exception e) {
-//			conn.currentID = -1;
-//		}
-		
-		
-		if (conn.event == 'E') {
-			// Editointi ikkunat aukeavat
-		}
 
 		if (conn.event == 'C') {
 			try {
@@ -78,14 +64,12 @@ public class buttonAction extends HttpServlet {
 		if (conn.event == 'Y') {
 			// Kutsutaan tietokannan päivitys saaduilla tiedoilla
 			conn.UpdateTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
+			Connector.confirmEdit = true;
 		}
 		
-		if (conn.event == 'N') {
-			// resetoi arvot että editointi perutaan
-		}
-		
-		if (conn.event == 'U') {
-			// resetoi arvot että deletointi perutaan
+		if (conn.event == 'Q') {
+			// Tähän kutsu kysymyksen lisäykselle
+			Connector.confirmAddQuestion = true;
 		}
 		
 		if (conn.event == 'S') {
@@ -98,6 +82,7 @@ public class buttonAction extends HttpServlet {
 			//kutsuu addtabledata metodia
 			try {
 				conn.AddTableData(nextID, sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
+				Connector.confirmAdd = true;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("virhe btnaction.java -> addtable osiossa");
