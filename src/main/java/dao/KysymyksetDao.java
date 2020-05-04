@@ -14,7 +14,7 @@ public class KysymyksetDao {
     private static EntityManagerFactory emf;
     private static EntityManager getEntityManager() {
         if (emf==null) {
-            emf=Persistence.createEntityManagerFactory("rest-t8-bookservice-jpa");
+            emf=Persistence.createEntityManagerFactory("vaalikones");
         }
         return emf.createEntityManager();
     }
