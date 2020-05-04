@@ -1,4 +1,4 @@
-package adminpages;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ import javax.persistence.Persistence;
 
 import persist.Ehdokkaat;
 
-public class Connector {
+public class EhdokkaatDao {
 
 	private String dbURL;
 	private String username;
@@ -29,7 +29,7 @@ public class Connector {
 	public static boolean confirmEdit = false;
 	public static boolean confirmAddQuestion = false;
 	
-	public Connector() {
+	public EhdokkaatDao() {
 		this.dbURL = "jdbc:mysql://localhost:3306/vaalikone";
 		this.username = "tommi";
 		this.password = "kukkuu";

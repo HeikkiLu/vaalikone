@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.EhdokkaatDao;
+
 /**
  * Servlet implementation class buttonAction
  */
@@ -22,7 +24,7 @@ public class buttonAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Connector conn = new Connector();
+		EhdokkaatDao conn = new EhdokkaatDao();
 		
 		// Ehdokkaan tiedot päivitykseen tai lisäykseen
 		String sukunimi = request.getParameter("sukunimi");
@@ -64,12 +66,12 @@ public class buttonAction extends HttpServlet {
 		if (conn.event == 'Y') {
 			// Kutsutaan tietokannan päivitys saaduilla tiedoilla
 			conn.UpdateTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
-			Connector.confirmEdit = true;
+			EhdokkaatDao.confirmEdit = true;
 		}
 		
 		if (conn.event == 'Q') {
 			// Tähän kutsu kysymyksen lisäykselle
-			Connector.confirmAddQuestion = true;
+			EhdokkaatDao.confirmAddQuestion = true;
 		}
 		
 		if (conn.event == 'S') {
@@ -82,7 +84,7 @@ public class buttonAction extends HttpServlet {
 			//kutsuu addtabledata metodia
 			try {
 				conn.AddTableData(nextID, sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
-				Connector.confirmAdd = true;
+				EhdokkaatDao.confirmAdd = true;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("virhe btnaction.java -> addtable osiossa");
