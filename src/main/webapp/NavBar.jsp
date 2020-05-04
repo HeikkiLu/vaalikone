@@ -24,7 +24,7 @@
 		</li>
 
 		<li class="nav-item">
-			<a href="#" class="nav-link"> 
+			<a href="AddQuestionPage.jsp" class="nav-link"> 
 				<img src="content/file-alt-solid.svg">
 				<span class="link-text">Kysymykset</span>
 			</a>

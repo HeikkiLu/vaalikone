@@ -34,6 +34,7 @@ public class buttonAction extends HttpServlet {
 		String ammatti = request.getParameter("ammatti");
 		int ika;
 		int ehdokasnumero;
+		int nextID;
 		
 		try {
 			ehdokasnumero = Integer.parseInt(request.getParameter("ehdokasnumero"));
@@ -47,26 +48,9 @@ public class buttonAction extends HttpServlet {
 			ika = -1;
 		}
 		
-		int nextID;
-		
 		// Tämä määrittää mitä nappulaa painettiin
 		conn.event = request.getParameter("btn").charAt(0);
 		conn.ehdokas = ehdokasnumero;
-		
-		
-		/**
-		 * Turha, ei tallaista kenttaa enaa ole uudessa formissa vaan arvo paivitetaan Connector.haeEhdokkaanTiedot metodissa
-		 */
-//		try {
-//			conn.currentID = Integer.parseInt(request.getParameter("currentID"));
-//		} catch (Exception e) {
-//			conn.currentID = -1;
-//		}
-		
-		
-		if (conn.event == 'E') {
-			// Editointi ikkunat aukeavat
-		}
 
 		if (conn.event == 'C') {
 			try {
@@ -83,12 +67,9 @@ public class buttonAction extends HttpServlet {
 			Connector.confirmEdit = true;
 		}
 		
-		if (conn.event == 'N') {
-			// resetoi arvot että editointi perutaan
-		}
-		
-		if (conn.event == 'U') {
-			// resetoi arvot että deletointi perutaan
+		if (conn.event == 'Q') {
+			// Tähän kutsu kysymyksen lisäykselle
+			Connector.confirmAddQuestion = true;
 		}
 		
 		if (conn.event == 'S') {
@@ -113,14 +94,6 @@ public class buttonAction extends HttpServlet {
 			conn.ehdokas = -1;
 			conn.event = 'A';
 		}
-		
-		/*
-		if (conn.event == 'H') {
-			RequestDispatcher view = request.getRequestDispatcher("ModifyPage.jsp");
-			view.forward(request, response);
-		}
-		*/
-		
 		
 		// Lähettää vaan takas AdminControlPanel servlettiin
 		response.sendRedirect("/AdminControlPanel");

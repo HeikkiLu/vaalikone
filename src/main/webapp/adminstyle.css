@@ -65,8 +65,18 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* FORM */
-.container-form {
+.kysymykset {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.kysymykset li {
+    
+    
 }
 
 form {

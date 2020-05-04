@@ -27,6 +27,7 @@ public class Connector {
 	public static int currentID = -1;
 	public static boolean confirmAdd = false;
 	public static boolean confirmEdit = false;
+	public static boolean confirmAddQuestion = false;
 	
 	public Connector() {
 		this.dbURL = "jdbc:mysql://localhost:3306/vaalikone";
