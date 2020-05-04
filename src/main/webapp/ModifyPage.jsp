@@ -1,7 +1,7 @@
 <%@page import="adminpages.AdminControlPanel"%>
 <%@page import="adminpages.buttonAction"%>
 <%@page import="java.util.List"%>
-<%@page import="adminpages.Connector"%>
+<%@page import="dao.EhdokkaatDao"%>
 <%@page import="persist.Ehdokkaat"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,9 +26,13 @@
             <div class="container-form">
                 <form id="addForm" action="/buttonAction" method="get">
                 	<header class="header-form">
-                		<% if (Connector.confirmEdit) { %>
+                		<%
+                			if (EhdokkaatDao.confirmEdit) {
+                		%>
 							<h2 class="success">Ehdokas muokattu onnistuneesti</h2>
-							<% Connector.confirmEdit = false; %>
+							<%
+								EhdokkaatDao.confirmEdit = false;
+							%>
 						<% } else { %>
 							<h2>Muokkaa ehdokasta</h2>
 						<% } %>

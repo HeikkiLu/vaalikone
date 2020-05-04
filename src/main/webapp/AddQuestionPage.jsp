@@ -1,7 +1,7 @@
 <%@page import="adminpages.AdminControlPanel"%>
 <%@page import="adminpages.buttonAction"%>
 <%@page import="java.util.List"%>
-<%@page import="adminpages.Connector"%>
+<%@page import="dao.EhdokkaatDao"%>
 <%@page import="persist.Ehdokkaat"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +17,9 @@
 
 		<!-- Tuo navigointipalkin sivulle -->
 		<jsp:include page="NavBar.jsp"/>
-		<% Connector.ehdokas = -1; %>
+		<%
+			EhdokkaatDao.ehdokas = -1;
+		%>
 
         <div class="wrapper">
 
@@ -27,9 +29,13 @@
             <div class="container-form">
                 <form id="addForm" action="/buttonAction" method="get">
                 	<header class="header-form">
-						<% if (Connector.confirmAddQuestion) { %>
+						<%
+							if (EhdokkaatDao.confirmAddQuestion) {
+						%>
 							<h2 class="success">Kysymys lisätty onnistuneesti</h2>
-							<% Connector.confirmAddQuestion = false; %>
+							<%
+								EhdokkaatDao.confirmAddQuestion = false;
+							%>
 						<% } else { %>
 							<h2>Lisää kysymys</h2>
 						<% } %>
