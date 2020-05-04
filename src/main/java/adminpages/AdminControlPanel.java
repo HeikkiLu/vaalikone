@@ -54,6 +54,8 @@ public class AdminControlPanel extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/AddPage.jsp");
 		} else if (Connector.event == 'Y') {
 			response.sendRedirect(request.getContextPath() + "/ModifyPage.jsp");
+		} else if (Connector.event == 'Q') {
+			response.sendRedirect(request.getContextPath() + "/AddQuestionPage.jsp");
 		} else {
 			response.sendRedirect(request.getContextPath() + "/MainPage.jsp");
 		}
