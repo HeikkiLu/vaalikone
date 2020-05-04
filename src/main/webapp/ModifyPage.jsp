@@ -10,6 +10,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="adminstyle.css">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
+		<title>Vaalikone käyttäjän muokkaus</title>
 		<script src="script.js"></script>
     </head>
     <body>
