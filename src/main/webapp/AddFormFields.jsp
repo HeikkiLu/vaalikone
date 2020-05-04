@@ -1,4 +1,4 @@
-<%@page import="adminpages.Connector"%>
+<%@page import="dao.EhdokkaatDao"%>
 <%@page import="persist.Ehdokkaat"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
