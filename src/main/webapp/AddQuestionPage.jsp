@@ -11,7 +11,6 @@
         <link rel="stylesheet" type="text/css" href="adminstyle.css">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
 		<title>Vaalikone kysymysten lisäys</title>
-		<script src="script.js"></script>
     </head>
     <body onload="getQuestions()">
 
@@ -49,10 +48,13 @@
 						<button class="button" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 				</form>
-				<p id="kysymykset">
+				<hr>
+				<h2>Kysymykset</h2>
+				<ul id="kysymykset">
                     
-                </p>
+                </ul>
 			</div>
 		</div>
 	</body>
+	<script src="script.js"></script>
 </html>

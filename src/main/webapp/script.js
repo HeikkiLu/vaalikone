@@ -13,27 +13,22 @@ function clearFields() {
 }
 
 // Kysymysten haku restistä
-const responseField = document.getElementById("kysymykset");
+const responseField = document.querySelector('#kysymykset');
 const apiurl = "http://localhost:8080/rest/kysymyksetservice/getall";
 
 const getQuestions = () => {
 
     const xhr = new XMLHttpRequest();
-    console.log(xhr.responseText);
+    console.log(xhr);
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            
-            let kysymykset = this.response; // <-- Uncaught SyntaxError: Unexpected token u in JSON at position 0 ?
-            console.log(kysymykset);
-        //    responseField.innerHTML = kysymykset[1];
-
-            /*
+            kysymykset = JSON.parse(xhr.response);
+            let txt = "";
             for (index in kysymykset) {
                 txt += kysymykset[index].kysymysId + "&nbsp";
                 txt += kysymykset[index].kysymys + "<br>";
             }
-            */
-           // responseField.innerHTML = txt;
+            responseField.innerHTML = txt;
         }
     };
     xhr.open('GET', apiurl, true);
