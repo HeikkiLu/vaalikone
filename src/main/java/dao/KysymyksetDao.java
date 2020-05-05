@@ -11,7 +11,9 @@ import javax.persistence.Persistence;
 import persist.Kysymykset;
 
 public class KysymyksetDao {
+	
     private static EntityManagerFactory emf;
+    
     private static EntityManager getEntityManager() {
         if (emf==null) {
             emf=Persistence.createEntityManagerFactory("vaalikones");
@@ -20,9 +22,17 @@ public class KysymyksetDao {
     }
     
     public static List<Kysymykset> getKysymykset(){
-        EntityManager em=getEntityManager();
+        EntityManager em = getEntityManager();
         List<Kysymykset> list=em.createQuery("select a from Kysymykset a").getResultList();
         em.close();
         return list;
+    }
+    
+    public static void addKysymys(Kysymykset obj) {
+    	EntityManager em = getEntityManager();
+    	em.getTransaction().begin();
+    	em.persist(obj);
+    	em.getTransaction().commit();
+    	em.close();
     }
 }
