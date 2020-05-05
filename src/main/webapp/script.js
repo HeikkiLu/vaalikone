@@ -34,3 +34,22 @@ const getQuestions = () => {
     xhr.open('GET', apiurl, true);
     xhr.send();
 }
+
+const sendData = () => {
+
+    let kys = new Object;
+    kys.kysymys = document.getElementById("kysymys").value;
+
+    let json = JSON.stringify(kys);
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            getQuestions(); // Päivittää kysymykset-listan sivulla
+        }
+    };
+
+    xhr.open("POST", "/rest/kysymyksetservice/addkysymys", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(json);
+}
