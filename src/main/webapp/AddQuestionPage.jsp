@@ -44,7 +44,7 @@
 					<textarea id="kysymys" class="textbox-input" rows="5" type="text" name="kysymys" value="" required></textarea>
 
 					<div class="container-buttons">
-						<button class="button" name="btn" value="Q" type="submit">Lisää</button>
+						<button class="button" name="btn" value="Q" type="submit" onclick="getQuestions()">Lisää</button>
 						<button class="button" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 				</form>

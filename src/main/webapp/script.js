@@ -25,7 +25,7 @@ const getQuestions = () => {
             kysymykset = JSON.parse(xhr.response);
             let txt = "";
             for (index in kysymykset) {
-                txt += kysymykset[index].kysymysId + "&nbsp";
+                txt += kysymykset[index].kysymysId + ".&nbsp";
                 txt += kysymykset[index].kysymys + "<br>";
             }
             responseField.innerHTML = txt;
