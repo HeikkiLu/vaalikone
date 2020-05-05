@@ -12,10 +12,10 @@ import persist.Kysymykset;
 @Path("/kysymyksetservice")
 public class KysymyksetService {
 
-@GET
-@Path("/getall")
-@Produces(MediaType.APPLICATION_JSON)
+	@GET
+	@Path("/getall")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Kysymykset> getAll() {
-	return KysymyksetDao.getKysymykset();
-}
+		return KysymyksetDao.getKysymykset();
+	}
 }

@@ -13,7 +13,7 @@
 		<title>Vaalikone kysymysten lisäys</title>
 		<script src="script.js"></script>
     </head>
-    <body>
+    <body onload="getQuestions()">
 
 		<!-- Tuo navigointipalkin sivulle -->
 		<jsp:include page="NavBar.jsp"/>
@@ -49,7 +49,6 @@
 						<button class="button" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 				</form>
-				<button class="button" name="btn" type="button" onclick="getQuestions()">Hae kysymykset</button>
 				<p id="kysymykset">
                     
                 </p>

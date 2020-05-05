@@ -46,12 +46,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.5.2 (1)">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-			<attribute name="owner.project.facets" value="jpt.jpa"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/heikk/.m2/repository/javax/ws/rs/javax.ws.rs-api/2.1/javax.ws.rs-api-2.1.jar" sourcepath="C:/Users/heikk/.m2/repository/javax/ws/rs/javax.ws.rs-api/2.1/javax.ws.rs-api-2.1-sources.jar">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -60,6 +54,12 @@
 			<attribute name="maven.artifactId" value="javax.ws.rs-api"/>
 			<attribute name="maven.version" value="2.1"/>
 			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.5.2">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="jpt.jpa"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
