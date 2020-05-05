@@ -39,7 +39,7 @@
 					<textarea id="kysymys" class="textbox-input" rows="5" type="text" name="kysymys" value="" required></textarea>
 
 					<div class="container-buttons">
-						<button class="button" name="btn" value="Q" type="button" onclick="sendData();">Lisää</button>
+						<button class="button" name="btn" value="Q" type="button" onclick="sendData()">Lisää</button>
 						<button class="button" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 				</form>
@@ -48,8 +48,6 @@
 				<ul id="kysymykset">
                     
                 </ul>
-				<ul id="degubbe">
-				</ul>
 			</div>
 		</div>
 	</body>
