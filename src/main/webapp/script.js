@@ -10,6 +10,8 @@ function clearFields() {
     document.getElementById("miksieduskuntaan").value = "";
     document.getElementById("mitaedistaa").value = "";
     document.getElementById("ammatti").value = "";
+
+    // VAIHDA eventlistener
 }
 
 // Kysymysten haku restistä
@@ -25,8 +27,14 @@ const getQuestions = () => {
             kysymykset = JSON.parse(xhr.response);
             let txt = "";
             for (index in kysymykset) {
-                txt += kysymykset[index].kysymysId + "&nbsp";
-                txt += kysymykset[index].kysymys + "<br>";
+                // Tänne väliin HTML setit EDIT ja DELETE napeille
+                txt += '<span class="kysymys-span">'
+                txt += '<button class="btn-edit" type="button" onclick="editKysymys()"><i class="fas fa-pen"></i></button>';
+                txt += '<button class="btn-del" type="button" onclick="delKysymys()"><i class="fas fa-trash-alt"></i></button>';
+                txt += '<p>'
+                txt += kysymykset[index].kysymysId + ". "; //"&nbsp"
+                txt += kysymykset[index].kysymys + "</p>";
+                txt += '</span>'
             }
             responseField.innerHTML = txt;
         }
@@ -46,6 +54,7 @@ const sendData = () => {
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             getQuestions(); // Päivittää kysymykset-listan sivulla
+            clearFields(); // Tyhjentää tekstikentän
         }
     };
 

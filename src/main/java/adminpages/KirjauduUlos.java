@@ -28,7 +28,7 @@ public class KirjauduUlos extends HttpServlet {
     response.setCharacterEncoding("UTF-8");
     HttpSession session=request.getSession();  
     session.invalidate();  
-    response.getWriter().print("Kirjauduit ulos onnistuneesti!");
-    
+    response.getWriter().print("Kirjauduit ulos onnistuneesti!");    
+    response.sendRedirect("http://localhost:8080/index.html");
     }
 }
