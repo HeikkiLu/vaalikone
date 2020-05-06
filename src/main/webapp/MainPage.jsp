@@ -12,6 +12,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
 		<title>Vaalikone etusivu</title>
 		<script defer src="script.js"></script>
+		<script src="https://kit.fontawesome.com/4c791671b3.js" crossorigin="anonymous"></script>
     </head>
     <body>
 
