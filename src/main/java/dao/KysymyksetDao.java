@@ -43,4 +43,12 @@ public class KysymyksetDao {
 		em.getTransaction().commit();
 		em.close();
 	}
-}
+	public static void deleteKysymys(Kysymykset obj) {
+		EntityManager em = getEntityManager();
+		Kysymykset k =em.find(Kysymykset.class, obj.getKysymysId());
+        em.getTransaction().begin();
+        em.remove(k);
+        em.getTransaction().commit();
+        em.close();
+	}
+}	
