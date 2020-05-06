@@ -10,6 +10,8 @@ function clearFields() {
     document.getElementById("miksieduskuntaan").value = "";
     document.getElementById("mitaedistaa").value = "";
     document.getElementById("ammatti").value = "";
+
+    // VAIHDA eventlistener
 }
 
 // Kysymysten haku restistä
@@ -25,8 +27,14 @@ const getQuestions = () => {
             kysymykset = JSON.parse(xhr.response);
             let txt = "";
             for (index in kysymykset) {
-                txt += kysymykset[index].kysymysId + "&nbsp";
-                txt += kysymykset[index].kysymys + "<br>";
+                // Tänne väliin HTML setit EDIT ja DELETE napeille
+                txt += '<span class="kysymys-span">'
+                txt += '<button class="btn-edit" type="button" onclick="editKysymys()"><i class="fas fa-pen"></i></button>';
+                txt += '<button class="btn-del" type="button" onclick="delKysymys()"><i class="fas fa-trash-alt"></i></button>';
+                txt += '<p>'
+                txt += kysymykset[index].kysymysId + ". "; //"&nbsp"
+                txt += kysymykset[index].kysymys + "</p>";
+                txt += '</span>'
             }
             responseField.innerHTML = txt;
         }
@@ -40,28 +48,17 @@ const sendData = () => {
     let kys = new Object;
     kys.kysymys = document.getElementById("kysymys").value;
 
-    console.log("Step 1: Form value = " + kys.kysymys);
-
     let json = JSON.stringify(kys);
-    console.log("Step 2: " + json);
-    
     const xhr = new XMLHttpRequest();
-    console.log("Step 3: xhr = " + xhr);
 
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-        	console.log("Step 8: onreadystatechange if-lause");
-            document.getElementById("degubbe").innerHTML = this.responseText;
+            getQuestions(); // Päivittää kysymykset-listan sivulla
+            clearFields(); // Tyhjentää tekstikentän
         }
     };
 
-    console.log("Step 4: hypättiin onreadystatechangen yli");
-    
-
     xhr.open("POST", "/rest/kysymyksetservice/addkysymys", true);
-    console.log("Step 5: xhr.open")
     xhr.setRequestHeader("Content-type", "application/json");
-    console.log("Step 6: xhr.setRequestHeader");
     xhr.send(json);
-    console.log("Step 7: xhr.send");
 }

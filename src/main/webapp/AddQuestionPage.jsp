@@ -12,6 +12,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
 		<title>Vaalikone kysymysten lisäys</title>
 		<script defer src="script.js"></script>
+		<script src="https://kit.fontawesome.com/4c791671b3.js" crossorigin="anonymous"></script>
     </head>
     <body onload="getQuestions()">
 
@@ -35,21 +36,18 @@
 						<% } %>
                 	</header>
 
-					<!-- Tuo tekstikentät sivulle -->
-					<textarea id="kysymys" class="textbox-input" rows="5" type="text" name="kysymys" value="" required></textarea>
+					<input id="kysymys" class="textbox-input" rows="5" type="text" name="kysymys" value="" required>
 
 					<div class="container-buttons">
-						<button class="button" name="btn" value="Q" type="button" onclick="sendData();">Lisää</button>
+						<button class="button" name="btn" value="Q" type="button" onclick="sendData()">Lisää</button>
 						<button class="button" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 				</form>
 				<hr>
 				<h2>Kysymykset</h2>
-				<ul id="kysymykset">
-                    
-                </ul>
-				<ul id="degubbe">
-				</ul>
+				<section id="kysymykset">
+					<!-- Tänne kysymykset ilmestyy -->
+				</section>
 			</div>
 		</div>
 	</body>
