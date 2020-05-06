@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.EhdokkaatDao;
+import dao.KysymyksetDao;
+import persist.*;
+import rest.KysymyksetService;
 
 /**
  * Servlet implementation class AdminControlPanel
@@ -36,6 +39,8 @@ public class AdminControlPanel extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String deleteId=request.getParameter("deleteId");
+		PrintWriter out=response.getWriter();
 
 		HttpSession session = request.getSession(false);
 
@@ -45,7 +50,7 @@ public class AdminControlPanel extends HttpServlet {
 			response.getWriter().print("Kirjaudu ensin sis��n!");
 			response.getWriter().close();
 		}
-		
+	
 		// Ohjaa JSP tiedostoon
 		//RequestDispatcher view = request.getRequestDispatcher("MainPage.jsp");
 		//view.forward(request, response);
