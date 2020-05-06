@@ -11,14 +11,14 @@
         <link rel="stylesheet" type="text/css" href="adminstyle.css">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
 		<title>Vaalikone kysymysten lisäys</title>
+		<script defer src="script.js"></script>
+		<script src="https://kit.fontawesome.com/4c791671b3.js" crossorigin="anonymous"></script>
     </head>
     <body onload="getQuestions()">
 
 		<!-- Tuo navigointipalkin sivulle -->
 		<jsp:include page="NavBar.jsp"/>
-		<%
-			EhdokkaatDao.ehdokas = -1;
-		%>
+		<% EhdokkaatDao.ehdokas = -1; %>
 
         <div class="wrapper">
 
@@ -28,33 +28,27 @@
             <div class="container-form">
                 <form id="addForm" action="/buttonAction" method="get">
                 	<header class="header-form">
-						<%
-							if (EhdokkaatDao.confirmAddQuestion) {
-						%>
+						<% if (EhdokkaatDao.confirmAddQuestion) { %>
 							<h2 class="success">Kysymys lisätty onnistuneesti</h2>
-							<%
-								EhdokkaatDao.confirmAddQuestion = false;
-							%>
+						<% EhdokkaatDao.confirmAddQuestion = false; %>
 						<% } else { %>
 							<h2>Lisää kysymys</h2>
 						<% } %>
                 	</header>
 
-					<!-- Tuo tekstikentät sivulle -->
-					<textarea id="kysymys" class="textbox-input" rows="5" type="text" name="kysymys" value="" required></textarea>
+					<input id="kysymys" class="textbox-input" rows="5" type="text" name="kysymys" value="" required>
 
 					<div class="container-buttons">
-						<button class="button" name="btn" value="Q" type="submit" onclick="getQuestions()">Lisää</button>
+						<button class="button" name="btn" value="Q" type="button" onclick="sendData()">Lisää</button>
 						<button class="button" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 				</form>
 				<hr>
 				<h2>Kysymykset</h2>
-				<ul id="kysymykset">
-                    
-                </ul>
+				<section id="kysymykset">
+					<!-- Tänne kysymykset ilmestyy -->
+				</section>
 			</div>
 		</div>
 	</body>
-	<script src="script.js"></script>
 </html>

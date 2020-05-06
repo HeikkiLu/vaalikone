@@ -2,12 +2,16 @@
 <%@page import="persist.Ehdokkaat"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%
-	EhdokkaatDao conn = new EhdokkaatDao();
-%>
-<%
-	Ehdokkaat ehdokasJPA = conn.findEhdokas(conn.ehdokas);
-%>
+<% EhdokkaatDao conn = new EhdokkaatDao(); %>
+<% Ehdokkaat ehdokasJPA = conn.findEhdokas(conn.ehdokas); %>
+
+<% if (ehdokasJPA != null) { 
+		try {
+			conn.currentID = ehdokasJPA.getEhdokasId();
+		} catch (NumberFormatException e) {
+				
+		} 
+	}%>
 
 <!-- EHDOKASNUMERO -->
 <label for="ehdokasnumero" class="textbox-label">Ehdokasnumero</label>

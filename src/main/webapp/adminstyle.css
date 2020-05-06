@@ -65,6 +65,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* FORM */
+#kysymys {
+	width: 40rem;
+}
+
 .kysymykset {
     display: flex;
     flex-direction: column;
@@ -76,9 +80,52 @@ body::-webkit-scrollbar-thumb {
 
 #kysymykset {
 	background-color: "#EDF2F4";
-	align-items: center;
+	/* align-items: center; */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
+    margin-bottom: 10rem;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+.kysymys-span {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.kysymys-span button {
+    display: none;
+	width: 2rem;
+    height:2rem;
+    border-radius: 5px;
+    margin-right: 2px;
+}
+
+.kysymys-span:hover button{
+    display: block;
+}
+
+.kysymys-span p {
+	margin-left: 15px; 
+	margin-top: 3px;
+    margin-bottom: 0;
+}
+
+.btn-edit {
+    background-color: var(--bg-secondary);
+}
+
+.btn-del {
+    background-color: var(--bg-third);
+}
+
+/* Ikonit */
+.fas {
+    color: var(--text-secondary);
+    text-shadow: 0 0 5px black;
 }
 
 form {
