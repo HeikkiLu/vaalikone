@@ -20,13 +20,10 @@ public class VastauksetDao {
 		return emf.createEntityManager();
 	}
 	
-	public static List<Vastaukset> getVastaukset() {
+	public static List<Vastaukset> getVastaukset(int id) {
 		EntityManager em = getEntityManager();
-		List<Vastaukset> list = em.createQuery("select a from Vastaukset a").getResultList();
+		List<Vastaukset> list = em.createNamedQuery("Vastaukset.findByEhdokasId").setParameter("ehdokasId", id).getResultList();
 		em.close();
-
-		// Tallennetaan vastausten määrä jotta tätä voidaan käyttää vaalikone.javassa
-		vastaustenMaara = list.size();
 
 		return list;
 	}
