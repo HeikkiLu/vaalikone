@@ -13,5 +13,9 @@
         <div class="header-item">
         <a target="_blank" href="https://www.linkedin.com/in/nestori-mets%C3%A4ranta-5ba36016a/">Nestori Metsäranta</a>
         </div>
+
+        <div class="header-portrait">
+        <a href="MainPage.jsp">Vaalikone</a>
+        </div>
     </div>
 </header>

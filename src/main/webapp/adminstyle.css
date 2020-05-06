@@ -65,9 +65,13 @@ body::-webkit-scrollbar-thumb {
     text-decoration: none;
 }
 
+.header-portrait {
+    display: none;
+}
+
 /* Kysymys-sivu */
 #kysymys {
-	width: 40rem;
+	width: 40vw;
 }
 
 /* Boksi johon kaikki kysymykset tulevat */
@@ -331,7 +335,27 @@ option {
     form {
 	width: 70%;
 	margin-bottom: 5rem;
-	}
+    }
+    
+    .header-item {
+        display: none;
+        justify-content: center;
+    }
+
+    .header-head {
+        display: flex;
+    }
+
+    .header-portrait {
+        display: flex;
+        justify-content: center;
+    }
+
+    .header-portrait a {
+        text-align: center;
+        text-decoration: none;
+        font-size: 2rem;
+    }
 }
 
 /* Large screens */
