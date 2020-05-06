@@ -10,6 +10,7 @@ import persist.Kysymykset;
 public class KysymyksetDao {
 
 	private static EntityManagerFactory emf;
+	public static int kysymystenMaara;
 
 	private static EntityManager getEntityManager() {
 		if (emf == null) {
@@ -22,6 +23,10 @@ public class KysymyksetDao {
 		EntityManager em = getEntityManager();
 		List<Kysymykset> list = em.createQuery("select a from Kysymykset a").getResultList();
 		em.close();
+
+		// Tallennetaan kysymysten määrä jotta tätä voidaan käyttää vaalikone.javassa
+		kysymystenMaara = list.size();
+
 		return list;
 	}
 
