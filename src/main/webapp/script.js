@@ -18,7 +18,7 @@ const apiurl = "http://localhost:8080/rest/kysymyksetservice/getall";
 
 const getQuestions = () => {
 
-    const xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();    
 
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -27,11 +27,11 @@ const getQuestions = () => {
             let txt = "";
 
             for (index in kysymykset) {
-                let id = kysymykset[index].kysymysId;
+                let id = kysymykset[index].kysymysId;                
 
                 txt += '<span class="kysymys-span">'
-                txt += `<button class="btn-edit" type="button" onclick="editKysymys(${id})"><i class="fas fa-pen"></i></button>`;
-                txt += `<button class="btn-del" type="button" onclick="deleteKysymys(${id})"><i class="fas fa-trash-alt"></i></button>`;
+                txt += `<button id="edittibutton" class="btn-edit" type="button" onclick="editKysymys(${id})"><i class="fas fa-pen"></i></button>`;
+                txt += `<button id="deletebutton" class="btn-del" type="button" onclick="deleteKysymys(${id})"><i class="fas fa-trash-alt"></i></button>`;
                 
                 txt += kysymykset[index].kysymysId + ". "; //"&nbsp"
                 txt += `<input id="${id}" class="kysymystext" type="text" disabled="disabled" value="`
@@ -88,21 +88,28 @@ const deleteKysymys = id => {
     xhr.send(json);
 }
 
-const disableKysymys = id => {
+const disableKysymys = id => {	
 	
-	let kysymys = document.getElementById(id).disabled;
-	//kysymys ? kysymys = true : kysymys = false;
-	if (kysymys){
-		kysymys = false;
-	}
-	else {
-		kysymys = true;
-	}
+	document.getElementById(id).disabled = false;
+	yesButton = document.getElementById("edittibutton");
+	yesButton.onclick = MuokkaaFunkt();
+	//(this).find("i").toggleClass("fas fa-check");
+	//yesButton.classList.toggle("fas fa-check");
+	
+	//acceptbuttonin image <i class="fas fa-check"></i>
+	//cancelbuttonin image <i class="fas fa-times"></i>
+	
+	
+	//document.getElementById(id).disabled ? document.getElementById(id).disabled = false : document.getElementById(id).disabled = true;
+
 }
 
 const editKysymys = id => {	
 	
 	disableKysymys(id);
+	
+	
+	/*
     let kys = new Object;
     kys.kysymysId = id;
 
@@ -114,6 +121,11 @@ const editKysymys = id => {
             getQuestions(); // Päivittää kysymykset-listan sivulla
         }
     };
+    
+    xhr.open("POST", "/rest/kysymyksetservice/modifykysymys", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(json);
+    */
 }
 
 // Ei vielä toimi kaikissa formeissa event listener

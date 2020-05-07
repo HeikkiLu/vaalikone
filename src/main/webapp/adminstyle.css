@@ -126,6 +126,8 @@ body::-webkit-scrollbar-thumb {
 
 /* Font Awesome ikonit */
 .fa-pen,
+.fa-check,
+.fa-times,
 .fa-trash-alt {
     color: var(--text-secondary);
     text-shadow: 0 0 5px black;
