@@ -3,20 +3,28 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <% EhdokkaatDao conn = new EhdokkaatDao(); %>
-<% Ehdokkaat ehdokasJPA = conn.findEhdokas(conn.ehdokas); %>
+<% Ehdokkaat ehdokasJPA; %>
 
-<% if (ehdokasJPA != null) { 
-		try {
-			conn.currentID = ehdokasJPA.getEhdokasId();
-		} catch (NumberFormatException e) {
-			
-		} 
-	}%>
+<% 	
+try{
+	ehdokasJPA = conn.findEhdokas(conn.ehdokas);
+} catch (Exception e) {
+	ehdokasJPA = null;
+}
+
+if (ehdokasJPA != null) { 
+	try {
+		conn.currentID = ehdokasJPA.getEhdokasId();
+	} catch (NumberFormatException e) {
+		
+	} 
+}
+%>
 
 <!-- EHDOKASNUMERO -->
 <label for="ehdokasnumero" class="textbox-label">Ehdokasnumero</label>
 <input id="ehdokasnumero" class="textbox-input" type="text" name="ehdokasnumero" value="
-<%if (EhdokkaatDao.event == 'H' && ehdokasJPA != null) { out.println(ehdokasJPA.getEhdokasId()); }%>" required>
+<%if (EhdokkaatDao.event == 'H' && ehdokasJPA != null) { out.println(ehdokasJPA.getEhdokasnumero()); }%>" required>
 
 <!-- SUKUNIMI -->
 <label for="ehdokasnumero" class="textbox-label">Sukunimi</label>
