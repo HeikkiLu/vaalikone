@@ -9,7 +9,7 @@
 		try {
 			conn.currentID = ehdokasJPA.getEhdokasId();
 		} catch (NumberFormatException e) {
-			// testi
+			
 		} 
 	}%>
 

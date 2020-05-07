@@ -90,5 +90,6 @@ const deleteKysymys = id => {
     xhr.send(json);
 }
 
+// Ei vielä toimi kaikissa formeissa event listener
 const button_clear = document.querySelector(".button-clear");
 button_clear.addEventListener('click', clearFields);

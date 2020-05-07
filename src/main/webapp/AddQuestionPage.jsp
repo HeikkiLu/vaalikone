@@ -40,7 +40,7 @@
 
 					<div class="container-buttons">
 						<button class="button" name="btn" value="Q" type="button" onclick="sendData()">Lisää</button>
-						<button class="button button-clear" name="btn" type="button">Tyhjennä</button>
+						<button class="button button-clear" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 				</form>
 				<hr>

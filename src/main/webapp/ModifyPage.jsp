@@ -27,9 +27,14 @@
             <div class="container-form">
                 <form id="addForm" action="/buttonAction" method="get">
                 	<header class="header-form">
-                		<% if (EhdokkaatDao.confirmEdit) { %>
-							<h2 class="success">Ehdokas muokattu onnistuneesti</h2>
-						<% EhdokkaatDao.confirmEdit = false; %>
+						<% if (EhdokkaatDao.confirmEdit || EhdokkaatDao.confirmDelete) { %>
+							<% if (EhdokkaatDao.confirmEdit) { %>
+								<h2 class="success">Ehdokas muokattu onnistuneesti</h2>
+								<% EhdokkaatDao.confirmEdit = false; %>
+							<% } else { %>
+								<h2 class="success">Ehdokas poistettu onnistuneesti</h2>
+								<% EhdokkaatDao.confirmDelete = false; %>
+							<% } %>
 						<% } else { %>
 							<h2>Muokkaa ehdokasta</h2>
 						<% } %>
@@ -42,7 +47,7 @@
 						<button class="button" name="btn" value="Hae" type="submit">Hae</button>
 						<button class="button" name="btn" value="Yes" type="submit">Päivitä</button>
 						<button class="button" name="btn" value="Confirm" type="submit">Poista</button>
-						<button class="button button-clear" name="btn" type="button">Tyhjennä</button>
+						<button class="button button-clear" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 
 				</form>

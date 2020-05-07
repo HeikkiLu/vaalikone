@@ -50,16 +50,12 @@ public class AdminControlPanel extends HttpServlet {
 			response.getWriter().print("Kirjaudu ensin sis��n!");
 			response.getWriter().close();
 		}
-	
-		// Ohjaa JSP tiedostoon
-		//RequestDispatcher view = request.getRequestDispatcher("MainPage.jsp");
-		//view.forward(request, response);
 		
 		if (EhdokkaatDao.event == 'H') {
 			response.sendRedirect(request.getContextPath() + "/ModifyPage.jsp");
 		} else if (EhdokkaatDao.event == 'S') {
 			response.sendRedirect(request.getContextPath() + "/AddPage.jsp");
-		} else if (EhdokkaatDao.event == 'Y') {
+		} else if (EhdokkaatDao.event == 'Y' || EhdokkaatDao.event == 'C') {
 			response.sendRedirect(request.getContextPath() + "/ModifyPage.jsp");
 		} else if (EhdokkaatDao.event == 'Q') {
 			response.sendRedirect(request.getContextPath() + "/AddQuestionPage.jsp");
