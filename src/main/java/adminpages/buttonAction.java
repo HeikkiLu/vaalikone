@@ -26,7 +26,6 @@ public class buttonAction extends HttpServlet {
 		
 		EhdokkaatDao conn = new EhdokkaatDao();
 		
-		// Ehdokkaan tiedot päivitykseen tai lisäykseen
 		String sukunimi = request.getParameter("sukunimi");
 		String etunimi = request.getParameter("etunimi");
 		String puolue = request.getParameter("puolue");
@@ -36,7 +35,6 @@ public class buttonAction extends HttpServlet {
 		String ammatti = request.getParameter("ammatti");
 		int ika;
 		int ehdokasnumero;
-		int nextID;
 		
 		try {
 			ehdokasnumero = Integer.parseInt(request.getParameter("ehdokasnumero"));
@@ -55,49 +53,24 @@ public class buttonAction extends HttpServlet {
 		conn.ehdokas = ehdokasnumero;
 
 		if (conn.event == 'C') {
-			try {
-				System.out.println(conn.DeleteTableData());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			conn.deleteEhdokas();
+			EhdokkaatDao.confirmDelete = true;
 		}
 		
 		if (conn.event == 'Y') {
-			// Kutsutaan tietokannan päivitys saaduilla tiedoilla
-			conn.UpdateTableData(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
+			conn.UpdateEhdokas(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
 			EhdokkaatDao.confirmEdit = true;
 		}
 		
 		if (conn.event == 'Q') {
-			// Tähän kutsu kysymyksen lisäykselle
 			EhdokkaatDao.confirmAddQuestion = true;
 		}
 		
 		if (conn.event == 'S') {
-			
-			//testi gettabledatan kanssa, successful t�m�n avulla saa id:n oikean arvon
-			conn.GetTableData();
-			
-			nextID = conn.getLastID() +1;
-			
-			//kutsuu addtabledata metodia
-			try {
-				conn.AddTableData(nextID, sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
-				EhdokkaatDao.confirmAdd = true;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				System.out.println("virhe btnaction.java -> addtable osiossa");
-			}
-			
+			conn.AddEhdokas(sukunimi, etunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti, ehdokasnumero);
+			EhdokkaatDao.confirmAdd = true;
 		}
 		
-		if (conn.event == 'Z') {
-			conn.ehdokas = -1;
-			conn.event = 'A';
-		}
-		
-		// Lähettää vaan takas AdminControlPanel servlettiin
 		response.sendRedirect("/AdminControlPanel");
 	}
 

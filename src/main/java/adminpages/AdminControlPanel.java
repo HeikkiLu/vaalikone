@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.EhdokkaatDao;
+import dao.KysymyksetDao;
+import persist.*;
+import rest.KysymyksetService;
 
 /**
  * Servlet implementation class AdminControlPanel
@@ -36,6 +39,8 @@ public class AdminControlPanel extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String deleteId=request.getParameter("deleteId");
+		PrintWriter out=response.getWriter();
 
 		HttpSession session = request.getSession(false);
 
@@ -46,15 +51,11 @@ public class AdminControlPanel extends HttpServlet {
 			response.getWriter().close();
 		}
 		
-		// Ohjaa JSP tiedostoon
-		//RequestDispatcher view = request.getRequestDispatcher("MainPage.jsp");
-		//view.forward(request, response);
-		
 		if (EhdokkaatDao.event == 'H') {
 			response.sendRedirect(request.getContextPath() + "/ModifyPage.jsp");
 		} else if (EhdokkaatDao.event == 'S') {
 			response.sendRedirect(request.getContextPath() + "/AddPage.jsp");
-		} else if (EhdokkaatDao.event == 'Y') {
+		} else if (EhdokkaatDao.event == 'Y' || EhdokkaatDao.event == 'C') {
 			response.sendRedirect(request.getContextPath() + "/ModifyPage.jsp");
 		} else if (EhdokkaatDao.event == 'Q') {
 			response.sendRedirect(request.getContextPath() + "/AddQuestionPage.jsp");
