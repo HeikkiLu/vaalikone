@@ -90,6 +90,5 @@ const deleteKysymys = id => {
     xhr.send(json);
 }
 
-// oisko
 const button_clear = document.querySelector(".button-clear");
 button_clear.addEventListener('click', clearFields);
