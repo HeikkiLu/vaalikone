@@ -8,11 +8,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="adminstyle.css">
+        <title>Vaalikone kysymysten lisäys</title>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
-		<title>Vaalikone kysymysten lisäys</title>
-		<script defer src="script.js"></script>
 		<script src="https://kit.fontawesome.com/4c791671b3.js" crossorigin="anonymous"></script>
+		<script defer src="script.js"></script>
+		<link rel="stylesheet" type="text/css" href="adminstyle.css">
     </head>
     <body onload="getQuestions()">
 
@@ -40,7 +40,7 @@
 
 					<div class="container-buttons">
 						<button class="button" name="btn" value="Q" type="button" onclick="sendData()">Lisää</button>
-						<button class="button" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
+						<button class="button button-clear" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 				</form>
 				<hr>
