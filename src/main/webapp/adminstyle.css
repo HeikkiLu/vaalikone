@@ -1,5 +1,6 @@
 @charset "ISO-8859-1";
 
+/* CSS VARIABLES */
 :root {
     font-size: 16px;
     font-family: 'Open Sans';
@@ -16,12 +17,11 @@
 }
 
 body {
-    color: black;
-    background-color: rgb(241, 241, 241);
     margin: 0;
     padding: 0;
 }
 
+/* Custom scrollbar */
 body::-webkit-scrollbar {
     width: 1rem;
 }
@@ -34,6 +34,7 @@ body::-webkit-scrollbar-thumb {
     background: #b1b1b1;
 }
 
+/* Etusivun sisältö */
 .container-mainpage {
 	width: 40rem;
 	margin-left: auto;
@@ -43,7 +44,7 @@ body::-webkit-scrollbar-thumb {
 	justify-content: center;
 }
 
-/* HEADER */
+/* Header */
 .header-head {
     display: flex;
     justify-content: space-between;
@@ -64,48 +65,43 @@ body::-webkit-scrollbar-thumb {
     text-decoration: none;
 }
 
-/* FORM */
+.header-portrait {
+    display: none;
+}
+
+/* Kysymys-sivu */
 #kysymys {
-	width: 40rem;
+	width: 40vw;
 }
 
-.kysymykset {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
+/* Boksi johon kaikki kysymykset tulevat */
 #kysymykset {
-	background-color: "#EDF2F4";
-	/* align-items: center; */
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    margin-bottom: 10rem;
-    margin-left: 10vw;
+    margin-bottom: 10rem; /* ettei kysymykset jää navbarin alle portrait modessa */
+    margin-left: 10vw; /* vw = viewport width prosentteina */ 
     margin-right: 10vw;
 }
+
+/* Yksitäisen kysymyksen osuus */
 .kysymys-span {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-
 }
 
 .kysymys-span button {
-    display: none;
+    opacity: 0;
 	width: 2rem;
     height:2rem;
     border-radius: 5px;
     margin-right: 2px;
+    transition: opacity 0ms;
 }
 
 .kysymys-span:hover button{
-    display: block;
+    opacity: 1;
 }
 
 .kysymys-span p {
@@ -122,8 +118,9 @@ body::-webkit-scrollbar-thumb {
     background-color: var(--bg-third);
 }
 
-/* Ikonit */
-.fas {
+/* Font Awesome ikonit */
+.fa-pen,
+.fa-trash-alt {
     color: var(--text-secondary);
     text-shadow: 0 0 5px black;
 }
@@ -146,6 +143,7 @@ form {
     margin-bottom: 1rem;
 }
 
+/* Onnistuneen lisäyksen/muokkauksen/poiston efekti */
 .success {
     animation: fadeout 3s ease-in-out;
 }
@@ -175,26 +173,22 @@ form {
 h2 {
 	text-align: center;
 	vertical-align:middle;
-	color: black;
+	color: var(--text-primary);
 	font-size: 20px;
 }
 
-/* Selitteet*/
+/* Selitteet */
 .textbox-label {
     grid-column: 1 / 2;
 	text-align: right;
     margin-left: auto;
 }
 
-/* Tekstikent�t */
+/* Tekstikentät */
 .textbox-input {
     grid-column: 2 / 3;
     width: 18rem;
     background-color: white;
-    /*
-	border-radius: 7px;
-    border-style: ridge;
-    */
 }
 
 textarea {
@@ -217,7 +211,6 @@ option {
 /* Napit */
 .container-buttons {
     grid-column: 1 / 3;
-    
     height: 100px;
 	display: flex;
 	flex-direction: row;
@@ -231,31 +224,7 @@ option {
 	margin-left: 5px;
 }
 
-/* DEBUGGING */
-
-.button,
-.container-buttons
-.container-form,
-.container-photo,
-form,
-h2,
-.header-form,
-.textbox-label,
-.textbox-input,
-.wrapper {
-	/*
-	border: 1px dashed red;
-	*/
-}
-
-.wrapper > * {
-	/*
-	border: 2px dashed green;
-	*/
-}
-
-/* NAVBAR */
-
+/* Navbar */
 .navbar {
     position: fixed;
     background-color: var(--bg-primary);
@@ -287,7 +256,7 @@ h2,
     height: 5rem;
     color: var(--text-primary);
     text-decoration: none;
-    filter: grayscale(100%) opacity(1);
+    filter: grayscale(100%) opacity(0.7);
     transition: var(--transition-speed);
 }
 
@@ -306,10 +275,14 @@ h2,
     margin-left: 1rem;
 }
 
-.nav-link img {
-    min-width: 2rem;
+.nav-link i {
     margin: 0 1.5rem;
-    color: #fff;
+    color: var(--text-primary);
+    font-size: 1.5em !important;
+}
+
+.nav-link:hover i {
+    color: var(--text-secondary);
 }
 
 .logo {
@@ -324,12 +297,13 @@ h2,
     width: 100%;
 }
 
-.logo img {
+.logo i {
     transform: rotate(0deg);
     transition: transform var(--transition-speed);
+    font-size: 1em !important;
 }
 
-.navbar:hover .logo img {
+.navbar:hover .logo i {
     transform: rotate(-180deg);
     margin-left: 1rem;
 }
@@ -361,7 +335,27 @@ h2,
     form {
 	width: 70%;
 	margin-bottom: 5rem;
-	}
+    }
+    
+    .header-item {
+        display: none;
+        justify-content: center;
+    }
+
+    .header-head {
+        display: flex;
+    }
+
+    .header-portrait {
+        display: flex;
+        justify-content: center;
+    }
+
+    .header-portrait a {
+        text-align: center;
+        text-decoration: none;
+        font-size: 2rem;
+    }
 }
 
 /* Large screens */
