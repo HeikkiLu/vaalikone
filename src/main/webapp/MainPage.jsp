@@ -8,10 +8,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="adminstyle.css">
+        <title>Vaalikone etusivu</title>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
-		<title>Vaalikone etusivu</title>
+		<script src="https://kit.fontawesome.com/4c791671b3.js" crossorigin="anonymous"></script>
 		<script defer src="script.js"></script>
+		<link rel="stylesheet" type="text/css" href="adminstyle.css">
     </head>
     <body>
 

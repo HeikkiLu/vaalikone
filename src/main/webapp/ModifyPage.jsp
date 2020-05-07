@@ -8,10 +8,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="adminstyle.css">
+        <title>Vaalikone käyttäjän muokkaus</title>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
-		<title>Vaalikone käyttäjän muokkaus</title>
+		<script src="https://kit.fontawesome.com/4c791671b3.js" crossorigin="anonymous"></script>
 		<script defer src="script.js"></script>
+		<link rel="stylesheet" type="text/css" href="adminstyle.css">
     </head>
     <body>
 
@@ -26,9 +27,14 @@
             <div class="container-form">
                 <form id="addForm" action="/buttonAction" method="get">
                 	<header class="header-form">
-                		<% if (EhdokkaatDao.confirmEdit) { %>
-							<h2 class="success">Ehdokas muokattu onnistuneesti</h2>
-						<% EhdokkaatDao.confirmEdit = false; %>
+						<% if (EhdokkaatDao.confirmEdit || EhdokkaatDao.confirmDelete) { %>
+							<% if (EhdokkaatDao.confirmEdit) { %>
+								<h2 class="success">Ehdokas muokattu onnistuneesti</h2>
+								<% EhdokkaatDao.confirmEdit = false; %>
+							<% } else { %>
+								<h2 class="success">Ehdokas poistettu onnistuneesti</h2>
+								<% EhdokkaatDao.confirmDelete = false; %>
+							<% } %>
 						<% } else { %>
 							<h2>Muokkaa ehdokasta</h2>
 						<% } %>
@@ -41,7 +47,7 @@
 						<button class="button" name="btn" value="Hae" type="submit">Hae</button>
 						<button class="button" name="btn" value="Yes" type="submit">Päivitä</button>
 						<button class="button" name="btn" value="Confirm" type="submit">Poista</button>
-						<button class="button" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
+						<button class="button button-clear" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 
 				</form>
