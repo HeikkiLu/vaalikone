@@ -92,6 +92,7 @@ public class EhdokkaatDao {
 		obj.setMiksiEduskuntaan(miksieduskuntaan);
 		obj.setMitaAsioitaHaluatEdistaa(mitaedistaa);
 		obj.setAmmatti(ammatti);
+		obj.setEhdokasnumero(ehdokasnumero);
 
 		em.getTransaction().begin();
 		em.persist(obj);
@@ -99,10 +100,20 @@ public class EhdokkaatDao {
 		em.close();
 	}
 
-	public Ehdokkaat findEhdokas(int id) {
+	public Ehdokkaat findEhdokas(int num) {
 		EntityManager em = getEntityManager();
-
-		Ehdokkaat ehdokas = em.find(Ehdokkaat.class, id);
+		Ehdokkaat ehdokas;
+		
+		//Ehdokkaat ehdokas = em.find(Ehdokkaat.class, num);
+		List<Ehdokkaat> list = em.createNamedQuery("Ehdokkaat.findByEhdokasnumero").setParameter("ehdokasnumero", num).getResultList();
+		System.out.println("NamedQuery: " + list + " with num: " + num);
+		
+		if (num < 0) {
+			return null;
+		} else {
+			ehdokas = list.get(0);
+		}
+		
 		return ehdokas;
 	}
 }
