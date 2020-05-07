@@ -86,8 +86,8 @@ const deleteKysymys = id => {
 }
 
 const getCandidate = () => {
-	const responseField = document.querySelector('#ehdokkaat');
-	const apiurl = "http://localhost:8080/rest/ehdokkaatservice/getall";
+    const responseField = document.querySelector('#ehdokkaat');
+    const apiurl = "http://localhost:8080/rest/ehdokkaatservice/getall";
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = () => {
@@ -110,6 +110,31 @@ const getCandidate = () => {
     xhr.send();
 }
 
-// Ei vielä toimi kaikissa formeissa event listener
-const button_clear = document.querySelector(".button-clear");
-button_clear.addEventListener('click', clearFields);
+/* Theme switcher */
+
+// DOM elements
+const darkButton = document.getElementById('dark');
+const lightButton = document.getElementById('light');
+const solarButton = document.getElementById('solar');
+const body = document.body;
+
+const theme = localStorage.getItem('theme');
+
+if (theme) {
+    body.classList.add(theme);
+}
+
+// Button event handlers
+darkButton.onclick = () => {
+    body.classList.replace('light', 'dark');
+    localStorage.setItem('theme', 'dark');
+};
+
+lightButton.onclick = () => {
+    body.classList.replace('dark', 'light');
+    localStorage.setItem('theme', 'light');
+};
+
+solarButton.onclick = () => {
+    body.classList.replace('light', 'dark');
+};
