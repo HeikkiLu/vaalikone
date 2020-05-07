@@ -13,11 +13,9 @@ const clearFields = () => {
 }
 
 // Kysymysten haku restistä
-const responseField = document.querySelector('#kysymykset');
-const apiurl = "http://localhost:8080/rest/kysymyksetservice/getall";
-
 const getQuestions = () => {
-
+    const responseField = document.querySelector('#kysymykset');
+    const apiurl = "http://localhost:8080/rest/kysymyksetservice/getall";
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = () => {
@@ -85,6 +83,31 @@ const deleteKysymys = id => {
     xhr.open("DELETE", "/rest/kysymyksetservice/deletekysymys", true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(json);
+}
+
+const getCandidate = () => {
+	const responseField = document.querySelector('#ehdokkaat');
+	const apiurl = "http://localhost:8080/rest/ehdokkaatservice/getall";
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            ehdokkaat = JSON.parse(xhr.response);
+            let txt = "";
+            for (index in ehdokkaat) {
+                txt += ehdokkaat[index].ehdokasnumero + "&nbsp";
+                txt += ehdokkaat[index].sukunimi + "&nbsp";
+                txt += ehdokkaat[index].etunimi + "&nbsp";
+                txt += ehdokkaat[index].puolue + "&nbsp";
+                txt += "<br>";
+            }
+
+            responseField.innerHTML = txt;
+        }
+    };
+
+    xhr.open('GET', apiurl, true);
+    xhr.send();
 }
 
 // Ei vielä toimi kaikissa formeissa event listener

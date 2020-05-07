@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import persist.Ehdokkaat;
+import persist.Kysymykset;
 
 public class EhdokkaatDao {
 
@@ -114,5 +115,14 @@ public class EhdokkaatDao {
 		}
 
 		return ehdokas;
+	}
+
+	public static List<Ehdokkaat> getEhdokkaat() {
+		
+			EntityManager em = GetEntityManager();
+			List<Ehdokkaat> list = em.createQuery("select a from Ehdokkaat a").getResultList();
+			em.close();
+
+			return list;
 	}
 }
