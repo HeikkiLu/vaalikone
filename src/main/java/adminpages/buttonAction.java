@@ -54,7 +54,7 @@ public class buttonAction extends HttpServlet {
 		conn.ehdokas = ehdokasnumero;
 
 		if (conn.event == 'C') {
-			conn.deleteEhdokas();
+			conn.DeleteEhdokas();
 			EhdokkaatDao.confirmDelete = true;
 		}
 		
