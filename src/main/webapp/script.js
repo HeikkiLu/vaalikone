@@ -34,7 +34,7 @@ const getQuestions = () => {
                 txt += `<button class="btn-del" type="button" onclick="deleteKysymys(${id})"><i class="fas fa-trash-alt"></i></button>`;
                 
                 txt += kysymykset[index].kysymysId + ". "; //"&nbsp"
-                txt += '<input class="textbox-input" type="text" value="'
+                txt += `<input id="${id}" class="kysymystext" type="text" disabled="disabled" value="`
                 txt += kysymykset[index].kysymys + '">';
                 txt += '</span>'
             }
@@ -86,6 +86,34 @@ const deleteKysymys = id => {
     xhr.open("DELETE", "/rest/kysymyksetservice/deletekysymys", true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(json);
+}
+
+const disableKysymys = id => {
+	
+	let kysymys = document.getElementById(id).disabled;
+	//kysymys ? kysymys = true : kysymys = false;
+	if (kysymys){
+		kysymys = false;
+	}
+	else {
+		kysymys = true;
+	}
+}
+
+const editKysymys = id => {	
+	
+	disableKysymys(id);
+    let kys = new Object;
+    kys.kysymysId = id;
+
+    let json = JSON.stringify(kys);
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            getQuestions(); // Päivittää kysymykset-listan sivulla
+        }
+    };
 }
 
 // Ei vielä toimi kaikissa formeissa event listener
