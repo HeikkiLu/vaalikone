@@ -8,11 +8,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="adminstyle.css">
+        <title>Vaalikone käyttäjän muokkaus</title>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
-		<title>Vaalikone käyttäjän muokkaus</title>
-		<script defer src="script.js"></script>
 		<script src="https://kit.fontawesome.com/4c791671b3.js" crossorigin="anonymous"></script>
+		<script defer src="script.js"></script>
+		<link rel="stylesheet" type="text/css" href="adminstyle.css">
     </head>
     <body>
 
@@ -42,7 +42,7 @@
 						<button class="button" name="btn" value="Hae" type="submit">Hae</button>
 						<button class="button" name="btn" value="Yes" type="submit">Päivitä</button>
 						<button class="button" name="btn" value="Confirm" type="submit">Poista</button>
-						<button class="button" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
+						<button class="button button-clear" name="btn" type="button">Tyhjennä</button>
 					</div>
 
 				</form>
