@@ -48,13 +48,10 @@ const getQuestions = () => {
 }
 
 // Kysymysten lisäys restillä
-const sendurl = "/rest/kysymyksetservice/addkysymys";
-const userInput = document.getElementById("kysymys").value;
-
 const sendData = () => {
 
     let kys = new Object;
-    kys.kysymys = userInput;
+    kys.kysymys = document.getElementById("kysymys").value;
 
     let json = JSON.stringify(kys);
     const xhr = new XMLHttpRequest();
@@ -66,7 +63,7 @@ const sendData = () => {
         }
     };
 
-    xhr.open("POST", sendurl, true);
+    xhr.open("POST", "/rest/kysymyksetservice/addkysymys", true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(json);
 }

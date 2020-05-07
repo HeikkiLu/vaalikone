@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Ehdokkaat.findByIk\u00e4", query = "SELECT e FROM Ehdokkaat e WHERE e.ika = :ika"),
     @NamedQuery(name = "Ehdokkaat.findByMiksiEduskuntaan", query = "SELECT e FROM Ehdokkaat e WHERE e.miksiEduskuntaan = :miksiEduskuntaan"),
     @NamedQuery(name = "Ehdokkaat.findByMitaAsioitaHaluatEdistaa", query = "SELECT e FROM Ehdokkaat e WHERE e.mitaAsioitaHaluatEdistaa = :mitaAsioitaHaluatEdistaa"),
-    @NamedQuery(name = "Ehdokkaat.findByAmmatti", query = "SELECT e FROM Ehdokkaat e WHERE e.ammatti = :ammatti")})
+    @NamedQuery(name = "Ehdokkaat.findByAmmatti", query = "SELECT e FROM Ehdokkaat e WHERE e.ammatti = :ammatti"),
+    @NamedQuery(name = "Ehdokkaat.findByEhdokasnumero", query = "SELECT e FROM Ehdokkaat e WHERE e.ehdokasnumero = :ehdokasnumero")})
 public class Ehdokkaat implements Serializable {
 	
     private static final long serialVersionUID = 1L;
@@ -68,6 +69,8 @@ public class Ehdokkaat implements Serializable {
     @Size(max = 50)
     @Column(name = "AMMATTI")
     private String ammatti;
+    @Column(name = "EHDOKASNUMERO")
+    private Integer ehdokasnumero;
 
     /**
      *
@@ -227,7 +230,15 @@ public class Ehdokkaat implements Serializable {
         this.ammatti = ammatti;
     }
 
-    @Override
+    public Integer getEhdokasnumero() {
+		return ehdokasnumero;
+	}
+
+	public void setEhdokasnumero(Integer ehdokasnumero) {
+		this.ehdokasnumero = ehdokasnumero;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (ehdokasId != null ? ehdokasId.hashCode() : 0);

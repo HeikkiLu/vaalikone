@@ -37,23 +37,24 @@ public class buttonAction extends HttpServlet {
 		int ehdokasnumero;
 		
 		try {
+			ika = Integer.parseInt(request.getParameter("ika"));
+		} catch (Exception e) {
+			ika = -1;
+		}
+		
+		try {
 			ehdokasnumero = Integer.parseInt(request.getParameter("ehdokasnumero"));
 		} catch (Exception e) {
 			ehdokasnumero = -1;
 		}
 		
-		try {
-			ika = Integer.parseInt(request.getParameter("ika"));
-		} catch (Exception e) {
-			ika = -1;
-		}
 		
 		// Tämä määrittää mitä nappulaa painettiin
 		conn.event = request.getParameter("btn").charAt(0);
 		conn.ehdokas = ehdokasnumero;
 
 		if (conn.event == 'C') {
-			conn.deleteEhdokas();
+			conn.DeleteEhdokas();
 			EhdokkaatDao.confirmDelete = true;
 		}
 		
