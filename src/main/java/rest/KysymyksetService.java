@@ -33,10 +33,18 @@ public class KysymyksetService {
 	public void addKysymys(Kysymykset kys) {
 		KysymyksetDao.addKysymys(kys);
 	}
-	 @DELETE
-	 @Path("/deletekysymys")
-	 @Consumes(MediaType.APPLICATION_JSON)
+	
+	@DELETE
+	@Path("/deletekysymys")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public void deleteKysymys(Kysymykset kys) {
 		 KysymyksetDao.deleteKysymys(kys);
+	}
+	
+	@POST
+	@Path("/modifykysymys")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void modifyKysymys(Kysymykset kys) {
+		KysymyksetDao.modifyKysymys(kys);
 	}
 }

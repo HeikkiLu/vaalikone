@@ -30,11 +30,12 @@ const getQuestions = () => {
                 let id = kysymykset[index].kysymysId;
 
                 txt += '<span class="kysymys-span">'
-                txt += '<button class="btn-edit" type="button" onclick="editKysymys()"><i class="fas fa-pen"></i></button>';
+                txt += `<button class="btn-edit" type="button" onclick="editKysymys(${id})"><i class="fas fa-pen"></i></button>`;
                 txt += `<button class="btn-del" type="button" onclick="deleteKysymys(${id})"><i class="fas fa-trash-alt"></i></button>`;
-                txt += '<p>'
+                
                 txt += kysymykset[index].kysymysId + ". "; //"&nbsp"
-                txt += kysymykset[index].kysymys + "</p>";
+                txt += '<input class="textbox-input" type="text" value="'
+                txt += kysymykset[index].kysymys + '">';
                 txt += '</span>'
             }
 

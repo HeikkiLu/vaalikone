@@ -52,4 +52,14 @@ public class KysymyksetDao {
         em.getTransaction().commit();
         em.close();
 	}
+
+	public static void modifyKysymys(Kysymykset kys) {
+		EntityManager em = getEntityManager();
+		Kysymykset k =em.find(Kysymykset.class, kys.getKysymysId());
+        em.getTransaction().begin();
+        em.persist(k);
+        em.getTransaction().commit();
+        em.close();		
+		
+	}
 }	
