@@ -148,16 +148,16 @@ modalClose.addEventListener('click', function () {
 let editID;
 
 const openModal = (kys, id) => {
-    modalBg.classList.add('active');    
+    modalBg.classList.add('active');
     modalText.value = kys;
     editID = id;
 };
 
 const editKysymys = () => {
-	
-	let editedkys = new Object;
-	editedkys.kysymys = modalText.value;
-	editedkys.kysymysId = editID;	
+
+    let editedkys = new Object;
+    editedkys.kysymys = modalText.value;
+    editedkys.kysymysId = editID;
 
     let json = JSON.stringify(editedkys);
     const xhr = new XMLHttpRequest();
@@ -171,9 +171,9 @@ const editKysymys = () => {
     xhr.open("POST", "/rest/kysymyksetservice/modifykysymys", true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(json);
-    
+
     modalBg.classList.remove('active');
-	
+
 }
 
 // Sulkee modaalin liian herkästi

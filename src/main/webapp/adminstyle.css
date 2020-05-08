@@ -110,7 +110,13 @@ body::-webkit-scrollbar-thumb {
 
 /* Kysymys-sivu */
 #kysymys {
-	width: 40vw;
+    width: 40vw;
+}
+
+#ehdokkaat {
+    width: 40vw;
+    margin-left: 15%;
+    margin-bottom: 5rem;
 }
 
 /* Boksi johon kaikki kysymykset tulevat */
