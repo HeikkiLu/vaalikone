@@ -397,9 +397,9 @@ option {
     font-weight: bold;
 }
 
-.dropdown-item a::before {
+#light::before {
+    background: var(--theme-select-light);
     content: ' ';
-    background: var(--theme-select-dark);
     border: 2px solid var(--border-color);
     border-radius: 50%;
     width: 2rem;
@@ -407,6 +407,20 @@ option {
     display: inline-block;
     vertical-align: middle;
     margin-right: 10px;
+    box-shadow: inset 0px 0px 10px var(--theme-select-dark);
+}
+
+#dark::before {
+    background: var(--theme-select-dark);
+    content: ' ';
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    box-shadow: inset 0px 0px 10px var(--theme-select-light);
 }
 
 /* Color Themes */
@@ -424,8 +438,8 @@ option {
     --nav-text: var(--gray0);
     --nav-text-flip: var(--gray6);
     --hover-color: var(--black);
-    --border-color: var(--gray6);
-    --theme-select-light: var(--gray1);
+    --border-color: var(--gray1);
+    --theme-select-light: var(--gray6);
     --theme-select-dark: var(--gray1);
 }
 
@@ -442,6 +456,8 @@ option {
     --nav-text-flip: var(--t1-white);
     --hover-color: var(--t1-white);
     --border-color: var(--gray1);
+    --theme-select-light: var(--gray1);
+    --theme-select-dark: var(--gray6);
 }
 
 /* Modal menu */
@@ -483,7 +499,7 @@ option {
 .modal {
     position: relative;
     background-color: var(--bg);
-    width: 30%;
+    width: 50%;
     height: 30%;
     display: flex;
     justify-content: center;
@@ -491,6 +507,14 @@ option {
     flex-direction: column;
     border-radius: 8px;
     color: -var(--text)
+}
+
+.muokkaaKysymys {
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 10px;
+    background-color: var(--bg);
+    color: var(--form-text);
 }
 
 .modal button {
