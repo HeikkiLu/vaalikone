@@ -45,6 +45,7 @@ body {
     background: var(--bg);
     margin: 0;
     padding: 0;
+    transition: background 250ms ease-in;
 }
 
 /* Custom scrollbar */
@@ -173,7 +174,10 @@ form {
 	margin-left: auto;
 	margin-right: auto;
     vertical-align: center;
-    color: var(--text);
+}
+
+input, textarea, select {
+    border: 1px groove var(--border-color);
 }
 
 .header-form {
@@ -227,11 +231,14 @@ h2 {
 .textbox-input {
     grid-column: 2 / 3;
     width: 18rem;
-    background-color: white;
+    background-color: var(--bg);
+    color: var(--form-text);
 }
 
 textarea {
-   resize: none;
+    resize: none;
+    background-color: var(--bg);
+    color: var(--form-text);
 }
 
 /* Kotipaikkakunta drop-down */
@@ -244,7 +251,7 @@ select {
 }
 
 option {
-	color: #000;
+	color: var(--text);
 }
 
 /* Napit */
@@ -413,6 +420,7 @@ option {
     --bg-dropdown: var(--gray4);
     --text: var(--gray6);
     --text-flip: var(--gray0);
+    --form-text: var(--gray6);
     --nav-text: var(--gray0);
     --nav-text-flip: var(--gray6);
     --hover-color: var(--black);
@@ -429,6 +437,7 @@ option {
     --bg-dropdown: var(--gray4);
     --text: var(--gray0);
     --text-flip: var(--t1-white);
+    --form-text: var(--gray0);
     --nav-text: var(--gray0);
     --nav-text-flip: var(--t1-white);
     --hover-color: var(--t1-white);
@@ -473,13 +482,15 @@ option {
 
 .modal {
     position: relative;
-    background-color: white;
+    background-color: var(--bg);
     width: 30%;
     height: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border-radius: 8px;
+    color: -var(--text)
 }
 
 .modal button {
