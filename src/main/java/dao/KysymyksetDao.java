@@ -55,7 +55,8 @@ public class KysymyksetDao {
 
 	public static void modifyKysymys(Kysymykset kys) {
 		EntityManager em = getEntityManager();
-		Kysymykset k =em.find(Kysymykset.class, kys.getKysymysId());
+		Kysymykset k =em.find(Kysymykset.class, kys.getKysymysId());		
+		k.setKysymys(kys.getKysymys());
         em.getTransaction().begin();
         em.persist(k);
         em.getTransaction().commit();
