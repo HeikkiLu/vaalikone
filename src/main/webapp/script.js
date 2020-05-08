@@ -29,7 +29,7 @@ const getQuestions = () => {
                 let kys = kysymykset[index].kysymys;
 
                 txt += '<span class="kysymys-span">'
-                txt += `<button class="btn-edit" type="button" onclick="openModal(${id})"><i class="fas fa-pen"></i></button>`;
+                txt += `<button class="btn-edit" type="button" onclick="openModal('${kys}')"><i class="fas fa-pen"></i></button>`;
                 txt += `<button class="btn-del" type="button" onclick="deleteKysymys(${id})"><i class="fas fa-trash-alt"></i></button>`;
                 txt += '<p>'
                 txt += id + ". "; //"&nbsp"

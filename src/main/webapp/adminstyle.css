@@ -45,6 +45,7 @@ body {
     background: var(--bg);
     margin: 0;
     padding: 0;
+    transition: background 250ms ease-in;
 }
 
 /* Custom scrollbar */
@@ -179,7 +180,10 @@ form {
 	margin-left: auto;
 	margin-right: auto;
     vertical-align: center;
-    color: var(--text);
+}
+
+input, textarea, select {
+    border: 1px groove var(--border-color);
 }
 
 .header-form {
@@ -233,11 +237,14 @@ h2 {
 .textbox-input {
     grid-column: 2 / 3;
     width: 18rem;
-    background-color: white;
+    background-color: var(--bg);
+    color: var(--form-text);
 }
 
 textarea {
-   resize: none;
+    resize: none;
+    background-color: var(--bg);
+    color: var(--form-text);
 }
 
 /* Kotipaikkakunta drop-down */
@@ -250,7 +257,7 @@ select {
 }
 
 option {
-	color: #000;
+	color: var(--text);
 }
 
 /* Napit */
@@ -396,9 +403,9 @@ option {
     font-weight: bold;
 }
 
-.dropdown-item a::before {
+#light::before {
+    background: var(--theme-select-light);
     content: ' ';
-    background: var(--theme-select-dark);
     border: 2px solid var(--border-color);
     border-radius: 50%;
     width: 2rem;
@@ -406,6 +413,20 @@ option {
     display: inline-block;
     vertical-align: middle;
     margin-right: 10px;
+    box-shadow: inset 0px 0px 10px var(--theme-select-dark);
+}
+
+#dark::before {
+    background: var(--theme-select-dark);
+    content: ' ';
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    box-shadow: inset 0px 0px 10px var(--theme-select-light);
 }
 
 /* Color Themes */
@@ -419,11 +440,12 @@ option {
     --bg-dropdown: var(--gray4);
     --text: var(--gray6);
     --text-flip: var(--gray0);
+    --form-text: var(--gray6);
     --nav-text: var(--gray0);
     --nav-text-flip: var(--gray6);
     --hover-color: var(--black);
-    --border-color: var(--gray6);
-    --theme-select-light: var(--gray1);
+    --border-color: var(--gray1);
+    --theme-select-light: var(--gray6);
     --theme-select-dark: var(--gray1);
 }
 
@@ -435,10 +457,13 @@ option {
     --bg-dropdown: var(--gray4);
     --text: var(--gray0);
     --text-flip: var(--t1-white);
+    --form-text: var(--gray0);
     --nav-text: var(--gray0);
     --nav-text-flip: var(--t1-white);
     --hover-color: var(--t1-white);
     --border-color: var(--gray1);
+    --theme-select-light: var(--gray1);
+    --theme-select-dark: var(--gray6);
 }
 
 /* Modal menu */
@@ -479,13 +504,23 @@ option {
 
 .modal {
     position: relative;
-    background-color: white;
-    width: 30%;
+    background-color: var(--bg);
+    width: 50%;
     height: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border-radius: 8px;
+    color: -var(--text)
+}
+
+.muokkaaKysymys {
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 10px;
+    background-color: var(--bg);
+    color: var(--form-text);
 }
 
 .modal button {
