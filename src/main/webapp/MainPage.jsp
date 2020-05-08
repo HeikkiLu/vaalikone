@@ -17,16 +17,14 @@
     <body class="light">
 
 		<!-- Tuo navigointipalkin sivulle -->
-		
-		<%
-			EhdokkaatDao.ehdokas = -1;
-		%>
+		<jsp:include page="NavBar.jsp"/>
+		<% EhdokkaatDao.ehdokas = -1; %>
 		
         <div class="wrapper">
 
 			<!-- Tuo headerin sivulle -->
 	        <jsp:include page="Header.jsp"/>
-			<jsp:include page="NavBar.jsp"/>
+			
 			<div class="container-mainpage">	
 				<header>
 					<h2>Tervetuloa Diginide vaalikoneen hallintasivulle</h2>

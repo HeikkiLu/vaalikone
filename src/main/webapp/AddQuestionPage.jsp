@@ -18,6 +18,7 @@
 
 		<!-- Tuo navigointipalkin sivulle -->
 		<jsp:include page="NavBar.jsp"/>
+		<jsp:include page="Modal.jsp"/>
 		<% EhdokkaatDao.ehdokas = -1; %>
 
         <div class="wrapper">
