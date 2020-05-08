@@ -161,7 +161,7 @@ modalClose.addEventListener('click', function () {
 });
 
 const openModal = (kys) => {
-    modalBg.classList.add('active');
+    modalBg.classList.add('active');    
     modalText.value = kys;
 };
 
