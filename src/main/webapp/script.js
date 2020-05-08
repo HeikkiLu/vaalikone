@@ -29,7 +29,7 @@ const getQuestions = () => {
                 let kys = kysymykset[index].kysymys;
 
                 txt += '<span class="kysymys-span">'
-                txt += `<button class="btn-edit" type="button" onclick="openModal('${kys}')"><i class="fas fa-pen"></i></button>`;
+                txt += `<button class="btn-edit" type="button" onclick="openModal('${kys}', ${id})"><i class="fas fa-pen"></i></button>`;
                 txt += `<button class="btn-del" type="button" onclick="deleteKysymys(${id})"><i class="fas fa-trash-alt"></i></button>`;
                 txt += '<p>'
                 txt += id + ". "; //"&nbsp"
@@ -144,10 +144,37 @@ modalClose.addEventListener('click', function () {
     modalBg.classList.remove('active');
 });
 
-const openModal = (kys) => {
-    modalBg.classList.add('active');
+
+let editID;
+
+const openModal = (kys, id) => {
+    modalBg.classList.add('active');    
     modalText.value = kys;
+    editID = id;
 };
+
+const editKysymys = () => {
+	
+	let editedkys = new Object;
+	editedkys.kysymys = modalText.value;
+	editedkys.kysymysId = editID;	
+
+    let json = JSON.stringify(editedkys);
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            getQuestions(); // Päivittää kysymykset-listan sivulla
+        }
+    };
+
+    xhr.open("POST", "/rest/kysymyksetservice/modifykysymys", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(json);
+    
+    modalBg.classList.remove('active');
+	
+}
 
 // Sulkee modaalin liian herkästi
 // modalBg.addEventListener('click', function () {

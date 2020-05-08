@@ -3,7 +3,7 @@
     <div class="modal">
         <h2>Muokkaa kysymystä</h2>
         <input class="muokkaaKysymys" type="text" name="kysymys">
-        <button class="modal-submit-button">Tallenna</button>
+        <button class="modal-submit-button" onclick="editKysymys()">Tallenna</button>
         <span class="modal-close">X</span>
     </div>
 </div>

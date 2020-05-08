@@ -35,28 +35,30 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="D:/Downloads/javax.servlet-api-3.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/heikk/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar" sourcepath="C:/Users/heikk/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0-sources.jar">
+	<classpathentry exported="true" kind="lib" path="D:/Downloads/javax.servlet-api-3.1.0.jar">
 		<attributes>
-			<attribute name="com.google.cloud.tools.eclipse.appengine.libraries.repository" value="central"/>
-			<attribute name="com.google.cloud.tools.eclipse.appengine.libraries.groupid" value="javax.servlet"/>
-			<attribute name="com.google.cloud.tools.eclipse.appengine.libraries.artifactId" value="javax.servlet-api"/>
-			<attribute name="com.google.cloud.tools.eclipse.appengine.libraries.type" value="jar"/>
-			<attribute name="com.google.cloud.tools.eclipse.appengine.libraries.version" value="3.1.0"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/heikk/.m2/repository/javax/ws/rs/javax.ws.rs-api/2.1/javax.ws.rs-api-2.1.jar" sourcepath="C:/Users/heikk/.m2/repository/javax/ws/rs/javax.ws.rs-api/2.1/javax.ws.rs-api-2.1-sources.jar">
+	<classpathentry kind="src" path="target/generated-sources/annotations">
 		<attributes>
+			<attribute name="ignore_optional_problems" value="true"/>
+			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.archivename" value="javax.ws.rs-api-2.1.jar"/>
-			<attribute name="maven.groupId" value="javax.ws.rs"/>
-			<attribute name="maven.artifactId" value="javax.ws.rs-api"/>
-			<attribute name="maven.version" value="2.1"/>
-			<attribute name="maven.scope" value="compile"/>
+			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.5.2">
+	<classpathentry kind="src" output="target/test-classes" path="target/generated-test-sources/test-annotations">
+		<attributes>
+			<attribute name="ignore_optional_problems" value="true"/>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="m2e-apt" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="D:/Downloads/javax.ws.rs-api-2.1.1.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.5.2">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 			<attribute name="owner.project.facets" value="jpt.jpa"/>

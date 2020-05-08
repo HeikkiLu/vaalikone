@@ -143,10 +143,14 @@ body::-webkit-scrollbar-thumb {
     opacity: 1;
 }
 
-.kysymys-span p {
+.kysymys-span input {
 	margin-left: 15px; 
 	margin-top: 3px;
     margin-bottom: 0;
+}
+
+.kysymystext {
+	width: 60vw;
 }
 
 .btn-edit {
@@ -159,6 +163,8 @@ body::-webkit-scrollbar-thumb {
 
 /* Font Awesome ikonit */
 .fa-pen,
+.fa-check,
+.fa-times,
 .fa-trash-alt {
     color: var(--text-secondary);
     text-shadow: 0 0 5px black;
