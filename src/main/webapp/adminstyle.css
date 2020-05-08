@@ -107,10 +107,6 @@ body::-webkit-scrollbar-thumb {
     font-size: 1.2rem;
 }
 
-.header-portrait {
-    display: none;
-}
-
 /* Kysymys-sivu */
 #kysymys {
 	width: 40vw;
@@ -460,7 +456,7 @@ option {
     }
 
     .wrapper {
-        margin: 0;
+        
     }
     
     form {
@@ -469,23 +465,11 @@ option {
     }
     
     .header-item {
-        display: none;
         justify-content: center;
     }
 
     .header-head {
-        display: flex;
-    }
-
-    .header-portrait {
-        display: flex;
-        justify-content: center;
-    }
-
-    .header-portrait a {
-        text-align: center;
-        text-decoration: none;
-        font-size: 2rem;
+        position: absolute;
     }
 }
 

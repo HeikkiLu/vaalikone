@@ -115,7 +115,6 @@ const getCandidate = () => {
 // DOM elements
 const darkButton = document.getElementById('dark');
 const lightButton = document.getElementById('light');
-const solarButton = document.getElementById('solar');
 const body = document.body;
 
 const theme = localStorage.getItem('theme');
@@ -133,8 +132,4 @@ darkButton.onclick = () => {
 lightButton.onclick = () => {
     body.classList.replace('dark', 'light');
     localStorage.setItem('theme', 'light');
-};
-
-solarButton.onclick = () => {
-    body.classList.replace('light', 'dark');
 };
