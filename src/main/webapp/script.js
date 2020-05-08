@@ -102,16 +102,6 @@ const disableKysymys = id => {
 
 }
 
-const editKysymys = id => {	
-	
-	disableKysymys(id);
-	
-	
-	/*
-    let kys = new Object;
-    kys.kysymysId = id;
-
-    let json = JSON.stringify(kys);
 const getCandidate = () => {
     const responseField = document.querySelector('#ehdokkaat');
     const apiurl = "http://localhost:8080/rest/ehdokkaatservice/getall";
@@ -119,19 +109,6 @@ const getCandidate = () => {
 
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            getQuestions(); // Päivittää kysymykset-listan sivulla
-        }
-    };
-    
-    xhr.open("POST", "/rest/kysymyksetservice/modifykysymys", true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send(json);
-    */
-}
-
-// Ei vielä toimi kaikissa formeissa event listener
-const button_clear = document.querySelector(".button-clear");
-button_clear.addEventListener('click', clearFields);
             ehdokkaat = JSON.parse(xhr.response);
             let txt = "";
             for (index in ehdokkaat) {
@@ -174,9 +151,6 @@ lightButton.onclick = () => {
     localStorage.setItem('theme', 'light');
 };
 
-solarButton.onclick = () => {
-    body.classList.replace('light', 'dark');
-};
 // Modal
 const modalBg = document.querySelector('.modal-bg');
 const modalClose = document.querySelector('.modal-close');
