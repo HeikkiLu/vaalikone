@@ -94,15 +94,24 @@ const getCandidate = () => {
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             ehdokkaat = JSON.parse(xhr.response);
+            console.table(ehdokkaat);
             let txt = "";
+            txt += "<table class='ehdokastable'>";
+            txt += "<th class='tableheader numcell'>#</th>";
+            txt += "<th class='tableheader'>Sukunimi</th>";
+            txt += "<th class='tableheader'>Etunimi</th>";
+            txt += "<th class='tableheader'>Puolue</th>";
             for (index in ehdokkaat) {
-                txt += ehdokkaat[index].ehdokasnumero + "&nbsp";
-                txt += ehdokkaat[index].sukunimi + "&nbsp";
-                txt += ehdokkaat[index].etunimi + "&nbsp";
-                txt += ehdokkaat[index].puolue + "&nbsp";
-                txt += "<br>";
+                txt += "<tr class='tablerow'>";
+                txt += "<td class='tablenum'>" + ehdokkaat[index].ehdokasnumero + "</td>";
+                txt += "<td class='tablesuk'>" + ehdokkaat[index].sukunimi + "</td>";
+                txt += "<td class='tableetu'>" + ehdokkaat[index].etunimi + "</td>";
+                txt += "<td class='tablepuo'>" + ehdokkaat[index].puolue + "</td>";
+                txt += "</tr>";
             }
+            txt += "</table>";
 
+            console.log("txt: " + txt);
             responseField.innerHTML = txt;
         }
     };
