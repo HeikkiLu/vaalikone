@@ -499,7 +499,7 @@ option {
 .modal {
     position: relative;
     background-color: var(--bg);
-    width: 30%;
+    width: 50%;
     height: 30%;
     display: flex;
     justify-content: center;
@@ -507,6 +507,14 @@ option {
     flex-direction: column;
     border-radius: 8px;
     color: -var(--text)
+}
+
+.muokkaaKysymys {
+    width: 70%;
+    height: 1.5rem;
+    padding-left: 10px;
+    background-color: var(--bg);
+    color: var(--form-text);
 }
 
 .modal button {
