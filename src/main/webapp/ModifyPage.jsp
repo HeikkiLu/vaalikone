@@ -14,7 +14,7 @@
 		<script defer src="script.js"></script>
 		<link rel="stylesheet" type="text/css" href="adminstyle.css">
     </head>
-    <body>
+    <body class="light" onload="getCandidate()">
 
 		<!-- Tuo navigointipalkin sivulle -->
 		<jsp:include page="NavBar.jsp"/>
@@ -45,13 +45,18 @@
 
 					<div class="container-buttons">
 						<button class="button" name="btn" value="Hae" type="submit">Hae</button>
-						<button class="button" name="btn" value="Yes" type="submit">Päivitä</button>
+						<button class="button" name="btn" value="Yes" type="submit" onclick="getCandidate()">Päivitä</button>
 						<button class="button" name="btn" value="Confirm" type="submit">Poista</button>
 						<button class="button button-clear" name="btn" type="button" onclick="clearFields()">Tyhjennä</button>
 					</div>
 
 				</form>
 			</div>
+			<hr>
+			<h2>Ehdokkaat</h2>
+			<section id="ehdokkaat">
+				<!-- Tänne ehdokkaat ilmestyy -->
+			</section>
 		</div>
 	</body>
 </html>

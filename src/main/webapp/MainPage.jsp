@@ -14,10 +14,10 @@
 		<script defer src="script.js"></script>
 		<link rel="stylesheet" type="text/css" href="adminstyle.css">
     </head>
-    <body>
+    <body class="light">
 
 		<!-- Tuo navigointipalkin sivulle -->
-		<jsp:include page="NavBar.jsp"/>
+		
 		<%
 			EhdokkaatDao.ehdokas = -1;
 		%>
@@ -26,8 +26,8 @@
 
 			<!-- Tuo headerin sivulle -->
 	        <jsp:include page="Header.jsp"/>
-
-			<div class="container-mainpage">
+			<jsp:include page="NavBar.jsp"/>
+			<div class="container-mainpage">	
 				<header>
 					<h2>Tervetuloa Diginide vaalikoneen hallintasivulle</h2>
 					<p class="alaotsikko">Vasemmasta reunasta voit valita seuraavia toimintoja</p>

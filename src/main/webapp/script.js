@@ -13,12 +13,10 @@ const clearFields = () => {
 }
 
 // Kysymysten haku restistä
-const responseField = document.querySelector('#kysymykset');
-const apiurl = "http://localhost:8080/rest/kysymyksetservice/getall";
-
 const getQuestions = () => {
-
-    const xhr = new XMLHttpRequest();    
+    const responseField = document.querySelector('#kysymykset');
+    const apiurl = "http://localhost:8080/rest/kysymyksetservice/getall";
+    const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -114,6 +112,9 @@ const editKysymys = id => {
     kys.kysymysId = id;
 
     let json = JSON.stringify(kys);
+const getCandidate = () => {
+    const responseField = document.querySelector('#ehdokkaat');
+    const apiurl = "http://localhost:8080/rest/ehdokkaatservice/getall";
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = () => {
@@ -131,3 +132,49 @@ const editKysymys = id => {
 // Ei vielä toimi kaikissa formeissa event listener
 const button_clear = document.querySelector(".button-clear");
 button_clear.addEventListener('click', clearFields);
+            ehdokkaat = JSON.parse(xhr.response);
+            let txt = "";
+            for (index in ehdokkaat) {
+                txt += ehdokkaat[index].ehdokasnumero + "&nbsp";
+                txt += ehdokkaat[index].sukunimi + "&nbsp";
+                txt += ehdokkaat[index].etunimi + "&nbsp";
+                txt += ehdokkaat[index].puolue + "&nbsp";
+                txt += "<br>";
+            }
+
+            responseField.innerHTML = txt;
+        }
+    };
+
+    xhr.open('GET', apiurl, true);
+    xhr.send();
+}
+
+/* Theme switcher */
+
+// DOM elements
+const darkButton = document.getElementById('dark');
+const lightButton = document.getElementById('light');
+const solarButton = document.getElementById('solar');
+const body = document.body;
+
+const theme = localStorage.getItem('theme');
+
+if (theme) {
+    body.classList.add(theme);
+}
+
+// Button event handlers
+darkButton.onclick = () => {
+    body.classList.replace('light', 'dark');
+    localStorage.setItem('theme', 'dark');
+};
+
+lightButton.onclick = () => {
+    body.classList.replace('dark', 'light');
+    localStorage.setItem('theme', 'light');
+};
+
+solarButton.onclick = () => {
+    body.classList.replace('light', 'dark');
+};

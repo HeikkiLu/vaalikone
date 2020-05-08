@@ -14,7 +14,7 @@
 		<script defer src="script.js"></script>
 		<link rel="stylesheet" type="text/css" href="adminstyle.css">
     </head>
-    <body onload="getQuestions()">
+    <body class="light" onload="getQuestions()">
 
 		<!-- Tuo navigointipalkin sivulle -->
 		<jsp:include page="NavBar.jsp"/>
