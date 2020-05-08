@@ -94,15 +94,24 @@ const getCandidate = () => {
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             ehdokkaat = JSON.parse(xhr.response);
+            console.table(ehdokkaat);
             let txt = "";
+            txt += "<table class='ehdokastable'>";
+            txt += "<th class='tableheader numcell'>#</th>";
+            txt += "<th class='tableheader'>Sukunimi</th>";
+            txt += "<th class='tableheader'>Etunimi</th>";
+            txt += "<th class='tableheader'>Puolue</th>";
             for (index in ehdokkaat) {
-                txt += ehdokkaat[index].ehdokasnumero + "&nbsp";
-                txt += ehdokkaat[index].sukunimi + "&nbsp";
-                txt += ehdokkaat[index].etunimi + "&nbsp";
-                txt += ehdokkaat[index].puolue + "&nbsp";
-                txt += "<br>";
+                txt += "<tr class='tablerow'>";
+                txt += "<td class='tablenum'>" + ehdokkaat[index].ehdokasnumero + "</td>";
+                txt += "<td class='tablesuk'>" + ehdokkaat[index].sukunimi + "</td>";
+                txt += "<td class='tableetu'>" + ehdokkaat[index].etunimi + "</td>";
+                txt += "<td class='tablepuo'>" + ehdokkaat[index].puolue + "</td>";
+                txt += "</tr>";
             }
+            txt += "</table>";
 
+            console.log("txt: " + txt);
             responseField.innerHTML = txt;
         }
     };
@@ -148,16 +157,16 @@ modalClose.addEventListener('click', function () {
 let editID;
 
 const openModal = (kys, id) => {
-    modalBg.classList.add('active');    
+    modalBg.classList.add('active');
     modalText.value = kys;
     editID = id;
 };
 
 const editKysymys = () => {
-	
-	let editedkys = new Object;
-	editedkys.kysymys = modalText.value;
-	editedkys.kysymysId = editID;	
+
+    let editedkys = new Object;
+    editedkys.kysymys = modalText.value;
+    editedkys.kysymysId = editID;
 
     let json = JSON.stringify(editedkys);
     const xhr = new XMLHttpRequest();
@@ -171,9 +180,9 @@ const editKysymys = () => {
     xhr.open("POST", "/rest/kysymyksetservice/modifykysymys", true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(json);
-    
+
     modalBg.classList.remove('active');
-	
+
 }
 
 // Sulkee modaalin liian herkästi

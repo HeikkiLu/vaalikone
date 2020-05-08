@@ -63,7 +63,7 @@ body::-webkit-scrollbar-thumb {
 
 /* Etusivun sisältö */
 .container-mainpage {
-	width: 40rem;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	display: flex;
@@ -82,7 +82,7 @@ body::-webkit-scrollbar-thumb {
     top: 0;
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     height: 5rem;
     margin: 0;
@@ -91,7 +91,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .header-item {
-    width: 100%;
+    width: 15%;
     text-align: center;
 }
 
@@ -110,9 +110,38 @@ body::-webkit-scrollbar-thumb {
 
 /* Kysymys-sivu */
 #kysymys {
-	width: 40vw;
+    width: 40vw;
 }
 
+#ehdokkaat {
+    width: 100%;
+    margin-bottom: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ehdokastable {
+    /* width: 40vw; */
+}
+
+.tableheader,
+.tablesuk,
+.tableetu {
+    width: 150px;
+    text-align: left;
+}
+
+.tablepuo {
+    width: 300px;
+}
+
+.tablenum,
+.numcell {
+    width: 50px;
+    text-align: right;
+    padding-right: 10px;
+}
 /* Boksi johon kaikki kysymykset tulevat */
 #kysymykset {
     display: flex;
@@ -385,7 +414,7 @@ option {
     list-style: none;
 
     box-shadow: rgba(2, 8, 20, 0.1) 0px 0.175rem 0.5em;
-    transform: translateX(-15%);
+    transform: translateX(-100px);
 
     transition: opacity .15s ease-out;
 }
