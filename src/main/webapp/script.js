@@ -25,15 +25,15 @@ const getQuestions = () => {
             let txt = "";
 
             for (index in kysymykset) {
-                let id = kysymykset[index].kysymysId;                
+                let id = kysymykset[index].kysymysId;
+                let kys = kysymykset[index].kysymys;
 
                 txt += '<span class="kysymys-span">'
-                txt += `<button id="edittibutton" class="btn-edit" type="button" onclick="editKysymys(${id})"><i class="fas fa-pen"></i></button>`;
-                txt += `<button id="deletebutton" class="btn-del" type="button" onclick="deleteKysymys(${id})"><i class="fas fa-trash-alt"></i></button>`;
-                
-                txt += kysymykset[index].kysymysId + ". "; //"&nbsp"
-                txt += `<input id="${id}" class="kysymystext" type="text" disabled="disabled" value="`
-                txt += kysymykset[index].kysymys + '">';
+                txt += `<button class="btn-edit" type="button" onclick="openModal(${id})"><i class="fas fa-pen"></i></button>`;
+                txt += `<button class="btn-del" type="button" onclick="deleteKysymys(${id})"><i class="fas fa-trash-alt"></i></button>`;
+                txt += '<p>'
+                txt += id + ". "; //"&nbsp"
+                txt += kys + "</p>";
                 txt += '</span>'
             }
 
@@ -155,7 +155,6 @@ button_clear.addEventListener('click', clearFields);
 // DOM elements
 const darkButton = document.getElementById('dark');
 const lightButton = document.getElementById('light');
-const solarButton = document.getElementById('solar');
 const body = document.body;
 
 const theme = localStorage.getItem('theme');
@@ -178,3 +177,21 @@ lightButton.onclick = () => {
 solarButton.onclick = () => {
     body.classList.replace('light', 'dark');
 };
+// Modal
+const modalBg = document.querySelector('.modal-bg');
+const modalClose = document.querySelector('.modal-close');
+const modalText = document.querySelector('.muokkaaKysymys');
+
+modalClose.addEventListener('click', function () {
+    modalBg.classList.remove('active');
+});
+
+const openModal = (kys) => {
+    modalBg.classList.add('active');
+    modalText.value = kys;
+};
+
+// Sulkee modaalin liian herkästi
+// modalBg.addEventListener('click', function () {
+//     modalBg.classList.remove('active');
+// });

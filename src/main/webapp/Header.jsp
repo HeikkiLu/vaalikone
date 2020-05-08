@@ -24,9 +24,5 @@
         <div class="header-item">
             <a href="#">Settings</a>
         </div>
-
-        <div class="header-portrait">
-        <a href="MainPage.jsp">Vaalikone</a>
-        </div>
     </div>
 </header>
