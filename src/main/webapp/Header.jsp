@@ -5,9 +5,9 @@
             <a href="MainPage.jsp">Home</a>
         </div>
 
-        <div class="header-item">
+        <%-- <div class="header-item">
             <a href="#">About</a>
-        </div>
+        </div> --%>
 
         <div class="header-item has-dropdown">
             <a href="#">Theme</a>
@@ -21,8 +21,8 @@
             </ul>
         </div>
 
-        <div class="header-item">
+        <%-- <div class="header-item">
             <a href="#">Settings</a>
-        </div>
+        </div> --%>
     </div>
 </header>
