@@ -23,7 +23,7 @@ if (ehdokasJPA != null) {
 
 <!-- EHDOKASNUMERO -->
 <label for="ehdokasnumero" class="textbox-label">Ehdokasnumero</label>
-<input id="ehdokasnumero" class="textbox-input" type="text" name="ehdokasnumero" value="
+<input id="ehdokasnumero" class="textbox-input" type="text" name="ehdokasnumero" autocomplete="off" value="
 <%if (EhdokkaatDao.event == 'H' && ehdokasJPA != null) { out.println(ehdokasJPA.getEhdokasnumero()); }%>" required>
 
 <!-- SUKUNIMI -->

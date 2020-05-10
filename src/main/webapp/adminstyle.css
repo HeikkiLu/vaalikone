@@ -121,8 +121,8 @@ body::-webkit-scrollbar-thumb {
     align-items: center;
 }
 
-.ehdokastable {
-    /* width: 40vw; */
+.tableheader {
+    cursor: pointer;
 }
 
 .tableheader,
