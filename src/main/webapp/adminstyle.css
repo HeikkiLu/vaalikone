@@ -90,6 +90,10 @@ body::-webkit-scrollbar-thumb {
     background: var(--bg-nav);
 }
 
+.header-head:last-child {
+    margin-left: auto;
+}
+
 .header-item {
     width: 15%;
     text-align: center;
@@ -114,8 +118,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 #ehdokkaat {
-    width: 100%;
+    /* width: 100%; */
     margin-bottom: 6rem;
+    padding-left: 6rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -583,6 +588,11 @@ option {
 
     .wrapper {
         
+    }
+
+    #ehdokkaat {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
     
     form {
