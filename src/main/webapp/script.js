@@ -21,7 +21,8 @@ const getQuestions = () => {
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
 
-            kysymykset = JSON.parse(xhr.response);
+            let kysymykset = JSON.parse(xhr.response);
+            console.table(kysymykset);
             let txt = "";
 
             for (index in kysymykset) {
@@ -86,21 +87,34 @@ const deleteKysymys = id => {
     xhr.send(json);
 }
 
-const getCandidate = () => {
+const getCandidate = (column) => {
     const responseField = document.querySelector('#ehdokkaat');
     const apiurl = "http://localhost:8080/rest/ehdokkaatservice/getall";
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
+
             ehdokkaat = JSON.parse(xhr.response);
             console.table(ehdokkaat);
+            console.log(Array.isArray(ehdokkaat));
+
+            /**
+             * Jos taulukon otsikoita painetaan, ne kutsuvat tätä funktiota (recursion?)
+             * antaen parametrina sen kolumnin numeron mitä painettiin, ja alla
+             * olevaa sort funktiota kutsutaan mikä palauttaa järjestetyn version ehdokkaista
+             */
+            if (column != null) {
+                ehdokkaat = sortEhdokkaat(ehdokkaat, column);
+            }
+
             let txt = "";
             txt += "<table class='ehdokastable'>";
-            txt += "<th class='tableheader numcell'>#</th>";
-            txt += "<th class='tableheader'>Sukunimi</th>";
-            txt += "<th class='tableheader'>Etunimi</th>";
-            txt += "<th class='tableheader'>Puolue</th>";
+            txt += "<th class='tableheader numcell' href='#' onclick='getCandidate(0)'>#</th>";
+            txt += "<th class='tableheader' href'#' onclick='getCandidate(1)'>Sukunimi</th>";
+            txt += "<th class='tableheader' href='#' onclick='getCandidate(2)'>Etunimi</th>";
+            txt += "<th class='tableheader' href='#' onclick='getCandidate(3)'>Puolue</th>";
+
             for (index in ehdokkaat) {
                 txt += "<tr class='tablerow'>";
                 txt += "<td class='tablenum'>" + ehdokkaat[index].ehdokasnumero + "</td>";
@@ -109,15 +123,96 @@ const getCandidate = () => {
                 txt += "<td class='tablepuo'>" + ehdokkaat[index].puolue + "</td>";
                 txt += "</tr>";
             }
+
             txt += "</table>";
 
-            console.log("txt: " + txt);
             responseField.innerHTML = txt;
         }
     };
 
     xhr.open('GET', apiurl, true);
     xhr.send();
+}
+
+let sortNum = false;
+let sortSuk = false;
+let sortEtu = false;
+let sortPuo = false;
+
+const sortEhdokkaat = (obj, index) => {
+
+    switch (index) {
+
+        // Ehdokasnumeron mukaan
+        case 0:
+            // Pienimmästä suurimpaan
+            if (!sortNum) {
+                obj.sort((a, b) => (a.ehdokasnumero > b.ehdokasnumero) ? 1 : -1);
+                sortNum = true;
+            } // Suurimmasta pienimpään
+            else {
+                obj.sort((a, b) => (a.ehdokasnumero < b.ehdokasnumero) ? 1 : -1);
+                sortNum = false;
+            }
+
+            // Estää väärien arvojen jäämisen voimaan
+            sortSuk = false;
+            sortEtu = false;
+            sortPuo = false;
+            break;
+
+        // Sukunimen mukaan
+        case 1:
+            // Aakkosjärjestyksessä
+            if (!sortSuk) {
+                obj.sort((a, b) => (a.sukunimi > b.sukunimi) ? 1 : -1);
+                sortSuk = true;
+            } // Käänteisesti
+            else {
+                obj.sort((a, b) => (a.sukunimi < b.sukunimi) ? 1 : -1);
+                sortSuk = false;
+            }
+
+            sortNum = false;
+            sortEtu = false;
+            sortPuo = false;
+            break;
+
+        // Etunimen mukaan
+        case 2:
+            if (!sortEtu) {
+                obj.sort((a, b) => (a.etunimi > b.etunimi) ? 1 : -1);
+                sortEtu = true;
+            } else {
+                obj.sort((a, b) => (a.etunimi < b.etunimi) ? 1 : -1);
+                sortEtu = false;
+            }
+
+            sortNum = false;
+            sortSuk = false;
+            sortPuo = false;
+            break;
+
+        // Puolueen mukaan
+        case 3:
+            if (!sortPuo) {
+                obj.sort((a, b) => (a.puolue > b.puolue) ? 1 : -1);
+                sortPuo = true;
+            } else {
+                obj.sort((a, b) => (a.puolue < b.puolue) ? 1 : -1);
+                sortPuo = false;
+            }
+
+            sortNum = false;
+            sortSuk = false;
+            sortEtu = false;
+            break;
+
+        default:
+            break;
+    }
+
+    return obj;
 }
 
 /* Theme switcher */
